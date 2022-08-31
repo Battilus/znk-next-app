@@ -16,8 +16,14 @@ module.exports = {
         fontFamily: {
             sans: ['Atyp Display', ...defaultTheme.fontFamily.sans]
         },
+        width: {
+            '42': '10.5rem',
+        },
         maxWidth: {
             '152px': '152px',
+        },
+        translate: {
+            '38': '8.5rem'
         },
     },
   },

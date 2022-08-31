@@ -9,12 +9,11 @@ export type MetaTag = {
 interface IMetaProps {
     title: string
     description?: string
-    favicon?: boolean
     tagsList?: MetaTag[]
     keywords?: DetailedHTMLProps<MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement> | string
 }
 
-const Meta: FC<IMetaProps> = ({title, description, favicon, tagsList, keywords}) => {
+const Meta: FC<IMetaProps> = ({title, description, tagsList, keywords}) => {
     return (
         <Head>
             {description && <meta name="description" content={description}/>}
@@ -24,7 +23,7 @@ const Meta: FC<IMetaProps> = ({title, description, favicon, tagsList, keywords})
                 : null}
             {/*@ts-ignore*/}
             {keywords && <meta keywords={keywords}/>}
-            {favicon && <link rel="icon" href="/public/favicon.ico"/>}
+            <link rel="icon" href="../public/favicon.ico"/>
             <title>{title}</title>
         </Head>
     );

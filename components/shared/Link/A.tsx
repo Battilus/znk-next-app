@@ -4,12 +4,13 @@ import Link from "next/link";
 interface IAProps {
     children: ReactNode | ReactNode[] | string | string[]
     href: string
+    className?: string
 }
 
-const A: FC<IAProps> = ({children, href}) => {
+const A: FC<IAProps> = ({children, href, className}) => {
     return (
         <Link href={href}>
-            <a className={`decoration-0`}>{children}</a>
+            <a className={`decoration-0 ${className}`}>{children}</a>
         </Link>
     );
 };
