@@ -1,5 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 import LinkButton from "./LinkButton";
+import ToggleSelectButton from "./ToggleSelectButton";
 
 interface IButtonProps {
     children: ReactNode | ReactNode[] | string | string[]
@@ -8,7 +9,7 @@ interface IButtonProps {
     onClick?: () => void
 }
 
-type ButtonFC = FC<IButtonProps> & { Link: typeof LinkButton };
+type ButtonFC = FC<IButtonProps> & { Link: typeof LinkButton } & { Selector: typeof ToggleSelectButton};
 
 export enum ButtonStyleType {
     inverse = `flex items-center justify-center outline-0 border-opacity-20
@@ -36,3 +37,4 @@ export const Button: ButtonFC = ({children, styleType="inverse", className="", o
 };
 
 Button.Link = LinkButton;
+Button.Selector = ToggleSelectButton;

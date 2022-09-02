@@ -38,47 +38,52 @@ const MainMenu: FC = () => {
                             transform transition-all duration-700 ${isOpen ? "" : "-translate-x-38"} 
                             border-r border-matterhorn border-opacity-40 bg-whiteSmoke z-40`}
             >
-                <Transition
-                    show={isOpen}
-                    enter="transform transition-all duration-700"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="transform transition-all duration-700"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                >
-                    <div className="mt-8 z-30">
-                        {SIDEBAR_LINKS.length ? <div className="w-full h-px bg-matterhorn opacity-40"/> : null}
-                        {SIDEBAR_LINKS.map(button =>
-                            button.type === "button" ?
-                                <>
-                                    <Button
-                                        key={button.description}
-                                        styleType={button.styleType}
-                                        className={button.className}
-                                        onClick={button.description === "Контакты" ? () => setIsContactsOpen(true) : undefined}
-                                    >
-                                        {button.description}
-                                    </Button>
-                                    <div className="w-full h-px bg-matterhorn opacity-40"/>
-                                </>
-                                : button.type === "link" ?
+                <div className="h-full w-full">
+                    <Transition
+                        show={isOpen}
+                        enter="transform transition-all duration-700"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="transform transition-all duration-700"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="mt-8 z-30">
+                            {SIDEBAR_LINKS.length ? <div className="w-full h-px bg-matterhorn opacity-40"/> : null}
+                            {SIDEBAR_LINKS.map(button =>
+                                button.type === "button" ?
                                     <>
-                                        <Button.Link
+                                        <Button
+                                            key={button.description}
                                             styleType={button.styleType}
                                             className={button.className}
-                                            href={button.href}
+                                            onClick={button.description === "Контакты" ? () => setIsContactsOpen(true) : undefined}
                                         >
                                             {button.description}
-                                        </Button.Link>
+                                        </Button>
                                         <div className="w-full h-px bg-matterhorn opacity-40"/>
                                     </>
-                                    : null)}
-                    </div>
-                    <div className="flex flex-col justify-end h-full z-30">
-                        <span className="text-center uppercase text-sm font-medium">RU/EN</span>
-                    </div>
-                </Transition>
+                                    : button.type === "link" ?
+                                        <>
+                                            <Button.Link
+                                                styleType={button.styleType}
+                                                className={button.className}
+                                                href={button.href}
+                                            >
+                                                {button.description}
+                                            </Button.Link>
+                                            <div className="w-full h-px bg-matterhorn opacity-40"/>
+                                        </>
+                                        : null)}
+                        </div>
+                    </Transition>
+                </div>
+                <div className="absolute left-0 bottom-0 w-full z-30">
+                    <Button.Selector
+                        suggestions={["RU", "EN"]}
+                        setSuggestion={() => {}}
+                    />
+                </div>
             </div>
             <Contacts show={isContactsOpen} contacts={CONTACTS}/>
             <div className="fixed top-0">
