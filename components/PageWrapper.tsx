@@ -20,7 +20,7 @@ const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaT
 
             <main className="h-screen bg-white">
                 <MainMenu />
-                <div>
+                <div className="ml-8">
                     {children}
                 </div>
             </main>

@@ -2,12 +2,12 @@ import React from 'react';
 import {NextPage} from "next";
 import PageWrapper from "../components/PageWrapper";
 
-const Buro: NextPage = () => {
+const Projects: NextPage = () => {
     return (
-        <PageWrapper title={"ZNK App"} description={"Buro page"}>
-            Buro
+        <PageWrapper title={"ZNK App"} description={"Projects page"}>
+            Projects
         </PageWrapper>
     );
 };
 
-export default Buro;
+export default Projects;
