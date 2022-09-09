@@ -7,9 +7,10 @@ interface IPageWrapperProps {
     title: string
     description: string
     metaTagsList?: MetaTag[]
+    isHomeLocation?: boolean
 }
 
-const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaTagsList}) => {
+const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaTagsList, isHomeLocation}) => {
     return (
         <>
             <Meta
@@ -18,8 +19,8 @@ const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaT
                 tagsList={metaTagsList}
             />
 
-            <main className="h-screen bg-white">
-                <MainMenu />
+            <main className="h-screen w-screen bg-white">
+                <MainMenu isHomeLocation={isHomeLocation}/>
                 <div className="ml-8">
                     {children}
                 </div>

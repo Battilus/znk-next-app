@@ -1,13 +1,17 @@
 import React, {FC, useState} from 'react';
 import BurgerIcon from '../../../public/svg/burger-menu.svg';
 import CrossIcon from '../../../public/svg/cross-menu.svg';
-import Image from "next/image";
+import ArrowLeftIcon from '../../../public/svg/arrow-left.svg';
 import {Transition} from '@headlessui/react';
 import {CONTACTS, SIDEBAR_LINKS} from "../../../assets/staticParams";
 import {Button} from "../Button";
 import Contacts from "./Contacts";
 
-const MainMenu: FC = () => {
+interface IMainMenuProps {
+    isHomeLocation?: boolean
+}
+
+const MainMenu: FC<IMainMenuProps> = ({isHomeLocation}) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isContactsOpen, setIsContactsOpen] = useState<boolean>(false);
@@ -18,20 +22,37 @@ const MainMenu: FC = () => {
     }
 
     return (
-        <>
-            <div className="fixed left-0 w-8 h-8 z-50">
+        <div className="fixed left-0 top-0 z-999">
+            <div className="fixed left-0 w-8 h-16 flex flex-col z-50">
                 <Button
                     styleType={"inverse"}
-                    className={`w-full h-full ${isOpen ? "border-r border-b" : "border-b border-r"} border-matterhorn border-opacity-40`}
+                    className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
                     onClick={() => {
                         setIsOpen(!isOpen);
                         setIsContactsOpen(false);
                     }}
                 >
                     {isOpen
-                        ? <Image src={CrossIcon} alt="cross logo" width={10} height={10}/>
-                        : <Image src={BurgerIcon} alt="burger logo" width={10} height={10}/>}
+                        ? <CrossIcon/>
+                        : <BurgerIcon/>}
                 </Button>
+                <Transition
+                    show={!isHomeLocation && !isOpen}
+                    enter="transform transition-all duration-200"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="transform transition-all duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <Button.Link
+                        styleType={"inverse"}
+                        className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
+                        href={"/"}
+                    >
+                        <ArrowLeftIcon/>
+                    </Button.Link>
+                </Transition>
             </div>
             <div
                 className={`flex flex-col h-screen w-42 fixed left-0 
@@ -58,6 +79,7 @@ const MainMenu: FC = () => {
                                             styleType={button.styleType}
                                             className={button.className}
                                             onClick={button.description === "Контакты" ? () => setIsContactsOpen(true) : undefined}
+                                            childrenClassName="pt-1.7 pb-1.3"
                                         >
                                             {button.description}
                                         </Button>
@@ -69,6 +91,7 @@ const MainMenu: FC = () => {
                                                 styleType={button.styleType}
                                                 className={button.className}
                                                 href={button.href}
+                                                childrenClassName="pt-1.7 pb-1.3"
                                             >
                                                 {button.description}
                                             </Button.Link>
@@ -89,17 +112,20 @@ const MainMenu: FC = () => {
             <div className="fixed top-0">
                 <Transition
                     show={isOpen}
-                    enter="transform transition-all duration-500"
+                    enter="transform transition-opacity duration-500"
                     enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="transform transition-all duration-500"
-                    leaveFrom="opacity-100"
+                    enterTo="opacity-40"
+                    leave="transform transition-opacity duration-500"
+                    leaveFrom="opacity-40"
                     leaveTo="opacity-0"
                 >
-                    <div className="w-screen h-screen bg-matterhorn opacity-40 z-20" onClick={closeMenu}/>
+                <div
+                    className={`w-screen h-screen bg-matterhorn z-99`}
+                    onClick={closeMenu}
+                />
                 </Transition>
             </div>
-        </>
+        </div>
     );
 };
 

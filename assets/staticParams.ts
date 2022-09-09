@@ -3,21 +3,21 @@ import {Contact} from "../components/shared/SideBars/Contacts";
 
 export const SIDEBAR_LINKS: LinkButton[] = [
     {
-        className: "outline-0 w-full h-8 uppercase text-sm font-medium",
+        className: "outline-0 w-full uppercase text-sm font-medium",
         description: "Бюро",
         type: "link",
         href: "/buro",
         styleType: "inverse",
     },
     {
-        className: "outline-0 w-full h-8 uppercase text-sm font-medium",
+        className: "outline-0 w-full uppercase text-sm font-medium",
         description: "Все проекты",
         type: "link",
         href: "/projects",
         styleType: "inverse",
     },
     {
-        className: "outline-0 w-full h-8 uppercase text-sm font-medium",
+        className: "outline-0 w-full uppercase text-sm font-medium",
         description: "Контакты",
         type: "button",
         styleType: "inverse",
