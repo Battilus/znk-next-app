@@ -1,36 +1,42 @@
 import React, {FC, ReactNode} from 'react';
 import ByuroDescription from "./ByuroDescription";
 import ProjectDescription from "./ProjectDescription";
-import Logo from "../../shared/Logo/Logo";
+import LogoInf from './LogoInf';
+import ProjectsFilter from './ProjectsFilter';
 
 interface ProjectSectionsProps {
-    children: ReactNode | ReactNode[] | string | string[]
+    children?: ReactNode | ReactNode[] | string | string[]
+    className?: string
     hide?: boolean
-    hover?: boolean
+    border?: boolean
 }
 
-type ProjectSections = FC<ProjectSectionsProps> & { ByuroDescription: typeof ByuroDescription } & { ProjectDescription: typeof ProjectDescription }
+type ProjectSections =
+    FC<ProjectSectionsProps>
+    & { LogoInf: typeof LogoInf }
+    & { ByuroDescription: typeof ByuroDescription }
+    & { ProjectDescription: typeof ProjectDescription }
+    & { ProjectsFilter: typeof ProjectsFilter }
 
-const ProjectSections: ProjectSections = ({children, hover, hide}) => {
+const ProjectSections: ProjectSections = ({children, className, hide, border}) => {
     return (
-        <div className="w-full h-full flex flex-row">
-            {!hide ?
+        <>
+            <div className="flex flex-row">
                 <div
                     className={`flex flex-col items-center h-screen
-                        transform transition-all duration-500 ${hover ? "w-64" : "w-48"}
-                        border-r border-matterhorn border-opacity-40 bg-white`}
+                                transform transition-all duration-300 ${className}
+                                ${border ? "border-r border-matterhorn" : ""} bg-white`}
                 >
-                    <Logo align={"center"}/>
-                    <div className="flex flex-col items-center text-matterhorn font-medium uppercase space-y-8">
-
-                    </div>
-                </div> : null}
-            {children}
-        </div>
+                    {children}
+                </div>
+            </div>
+        </>
     );
 };
 
 export default ProjectSections;
 
+ProjectSections.LogoInf = LogoInf;
 ProjectSections.ByuroDescription = ByuroDescription;
 ProjectSections.ProjectDescription = ProjectDescription;
+ProjectSections.ProjectsFilter = ProjectsFilter;

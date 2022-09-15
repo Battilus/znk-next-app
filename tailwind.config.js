@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: [
@@ -41,8 +42,12 @@ module.exports = {
         width: {
             '5.5': '22px',
             '32.1': '21.6rem',
+            '34': '8.4rem',
             '42': '10.5rem',
+            '79.7': '19.75rem',
             '98.5': '26.5rem',
+            '886': '55.37rem',
+            '223p': '223px'
         },
         margin: {
             '5.5': '22px',
@@ -51,8 +56,16 @@ module.exports = {
             '1.3': '5px',
             '1.7': '7px',
         },
+        minWidth: {
+            '34': '8.4rem',
+            '79.7': '19.75rem',
+        },
         maxWidth: {
+            '34': '8.4rem',
+            '79.7': '19.75rem',
             '152px': '152px',
+            '810': '50.6rem',
+            '886': '55.37rem',
         },
         zIndex: {
             '15': '15',
@@ -68,5 +81,19 @@ module.exports = {
         },
     },
   },
-  plugins: [],
+  plugins: [
+      plugin(({addUtilities, addComponents, e, prefix, config}) => {
+          addUtilities({
+              '.horizontal-tb': {
+                  writingMode: 'horizontal-tb',
+              },
+              '.vertical-rl': {
+                  writingMode: 'vertical-rl',
+              },
+              '.vertical-lr': {
+                  writingMode: 'vertical-lr',
+              },
+          })
+      })
+  ],
 }

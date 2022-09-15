@@ -13,7 +13,7 @@ interface IButtonProps {
 type ButtonFC = FC<IButtonProps> & { Link: typeof LinkButton } & { Selector: typeof ToggleSelectButton};
 
 export enum ButtonStyleType {
-    inverse = `flex items-center justify-center outline-0 border-opacity-40
+    inverse = `flex items-center justify-center outline-0
                 before:content-[''] before:absolute before:top-0 before:right-0 before:bg-matterhorn before:h-full before:w-0 before:transition-all before:duration-400
                 hover:before:w-full
                 after:content-[''] after:absolute after:top-0 after:left-0 after:bg-matterhorn after:h-full after:w-0 after:transition-all after:duration-400

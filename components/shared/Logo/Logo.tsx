@@ -6,14 +6,14 @@ interface IProps {
 }
 
 const ALIGN_STYLES = {
-    start: "items-start mb-8 w-full",
+    start: "items-start mt-4 ml-4 w-full",
     end: "",
     center: "items-center justify-center mt-4 w-32.1 h-14.8",
 }
 
 const Logo: FC<IProps> = ({align}) => {
     return (
-        <div className={`mb-16 flex flex-row ${ALIGN_STYLES[align]}`}>
+        <div className={`mb-16 flex flex-row transition-all duration-300 ${ALIGN_STYLES[align]}`}>
             <LogoIcon/>
         </div>
     );

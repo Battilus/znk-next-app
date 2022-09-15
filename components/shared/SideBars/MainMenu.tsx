@@ -9,9 +9,10 @@ import Contacts from "./Contacts";
 
 interface IMainMenuProps {
     isHomeLocation?: boolean
+    hide?: boolean
 }
 
-const MainMenu: FC<IMainMenuProps> = ({isHomeLocation}) => {
+const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isContactsOpen, setIsContactsOpen] = useState<boolean>(false);
@@ -23,41 +24,51 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation}) => {
 
     return (
         <div className="fixed left-0 top-0 z-999">
-            <div className="fixed left-0 w-8 h-16 flex flex-col z-50">
-                <Button
-                    styleType={"inverse"}
-                    className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
-                    onClick={() => {
-                        setIsOpen(!isOpen);
-                        setIsContactsOpen(false);
-                    }}
-                >
-                    {isOpen
-                        ? <CrossIcon/>
-                        : <BurgerIcon/>}
-                </Button>
-                <Transition
-                    show={!isHomeLocation && !isOpen}
-                    enter="transform transition-all duration-200"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="transform transition-all duration-200"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                >
-                    <Button.Link
+            <Transition
+                show={!hide}
+                enter="transform transition-opacity duration-200"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transform transition-opacity duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+                <div className="fixed left-0 w-8 h-16 flex flex-col z-50">
+                    <Button
                         styleType={"inverse"}
                         className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
-                        href={"/"}
+                        onClick={() => {
+                            setIsOpen(!isOpen);
+                            setIsContactsOpen(false);
+                        }}
                     >
-                        <ArrowLeftIcon/>
-                    </Button.Link>
-                </Transition>
-            </div>
+                        {isOpen
+                            ? <CrossIcon/>
+                            : <BurgerIcon/>}
+                    </Button>
+                    <Transition
+                        show={!isHomeLocation && !isOpen}
+                        enter="transform transition-all duration-200"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="transform transition-all duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <Button.Link
+                            styleType={"inverse"}
+                            className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
+                            href={"/"}
+                        >
+                            <ArrowLeftIcon/>
+                        </Button.Link>
+                    </Transition>
+                </div>
+            </Transition>
             <div
                 className={`flex flex-col h-screen w-42 fixed left-0 
                             transform transition-all duration-700 ${isOpen ? "" : "-translate-x-38"} 
-                            border-r border-matterhorn border-opacity-40 bg-whiteSmoke z-40`}
+                            border-r border-matterhorn bg-whiteSmoke z-40`}
             >
                 <div className="h-full w-full">
                     <Transition
@@ -104,7 +115,8 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation}) => {
                 <div className="absolute left-0 bottom-0 w-full z-30">
                     <Button.Selector
                         suggestions={["RU", "EN"]}
-                        setSuggestion={() => {}}
+                        setSuggestion={() => {
+                        }}
                     />
                 </div>
             </div>
@@ -119,10 +131,10 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation}) => {
                     leaveFrom="opacity-40"
                     leaveTo="opacity-0"
                 >
-                <div
-                    className={`w-screen h-screen bg-matterhorn z-99`}
-                    onClick={closeMenu}
-                />
+                    <div
+                        className={`w-screen h-screen bg-matterhorn z-99`}
+                        onClick={closeMenu}
+                    />
                 </Transition>
             </div>
         </div>
