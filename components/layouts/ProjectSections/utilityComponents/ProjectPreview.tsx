@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {useDebounce} from "../../../../features/hooks/useDebounce";
 import Image from "next/image";
 import A from "../../../shared/Link/A";
@@ -14,16 +14,30 @@ interface IProps {
 
 const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, setHover}) => {
     // const debounce = useDebounce((state: boolean) => setHover(state), 100);
+    const [currentHover, setCurrentHover] = useState<boolean>(false);
+
+    const onHover = () => {
+        setHover(true);
+        setCurrentHover(true);
+    }
+
+    const onLeave = () => {
+        setHover(false);
+        setCurrentHover(false);
+    }
+
     return (
         <A
-            className={`transition-all duration-300 ${hover ? "w-34 hover:w-886 hover:bg-white hover:bg-opacity-100" : "w-full"} 
-                        h-screen bg-matterhorn bg-opacity-40 border-r border-matterhorn`}
+            className={`transition-all duration-200 
+                        ${hover && currentHover ? "w-886 bg-white bg-opacity-100" : "bg-matterhorn bg-opacity-40"} 
+                        ${hover && !currentHover ? "w-34" : "w-full"} 
+                        h-screen border-r border-matterhorn`}
             href={href}
         >
             <div
                 className="w-full h-full"
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
+                onMouseMove={onHover}
+                onMouseLeave={onLeave}
             >
                 {imgSrc && <Image src={imgSrc} alt="background"/>}
             </div>

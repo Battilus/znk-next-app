@@ -6,17 +6,20 @@ interface IProps {
 }
 
 const ALIGN_STYLES = {
-    start: "items-start mt-4 ml-4 w-full",
+    start: "items-start mt-4",
     end: "",
-    center: "items-center justify-center mt-4 w-32.1 h-14.8",
+    center: "items-center justify-center mt-4",
 }
 
 const Logo: FC<IProps> = ({align}) => {
     return (
-        <div className={`mb-16 flex flex-row transition-all duration-300 ${ALIGN_STYLES[align]}`}>
+        <div className={`mb-8 flex flex-row transition-all duration-200 ${ALIGN_STYLES[align]}`}>
             <LogoIcon/>
         </div>
     );
 };
 
 export default Logo;
+
+//items-start justify-start
+//w-32.1 h-14.8

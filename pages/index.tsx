@@ -21,7 +21,7 @@ const Home: NextPage = () => {
                 <ProjectSections>
                     <div className="flex">
                         <ProjectSections.LogoInf hover={hover}>
-                            <div className="flex flex-col w-full h-full">
+                            <>
                                 <div className="w-full flex flex-col">
                                     <div className="w-full h-px bg-matterhorn mb-1.5"/>
                                     <div
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
                                     <ProjectStatusRow status={description?.yearOfBuild}/>
                                     <ProjectStatusRow status={description?.status}/>
                                 </div>
-                            </div>
+                            </>
                         </ProjectSections.LogoInf>
                         <ProjectSections.ByuroDescription
                             hide={hover}

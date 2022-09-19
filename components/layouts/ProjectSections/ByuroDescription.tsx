@@ -13,7 +13,7 @@ interface DescriptionProps {
 
 const ByuroDescription: FC<DescriptionProps> = ({children, descriptionText, hide}) => {
     const [debouncedDescription, setDebouncedDescription] = useState<string | ReactNode>(descriptionText);
-    const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 300);
+    const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 200);
 
     useMemo(() => {
         if (hide) {
@@ -25,9 +25,8 @@ const ByuroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
 
     return (
         <Transition
-            appear={true}
             show={!hide}
-            enter="transition transition-all duration-300"
+            enter="transition transition-all duration-200"
             enterFrom="w-0 opacity-0"
             enterTo="w-64 opacity-100"
             leave="transition transition-all duration-1"
@@ -35,11 +34,11 @@ const ByuroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
             leaveTo="w-0 opacity-0"
         >
             <ProjectSections
-                className={`w-64 ${hide ? "" : "p-4"}`}
+                className={`w-64 p-4`}
                 border
             >
                 <div
-                    className={`h-full w-full transition-opacity duration-200 ${debouncedDescription ? "opacity-100" : "opacity-0"} 
+                    className={`h-full w-full transition-opacity duration-100 ${debouncedDescription ? "opacity-100" : "opacity-0"} 
                                 items-center text-matterhorn font-medium uppercase text-sm leading-18p text-justify space-y-6`}>
                     {debouncedDescription}
                 </div>

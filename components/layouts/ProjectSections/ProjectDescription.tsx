@@ -22,11 +22,11 @@ const ProjectDescription: FC<IProjectDescriptionProps> = ({description, hide}) =
         <>
             <ProjectSections
                 hide={hide}
-                className={`w-98.5 px-7 pt-4 pb-6`}
+                className={`w-98.5 px-7 pb-6`}
                 border
             >
-                <Logo align={"start"}/>
                 <div className="flex flex-col w-full h-full">
+                    <Logo align={"start"}/>
                     <div className="w-full flex flex-col">
                         <div className="w-full h-px bg-matterhorn mb-1.5"/>
                         <div className="uppercase text-matterhorn leading-18p font-medium text-sm text-justify">
