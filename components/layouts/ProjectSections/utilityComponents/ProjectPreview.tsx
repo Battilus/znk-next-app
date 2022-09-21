@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {useDebounce} from "../../../../features/hooks/useDebounce";
 import Image from "next/image";
 import A from "../../../shared/Link/A";
@@ -10,33 +10,43 @@ interface IProps {
     description?: string
     hover?: boolean
     setHover: (hover: boolean) => void
+    disableBorder?: boolean
 }
 
-const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, setHover}) => {
-    // const debounce = useDebounce((state: boolean) => setHover(state), 100);
+const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, setHover, disableBorder}) => {
+    const debounce = useDebounce((callback) => callback(), 200);
     const [currentHover, setCurrentHover] = useState<boolean>(false);
+    const [enHover, setEnHover] = useState<boolean>(true);
 
     const onHover = () => {
-        setHover(true);
-        setCurrentHover(true);
+        if (enHover) {
+            debounce.cancel();
+            setHover(true);
+            setCurrentHover(true);
+            setEnHover(false);
+        }
     }
 
     const onLeave = () => {
-        setHover(false);
-        setCurrentHover(false);
+        if (!enHover) {
+            setHover(false);
+            setCurrentHover(false);
+            debounce.bounce(() => {
+                setEnHover(true);
+            })
+        }
     }
 
+    //max-w-886
     return (
         <A
-            className={`transition-all duration-200 
-                        ${hover && currentHover ? "w-886 bg-white bg-opacity-100" : "bg-matterhorn bg-opacity-40"} 
-                        ${hover && !currentHover ? "w-34" : "w-full"} 
-                        h-screen border-r border-matterhorn`}
+            className={`h-screen ${!disableBorder ? "border-r border-matterhorn" : ""} transition-width duration-300 min-w-34
+                        ${hover && !currentHover ? "w-34" : hover && currentHover ? "w-5/6" : "w-full"}`}
             href={href}
         >
             <div
-                className="w-full h-full"
-                onMouseMove={onHover}
+                className={`w-full h-full transition-all duration-300 ${currentHover ? "bg-white bg-opacity-100" : `bg-matterhorn bg-opacity-40`}`}
+                onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >
                 {imgSrc && <Image src={imgSrc} alt="background"/>}

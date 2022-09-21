@@ -16,7 +16,7 @@ const ToggleSelectButton: FC<IToggleSelectProps> = ({suggestions, setSuggestion}
     return (
         <div className="flex flex-row items-center justify-center space-x-1">
             {suggestions.map((item, index) =>
-                <>
+                <React.Fragment key={item}>
                     <button
                         className={`text-center uppercase text-sm ${index === selected ? "font-medium" : "font-normal"}`}
                         onClick={() => setSelected(index)}
@@ -24,7 +24,7 @@ const ToggleSelectButton: FC<IToggleSelectProps> = ({suggestions, setSuggestion}
                         {item}
                     </button>
                     {index !== suggestions.length - 1 ? <span className="font-medium">/</span> : null}
-                </>)}
+                </React.Fragment>)}
         </div>
     );
 };

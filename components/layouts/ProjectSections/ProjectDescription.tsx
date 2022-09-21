@@ -2,26 +2,21 @@ import React, {FC, ReactNode} from 'react';
 import ProjectStatusRow from "./utilityComponents/ProjectStatusRow";
 import Logo from "../../shared/Logo/Logo";
 import ProjectSections from "./ProjectSections";
+import {ProjectDescriptionData} from "../../../types/Api/dataTypes";
 
-export type ProjectDescriptionType = {
-    title: string
+export type ProjectDescriptionType = ProjectDescriptionData & {
     text: ReactNode | ReactNode[] | string | string[]
     appointment: string
-    location: string
-    yearOfBuild: string | number
-    status: string
 }
 
 interface IProjectDescriptionProps {
     description?: ProjectDescriptionType
-    hide?: boolean
 }
 
-const ProjectDescription: FC<IProjectDescriptionProps> = ({description, hide}) => {
+const ProjectDescription: FC<IProjectDescriptionProps> = ({description}) => {
     return (
         <>
             <ProjectSections
-                hide={hide}
                 className={`w-98.5 px-7 pb-6`}
                 border
             >

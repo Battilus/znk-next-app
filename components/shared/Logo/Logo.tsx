@@ -13,7 +13,7 @@ const ALIGN_STYLES = {
 
 const Logo: FC<IProps> = ({align}) => {
     return (
-        <div className={`mb-8 flex flex-row transition-all duration-200 ${ALIGN_STYLES[align]}`}>
+        <div className={`w-full mb-8 flex flex-row transition-all duration-200 ${ALIGN_STYLES[align]}`}>
             <LogoIcon/>
         </div>
     );

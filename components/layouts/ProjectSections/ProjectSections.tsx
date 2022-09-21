@@ -7,8 +7,8 @@ import ProjectsFilter from './ProjectsFilter';
 interface ProjectSectionsProps {
     children?: ReactNode | ReactNode[] | string | string[]
     className?: string
-    hide?: boolean
     border?: boolean
+    widthDuration?: number
 }
 
 type ProjectSections =
@@ -18,13 +18,13 @@ type ProjectSections =
     & { ProjectDescription: typeof ProjectDescription }
     & { ProjectsFilter: typeof ProjectsFilter }
 
-const ProjectSections: ProjectSections = ({children, className, hide, border}) => {
+const ProjectSections: ProjectSections = ({children, className, border, widthDuration=300}) => {
     return (
         <>
             <div className="flex flex-row">
                 <div
                     className={`flex flex-col items-center h-screen
-                                transform transition-all duration-300 ${className}
+                                transform transition-width duration-${widthDuration} ${className}
                                 ${border ? "border-r border-matterhorn" : ""} bg-white`}
                 >
                     {children}

@@ -84,9 +84,8 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                             {SIDEBAR_LINKS.length ? <div className="w-full h-px bg-matterhorn opacity-40"/> : null}
                             {SIDEBAR_LINKS.map(button =>
                                 button.type === "button" ?
-                                    <>
+                                    <React.Fragment key={button.description}>
                                         <Button
-                                            key={button.description}
                                             styleType={button.styleType}
                                             className={button.className}
                                             onClick={button.description === "Контакты" ? () => setIsContactsOpen(true) : undefined}
@@ -95,9 +94,9 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                             {button.description}
                                         </Button>
                                         <div className="w-full h-px bg-matterhorn opacity-40"/>
-                                    </>
+                                    </React.Fragment>
                                     : button.type === "link" ?
-                                        <>
+                                        <React.Fragment key={button.description}>
                                             <Button.Link
                                                 styleType={button.styleType}
                                                 className={button.className}
@@ -107,7 +106,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                                 {button.description}
                                             </Button.Link>
                                             <div className="w-full h-px bg-matterhorn opacity-40"/>
-                                        </>
+                                        </React.Fragment>
                                         : null)}
                         </div>
                     </Transition>
