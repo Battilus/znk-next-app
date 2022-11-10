@@ -1,33 +1,38 @@
 import type {NextPage} from 'next'
 import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import ProjectPreview from "../components/layouts/ProjectSections/utilityComponents/ProjectPreview";
 import ShowProjectSlider from "../components/layouts/ProjectSections/utilityComponents/ShowProjectSlider";
-import ProjectStatusRow from "../components/layouts/ProjectSections/utilityComponents/ProjectStatusRow";
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
 import ProjectPreviewDescription
     from "../components/layouts/ProjectSections/utilityComponents/ProjectPreviewDescription";
 
-const description: ProjectDescriptionData = {
-    _id: 1,
-    title: "общественное пространство «среда»",
-    location: "санкт-петербург",
-    yearOfBuild: "2020",
-    status: "проектирование",
+interface IProps {
+    previewProjects: ProjectDescriptionData[]
 }
 
-const Home: NextPage = () => {
+const Home: NextPage<IProps> = ({previewProjects}) => {
     const [hover, setHover] = useState<boolean>(false);
+    const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
 
-    // useEffect(() => console.log(hover), [hover])
+    const hoverHandler = useCallback((val: boolean, index: number | null) => {
+        setHover(val);
+        setSelectedProjectIndex(index);
+    }, []);
+
+    useEffect(() => {
+        if (!hover) {
+            setSelectedProjectIndex(null);
+        }
+    }, [hover])
 
     return (
         <PageWrapper title={"ZNK App"} description={"Main page"} isHomeLocation hideHomeButton={hover}>
             <div className="flex flex-row">
                 <div className="flex">
                     <ProjectSections.LogoInf hover={hover} widthDuration={150}>
-                        <ProjectPreviewDescription description={description}/>
+                        <ProjectPreviewDescription description={selectedProjectIndex !== null ? previewProjects[selectedProjectIndex] : undefined}/>
                     </ProjectSections.LogoInf>
                     <ProjectSections.ByuroDescription
                         hide={hover}
@@ -42,15 +47,36 @@ const Home: NextPage = () => {
                     />
                 </div>
                 <div className="w-full h-full flex flex-row pr-8">
-                    <ProjectPreview href={"/project/1"} name={"Project 1"} hover={hover} setHover={setHover}/>
-                    <ProjectPreview href={"/project/2"} name={"Project 2"} hover={hover} setHover={setHover}/>
-                    <ProjectPreview href={"/project/3"} name={"Project 3"} hover={hover} setHover={setHover} disableBorder/>
+                    {previewProjects.map((project, index) =>
+                        <ProjectPreview
+                            key={project._id}
+                            href={`/project/${project._id}`}
+                            name={project.title}
+                            imgSrc={project.images[0].src}
+                            hover={hover}
+                            setHover={(val) => hoverHandler(val, index)}
+                            disableBorder={previewProjects.length - 1 === index}/>
+                    )}
                 </div>
                 <ShowProjectSlider/>
             </div>
 
         </PageWrapper>
     )
+}
+
+export const getStaticProps = async () => {
+    const response = await fetch(`/api/all-projects`);
+    const projects: ProjectDescriptionData[] = await response.json();
+
+    const previewProjects = projects.filter(project => project.hasOwnProperty("mainPagePreview") && project.mainPagePreview)
+
+    return {
+        props: {
+            previewProjects
+        },
+        revalidate: 10,
+    }
 }
 
 export default Home

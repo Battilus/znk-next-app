@@ -14,6 +14,11 @@ interface IProjectDescriptionProps {
 }
 
 const ProjectDescription: FC<IProjectDescriptionProps> = ({description}) => {
+
+    const splitIndents = (text: string) => {
+        return text.split('\n').map(str => <p key={str}>{str}</p>)
+    }
+
     return (
         <>
             <ProjectSections
@@ -28,8 +33,8 @@ const ProjectDescription: FC<IProjectDescriptionProps> = ({description}) => {
                             {description?.title}
                         </div>
                     </div>
-                    <div className="h-full my-9 text-matterhorn text-xs leading-13p font-normal text-justify">
-                        {description?.text}
+                    <div className="h-full my-9 text-matterhorn text-xs leading-13p font-normal text-justify space-y-0.5">
+                        {description?.description ? splitIndents(description?.description) : null}
                     </div>
                     <div className="w-full h-full flex flex-col justify-end items-end space-y-3">
                         <ProjectStatusRow title={"назначение"} status={description?.appointment}/>

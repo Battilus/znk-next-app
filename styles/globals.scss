@@ -12,4 +12,17 @@
 
 @layer utilities {
 
+  .projectSlider {
+    width: 33.33333%;
+  }
+
+  .projectSliderHover {
+    position: relative;
+    width: 86%;
+
+    .slideItem {
+
+    }
+  }
+
 }

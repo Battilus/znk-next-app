@@ -41,15 +41,18 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, set
     return (
         <A
             className={`h-screen ${!disableBorder ? "border-r border-matterhorn" : ""} transition-width duration-300 min-w-34
-                        ${hover && !currentHover ? "w-34" : hover && currentHover ? "w-5/6" : "w-full"}`}
+                        ${hover && !currentHover ? "w-34" : hover && currentHover ? "projectSliderHover" : "projectSlider"}`}
             href={href}
         >
             <div
-                className={`w-full h-full transition-all duration-300 ${currentHover ? "bg-white bg-opacity-100" : `bg-matterhorn bg-opacity-40`}`}
+                className={`slideItem w-full h-full overflow-x-hidden transition-all duration-300 ${currentHover ? "bg-white bg-opacity-100" : `bg-matterhorn bg-opacity-40`}`}
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >
-                {imgSrc && <Image src={imgSrc} alt="background"/>}
+                {imgSrc &&
+                    <div className="relative w-886 h-full">
+                        <Image src={imgSrc} alt={name} layout="fill" quality={100}/>
+                    </div>}
             </div>
         </A>
     );
