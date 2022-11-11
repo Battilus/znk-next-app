@@ -55,7 +55,8 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
                             imgSrc={project.images[0].src}
                             hover={hover}
                             setHover={(val) => hoverHandler(val, index)}
-                            disableBorder={previewProjects.length - 1 === index}/>
+                            disableBorder={previewProjects.length - 1 === index}
+                        />
                     )}
                 </div>
                 <ShowProjectSlider/>
@@ -66,14 +67,14 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
 }
 
 export const getStaticProps = async () => {
-    const response = await fetch(`/api/all-projects`);
+    const response = await fetch(`${process.env.API_URL}/api/all-projects`);
     const projects: ProjectDescriptionData[] = await response.json();
 
-    const previewProjects = projects.filter(project => project.hasOwnProperty("mainPagePreview") && project.mainPagePreview)
+    const previewProjects = projects.filter(project => project.hasOwnProperty("mainPagePreview") && project.mainPagePreview);
 
     return {
         props: {
-            previewProjects
+            previewProjects: previewProjects.length > 3 ? previewProjects.slice(2) : previewProjects
         },
         revalidate: 10,
     }

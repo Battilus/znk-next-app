@@ -52,7 +52,7 @@ const Projects: NextPage<IProps> = ({projects}) => {
 
 export const getStaticProps = async () => {
 
-    const response = await fetch(`/api/all-projects`);
+    const response = await fetch(`${process.env.API_URL}/api/all-projects`);
     const projects = await response.json();
 
     return {

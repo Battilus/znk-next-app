@@ -36,7 +36,7 @@ const Project: NextPage<IProps> = ({project}) => {
 };
 
 export const getStaticProps = async ({params}: any) => {
-    const response = await fetch(`/api/project/${params.id}`);
+    const response = await fetch(`${process.env.API_URL}/api/project/${params.id}`);
     const project = await response.json();
 
     return {
@@ -48,7 +48,7 @@ export const getStaticProps = async ({params}: any) => {
 }
 
 export const getStaticPaths = async () => {
-    const response = await fetch('/api/all-projects');
+    const response = await fetch(`${process.env.API_URL}/api/all-projects`);
     const projects: ProjectDescriptionData[] = await response.json();
 
     const paths: IProjectsPath = projects.map(project => ({params: {id: project._id}}))

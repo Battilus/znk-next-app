@@ -3,21 +3,30 @@ import Link from "next/link";
 
 interface IAProps {
     children: ReactNode | ReactNode[] | string | string[]
-    href: string
+    href?: string
     className?: string
-    onMouseEnter?: MouseEventHandler<HTMLAnchorElement>
-    onMouseLeave?: MouseEventHandler<HTMLAnchorElement>
+    onMouseEnter?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>
+    onMouseLeave?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>
 }
 
 const A: FC<IAProps> = ({children, href, className, onMouseEnter, onMouseLeave}) => {
     return (
-        <Link
-            href={href}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-        >
-            <a className={`decoration-0 ${className}`}>{children}</a>
-        </Link>
+        <>
+            {href ?
+                <Link
+                    href={href}
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                >
+                    <a className={`decoration-0 ${className}`}>{children}</a>
+                </Link>
+                : <div
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                >
+                    <div className={`decoration-0 ${className}`}>{children}</div>
+                </div>}
+        </>
     );
 };
 

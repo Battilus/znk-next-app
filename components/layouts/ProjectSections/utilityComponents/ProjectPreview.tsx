@@ -6,7 +6,7 @@ import A from "../../../shared/Link/A";
 interface IProps {
     name?: string
     imgSrc?: string
-    href: string
+    href?: string
     description?: string
     hover?: boolean
     setHover: (hover: boolean) => void
