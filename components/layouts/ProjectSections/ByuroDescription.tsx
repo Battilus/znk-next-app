@@ -1,9 +1,8 @@
 import React, {FC, ReactNode, useEffect, useState} from 'react';
-import {Button} from "../../shared/Button";
 import DownloadIcon from "../../../public/svg/download-arrow.svg";
 import ProjectSections from "./ProjectSections";
-import {Transition} from '@headlessui/react';
 import {useDebounce} from "../../../features/hooks/useDebounce";
+import Button from "../../shared/Button/Button";
 
 interface DescriptionProps {
     children?: ReactNode | ReactNode[] | string | string[]

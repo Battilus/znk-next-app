@@ -4,8 +4,8 @@ import CrossIcon from '../../../public/svg/cross-menu.svg';
 import ArrowLeftIcon from '../../../public/svg/arrow-left.svg';
 import {Transition} from '@headlessui/react';
 import {CONTACTS, SIDEBAR_LINKS} from "../../../assets/staticParams";
-import {Button} from "../Button";
 import Contacts from "./Contacts";
+import Button from "../Button/Button";
 
 interface IMainMenuProps {
     isHomeLocation?: boolean

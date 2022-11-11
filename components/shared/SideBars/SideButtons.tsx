@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Transition} from "@headlessui/react";
-import {Button} from "../Button";
+import Button from "../Button/Button";
 
 export type LinkButton = {
     className: string

@@ -1,8 +1,7 @@
 import React from 'react';
 import {NextPage} from "next";
-
 import PageWrapper from "../components/PageWrapper";
-import {Button} from "../components/shared/Button";
+import Button from '../components/shared/Button/Button';
 
 const NotFound: NextPage = () => {
     return (

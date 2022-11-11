@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Button} from '../../../shared/Button';
+import Button from '../../../shared/Button/Button';
 
 const ShowProjectSlider: FC = () => {
     return (

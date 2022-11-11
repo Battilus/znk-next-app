@@ -22,7 +22,7 @@ export enum ButtonStyleType {
                bg-whiteSmoke hover:bg-matterhorn hover:text-whiteSmoke transition duration-200`
 }
 
-export const Button: ButtonFC = ({children, styleType="inverse", className="", childrenClassName, onClick}) => {
+const Button: ButtonFC = ({children, styleType="inverse", className="", childrenClassName, onClick}) => {
     return (
         <>
             <button
@@ -39,3 +39,5 @@ export const Button: ButtonFC = ({children, styleType="inverse", className="", c
 
 Button.Link = LinkButton;
 Button.Selector = ToggleSelectButton;
+
+export default Button;
