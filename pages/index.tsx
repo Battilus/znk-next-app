@@ -7,6 +7,7 @@ import ShowProjectSlider from "../components/layouts/ProjectSections/utilityComp
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
 import ProjectPreviewDescription
     from "../components/layouts/ProjectSections/utilityComponents/ProjectPreviewDescription";
+import {projectsList} from "../app/mock/fakeData";
 
 interface IProps {
     previewProjects: ProjectDescriptionData[]
@@ -67,10 +68,8 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
 }
 
 export const getStaticProps = async () => {
-    const response = await fetch(`${process.env.API_URL}/api/all-projects`);
-    const projects: ProjectDescriptionData[] = await response.json();
 
-    const previewProjects = projects.filter(project => project.hasOwnProperty("mainPagePreview") && project.mainPagePreview);
+    const previewProjects = projectsList.filter(project => project.hasOwnProperty("mainPagePreview") && project.mainPagePreview);
 
     return {
         props: {

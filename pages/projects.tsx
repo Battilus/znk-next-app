@@ -4,6 +4,7 @@ import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
 import ProjectPreview from "../components/layouts/ProjectSections/utilityComponents/ProjectPreview";
+import {projectsList} from "../app/mock/fakeData";
 
 interface IProps {
     projects: ProjectDescriptionData[]
@@ -52,12 +53,9 @@ const Projects: NextPage<IProps> = ({projects}) => {
 
 export const getStaticProps = async () => {
 
-    const response = await fetch(`${process.env.API_URL}/api/all-projects`);
-    const projects = await response.json();
-
     return {
         props: {
-            projects
+            projects: projectsList
         },
         revalidate: 10,
     }

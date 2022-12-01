@@ -1,6 +1,6 @@
 import {ProjectDescriptionData} from "../../types/Api/dataTypes";
 
-export const projects: ProjectDescriptionData[] = [
+export const projectsList: ProjectDescriptionData[] = [
     {
         _id: "project_1",
         title: "общественное пространство «среда»",
