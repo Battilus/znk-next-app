@@ -15,7 +15,7 @@ const NotFound: NextPage = () => {
                     href="/"
                     className="max-w-152px animate-bounce border border-matterhorn"
                 >
-                    На главную
+                    <div className="text-xs font-medium text-center leading-15.42p">На главную</div>
                 </Button.Link>
             </div>
         </PageWrapper>

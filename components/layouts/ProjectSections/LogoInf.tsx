@@ -1,8 +1,8 @@
 import React, {FC, ReactNode} from 'react';
 import ProjectSections from "./ProjectSections";
-import Logo from "../../shared/Logo/Logo";
 import {Transition} from '@headlessui/react';
 import LogoInfBody from "./utilityComponents/LogoInfBody";
+import LogoLink from "../../shared/Logo/LogoLink";
 
 interface IProps {
     children?: ReactNode | ReactNode[] | string | string[]
@@ -22,7 +22,7 @@ const LogoInf: FC<IProps> = ({children, hover, widthDuration=300, staticWidth, o
             >
                 <div
                     className="px-7 pb-6 w-full h-full flex flex-col items-center text-matterhorn font-medium uppercase">
-                    <Logo align={"start"}/>
+                    <LogoLink href={'/'} align={"start"}/>
                     {!onLeaveChildren ?
                         <Transition
                             show={!!hover}

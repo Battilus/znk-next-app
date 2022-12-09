@@ -1,8 +1,8 @@
 import React, {FC, ReactNode} from 'react';
 import ProjectStatusRow from "./utilityComponents/ProjectStatusRow";
-import Logo from "../../shared/Logo/Logo";
 import ProjectSections from "./ProjectSections";
 import {ProjectDescriptionData} from "../../../types/Api/dataTypes";
+import LogoLink from "../../shared/Logo/LogoLink";
 
 export type ProjectDescriptionType = ProjectDescriptionData & {
     text: ReactNode | ReactNode[] | string | string[]
@@ -26,7 +26,7 @@ const ProjectDescription: FC<IProjectDescriptionProps> = ({description}) => {
                 border
             >
                 <div className="flex flex-col w-full h-full">
-                    <Logo align={"start"}/>
+                    <LogoLink href={'/'} align={"start"}/>
                     <div className="w-full flex flex-col">
                         <div className="w-full h-px bg-matterhorn mb-1.5"/>
                         <div className="uppercase text-matterhorn leading-18p font-medium text-sm text-justify">

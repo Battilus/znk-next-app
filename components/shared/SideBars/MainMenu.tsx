@@ -6,6 +6,7 @@ import {Transition} from '@headlessui/react';
 import {CONTACTS, SIDEBAR_LINKS} from "../../../assets/staticParams";
 import Contacts from "./Contacts";
 import Button from "../Button/Button";
+import { useRouter } from 'next/router';
 
 interface IMainMenuProps {
     isHomeLocation?: boolean
@@ -16,6 +17,8 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isContactsOpen, setIsContactsOpen] = useState<boolean>(false);
+
+    const router = useRouter();
 
     const closeMenu = () => {
         setIsOpen(false);
@@ -55,13 +58,13 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Button.Link
+                        <Button
                             styleType={"inverse"}
                             className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
-                            href={"/"}
+                            onClick={() => router.back()}
                         >
                             <ArrowLeftIcon/>
-                        </Button.Link>
+                        </Button>
                     </Transition>
                 </div>
             </Transition>
@@ -81,7 +84,18 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                         leaveTo="opacity-0"
                     >
                         <div className="mt-8 z-30">
-                            {SIDEBAR_LINKS.length ? <div className="w-full h-px bg-matterhorn opacity-40"/> : null}
+                            {SIDEBAR_LINKS.length && <div className="w-full h-px bg-matterhorn opacity-40"/>}
+                            {!isHomeLocation && <>
+                                <Button.Link
+                                    styleType={"inverse"}
+                                    className={"outline-0 w-full uppercase text-sm font-medium"}
+                                    childrenClassName="pt-1.7 pb-1.3"
+                                    href={"/"}
+                                >
+                                    Главная
+                                </Button.Link>
+                                <div className="w-full h-px bg-matterhorn opacity-40"/>
+                            </>}
                             {SIDEBAR_LINKS.map(button =>
                                 button.type === "button" ?
                                     <React.Fragment key={button.description}>
@@ -95,7 +109,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                         </Button>
                                         <div className="w-full h-px bg-matterhorn opacity-40"/>
                                     </React.Fragment>
-                                    : button.type === "link" ?
+                                    : button.type === "link" &&
                                         <React.Fragment key={button.description}>
                                             <Button.Link
                                                 styleType={button.styleType}
@@ -106,8 +120,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                                 {button.description}
                                             </Button.Link>
                                             <div className="w-full h-px bg-matterhorn opacity-40"/>
-                                        </React.Fragment>
-                                        : null)}
+                                        </React.Fragment>)}
                         </div>
                     </Transition>
                 </div>
