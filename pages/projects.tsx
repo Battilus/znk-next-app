@@ -43,6 +43,7 @@ const Projects: NextPage<IProps> = ({projects}) => {
                             imgSrc={project.images[0].src}
                             hover={hover}
                             setHover={(val) => hoverHandler(val, index)}
+                            widthDuration={200}
                         />
                     )}
                 </div>

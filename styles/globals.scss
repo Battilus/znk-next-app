@@ -13,12 +13,16 @@
 @layer utilities {
 
   .projectSlider {
-    width: 33.33333%;
+    //max-width: 33.33333%;
+    //min-width: 8.4rem;
+    width:100%;
   }
 
   .projectSliderHover {
-    position: relative;
-    width: 86%;
+    //position: relative;
+    width: 100%;
+    display: flex;
+    flex-basis: auto ;
 
     .slideItem {
 

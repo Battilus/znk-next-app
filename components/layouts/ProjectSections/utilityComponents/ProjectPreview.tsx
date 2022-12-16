@@ -11,10 +11,11 @@ interface IProps {
     hover?: boolean
     setHover: (hover: boolean) => void
     disableBorder?: boolean
+    widthDuration?: number
 }
 
-const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, setHover, disableBorder}) => {
-    const debounce = useDebounce((callback) => callback(), 200);
+const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, setHover, disableBorder, widthDuration=150}) => {
+    const debounce = useDebounce((callback) => callback(), widthDuration);
     const [currentHover, setCurrentHover] = useState<boolean>(false);
     const [enHover, setEnHover] = useState<boolean>(true);
 
@@ -40,18 +41,19 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, set
     //max-w-886
     return (
         <A
-            className={`h-screen ${!disableBorder ? "border-r border-matterhorn" : ""} transition-width duration-300 min-w-34
+            className={`h-screen ${!disableBorder ? "border-r border-matterhorn": ""} 
+                        transition-width duration-${widthDuration} min-w-34
                         ${hover && !currentHover ? "w-34" : hover && currentHover ? "projectSliderHover" : "projectSlider"}`}
             href={href}
         >
             <div
-                className={`slideItem w-full h-full overflow-x-hidden transition-all duration-300 ${currentHover ? "bg-white bg-opacity-100" : `bg-matterhorn bg-opacity-40`}`}
+                className={`slideItem w-full h-full overflow-x-hidden transition-all duration-${widthDuration} ${currentHover ? "grayscale-0" : `grayscale`}`}
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >
                 {imgSrc &&
-                    <div className="relative w-886 h-full">
-                        <Image src={imgSrc} alt={name} layout="fill" quality={100}/>
+                    <div className="relative w-full h-full">
+                        <Image className="w-full h-full object-cover object-center" src={imgSrc} alt={name} layout="fill" quality={100}/>
                     </div>}
             </div>
         </A>
