@@ -49,7 +49,6 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
                     />
                 </div>
                 <div className="w-full h-full flex !mr-8">
-                {/*<div className="w-full h-full grid grid-flow-col auto-cols-max pr-8">*/}
                     {previewProjects.map((project, index) =>
                         <ProjectPreview
                             key={project._id}

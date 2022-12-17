@@ -6,7 +6,7 @@ import A from "../../../shared/Link/A";
 interface IProps {
     name?: string
     imgSrc?: string
-    href?: string
+    href: string
     description?: string
     hover?: boolean
     setHover: (hover: boolean) => void
@@ -38,12 +38,11 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, set
         }
     }
 
-    //max-w-886
     return (
         <A
             className={`h-screen ${!disableBorder ? "border-r border-matterhorn": ""} 
                         transition-width duration-${widthDuration} min-w-34
-                        ${hover && !currentHover ? "w-34" : hover && currentHover ? "projectSliderHover" : "projectSlider"}`}
+                        ${hover && !currentHover ? "w-34" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
             href={href}
         >
             <div
