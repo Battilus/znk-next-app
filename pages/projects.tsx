@@ -3,7 +3,7 @@ import {NextPage} from "next";
 import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
-import ProjectPreview from "../components/layouts/ProjectSections/utilityComponents/ProjectPreview";
+import ProjectPreview from "../components/shared/SliderPreview/ProjectPreview";
 import {projectsList} from "../app/mock/fakeData";
 
 interface IProps {

@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useDebounce} from "../../../../features/hooks/useDebounce";
+import {useDebounce} from "../../../features/hooks/useDebounce";
 import Image from "next/image";
-import A from "../../../shared/Link/A";
+import A from "../Link/A";
 
 interface IProps {
     name?: string
@@ -41,8 +41,8 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, set
     return (
         <A
             className={`h-screen ${!disableBorder ? "border-r border-matterhorn": ""} 
-                        transition-width duration-${widthDuration} min-w-34
-                        ${hover && !currentHover ? "w-34" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
+                        transition-width duration-${widthDuration} min-w-33.5
+                        ${hover && !currentHover ? "w-33.5" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
             href={href}
         >
             <div

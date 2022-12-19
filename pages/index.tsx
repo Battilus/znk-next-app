@@ -2,7 +2,7 @@ import type {NextPage} from 'next'
 import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
 import React, {useCallback, useEffect, useState} from "react";
-import ProjectPreview from "../components/layouts/ProjectSections/utilityComponents/ProjectPreview";
+import ProjectPreview from "../components/shared/SliderPreview/ProjectPreview";
 import ShowProjectSlider from "../components/layouts/ProjectSections/utilityComponents/ShowProjectSlider";
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
 import ProjectPreviewDescription
