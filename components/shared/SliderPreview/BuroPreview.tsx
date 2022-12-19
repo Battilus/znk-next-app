@@ -64,23 +64,8 @@ const BuroPreview: FC<IProps> = ({
                 onMouseLeave={onLeave}
             >
                 {imgSrc &&
-                    <div className="relative w-full h-full">
-                        {currentHover && hoverImg
-                            ? <Image
-                                className={`w-full h-full object-cover object-center`}
-                                src={hoverImg}
-                                alt={name}
-                                layout="fill"
-                                quality={100}/>
-                            : <Image
-                                className={`w-full h-full object-cover object-center
-                                            ${currentHover ? "grayscale-0" : enGrayscale ? `grayscale brightness-${brightness} contrast-${contrast}` : ""}
-                                            `}
-                                src={imgSrc}
-                                alt={name}
-                                layout="fill"
-                                quality={100}/>}
-                        <div className="absolute top-0 left-0 w-full h-full">
+                    <div className={`relative w-full h-full ${currentHover ? `${hoverImg}` : `${imgSrc}`} bg-no-repeat bg-center bg-cover`}>
+                        <div className="w-full h-full">
                             {children}
                         </div>
                     </div>}

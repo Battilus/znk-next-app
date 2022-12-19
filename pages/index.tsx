@@ -26,7 +26,7 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
         if (!hover) {
             setSelectedProjectIndex(null);
         }
-    }, [hover])
+    }, [hover]);
 
     return (
         <PageWrapper title={"ZNK App"} description={"Main page"} isHomeLocation hideHomeButton={hover}>

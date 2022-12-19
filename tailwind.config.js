@@ -44,11 +44,15 @@ module.exports = {
             '82.5': '21.12rem',
             '89': '23rem',
             '91.6': '26.9rem',
+            '324': '20.25rem',
+            '327': '20.43rem',
         },
         maxHeight: {
             '82.5': '21.2rem',
             '89': '23rem',
             '91.6': '26.9rem',
+            '324': '20.25rem',
+            '327': '20.43rem',
         },
         width: {
             '5.5': '22px',
@@ -63,6 +67,8 @@ module.exports = {
             '886': '55.37rem',
             '223p': '223px',
             '33%': '33.3%',
+            '324': '20.25rem',
+            '327': '20.43rem',
         },
         minWidth: {
             '34': '8.4rem',
@@ -86,6 +92,8 @@ module.exports = {
             '314': '19.6rem',
             '886': '55.37rem',
             '33%': '33.3%',
+            '324': '20.25rem',
+            '327': '20.43rem',
         },
         zIndex: {
             '15': '15',
@@ -105,6 +113,14 @@ module.exports = {
         transitionDuration: {
             '0': '0ms',
             '250': '250ms',
+        },
+        backgroundImage: {
+            'buro_philosophy': "url('/buro_philosophy.png')",
+            'buro_philosophy_hover': "url('/buro_philosophy_hover.png')",
+            'buro_command': "url('/buro_command.png')",
+            'buro_command_hover': "url('/buro_command_hover.png')",
+            'buro_achievements': "url('/buro_achievements.png')",
+            'buro_achievements_hover': "url('/buro_achievements_hover.png')",
         },
     },
   },
