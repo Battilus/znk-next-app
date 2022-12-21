@@ -5,7 +5,7 @@ import {ProjectDescriptionData} from "../../../types/Api/dataTypes";
 import LogoLink from "../../shared/Logo/LogoLink";
 
 export type ProjectDescriptionType = ProjectDescriptionData & {
-    text: ReactNode | ReactNode[] | string | string[]
+    text: ReactNode | string
     appointment: string
 }
 

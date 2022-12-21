@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #F4F4F4 ;
+  opacity: 1;
+}
+
 @import "../public/fonts/atyp/stylesheet.css";
 
 @layer utilities {

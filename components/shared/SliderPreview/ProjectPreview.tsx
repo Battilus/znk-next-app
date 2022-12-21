@@ -45,7 +45,7 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, hover, setHover, disabl
             href={href}
         >
             <div
-                className={`slideItem w-full h-full overflow-x-hidden transition-all duration-200 ${currentHover ? "grayscale-0" : `grayscale`}`}
+                className={`w-full h-full overflow-x-hidden transition-all duration-200 ${currentHover ? "grayscale-0" : `grayscale`}`}
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >

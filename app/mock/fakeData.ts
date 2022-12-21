@@ -20,11 +20,11 @@ export const projectsList: ProjectDescriptionData[] = [
             },
             {
                 _id: "project_1_img_2",
-                src: "",
+                src: "/project_2_img_1.png",
             },
             {
                 _id: "project_1_img_3",
-                src: "",
+                src: "/project_3_img_1.png",
             },
         ],
         tags: [
@@ -50,11 +50,11 @@ export const projectsList: ProjectDescriptionData[] = [
             },
             {
                 _id: "project_2_img_2",
-                src: "",
+                src: "/project_1_img_1.png",
             },
             {
                 _id: "project_2_img_3",
-                src: "",
+                src: "/project_3_img_1.png",
             },
         ],
         tags: [
@@ -80,11 +80,11 @@ export const projectsList: ProjectDescriptionData[] = [
             },
             {
                 _id: "project_3_img_2",
-                src: "",
+                src: "/project_1_img_1.png",
             },
             {
                 _id: "project_3_img_3",
-                src: "",
+                src: "/project_2_img_1.png",
             },
         ],
         tags: [
@@ -103,18 +103,18 @@ export const projectsList: ProjectDescriptionData[] = [
         images: [
             {
                 _id: "project_4_img_1",
-                src: "",
+                src: "/project_1_img_1.png",
                 // alt: "",
                 // description: "",
                 // projectPreview: true,
             },
             {
                 _id: "project_4_img_2",
-                src: "",
+                src: "/project_2_img_1.png",
             },
             {
                 _id: "project_4_img_3",
-                src: "",
+                src: "/project_3_img_1.png",
             },
         ],
         tags: [
@@ -133,18 +133,18 @@ export const projectsList: ProjectDescriptionData[] = [
         images: [
             {
                 _id: "project_5_img_1",
-                src: "",
+                src: "/project_2_img_1.png",
                 // alt: "",
                 // description: "",
                 // projectPreview: true,
             },
             {
                 _id: "project_5_img_2",
-                src: "",
+                src: "/project_1_img_1.png",
             },
             {
                 _id: "project_5_img_3",
-                src: "",
+                src: "/project_3_img_1.png",
             },
         ],
         tags: [
@@ -163,18 +163,42 @@ export const projectsList: ProjectDescriptionData[] = [
         images: [
             {
                 _id: "project_6_img_1",
-                src: "",
+                src: "/project_3_img_1.png",
                 // alt: "",
                 // description: "",
                 // projectPreview: true,
             },
             {
                 _id: "project_6_img_2",
-                src: "",
+                src: "/project_2_img_1.png",
             },
             {
                 _id: "project_6_img_3",
-                src: "",
+                src: "/project_1_img_1.png",
+            },
+            {
+                _id: "project_6_img_4",
+                src: "/project_2_img_1.png",
+            },
+            {
+                _id: "project_6_img_5",
+                src: "/project_1_img_1.png",
+            },
+            {
+                _id: "project_6_img_6",
+                src: "/project_2_img_1.png",
+            },
+            {
+                _id: "project_6_img_7",
+                src: "/project_1_img_1.png",
+            },
+            {
+                _id: "project_6_img_8",
+                src: "/project_2_img_1.png",
+            },
+            {
+                _id: "project_6_img_9",
+                src: "/project_1_img_1.png",
             },
         ],
         tags: [

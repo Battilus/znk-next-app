@@ -100,7 +100,7 @@ const Burro: NextPage = () => {
                 <div className="flex">
                     <ProjectSections.LogoInf/>
                 </div>
-                <div className="w-full h-full flex">
+                <div className="w-full h-full flex overflow-hidden">
                     <BurroPreview
                         title={"философия"}
                         titleTextColor={"text-gray-800"}
@@ -139,15 +139,15 @@ const Burro: NextPage = () => {
                     >
                         <>
                             <div className="w-full h-full flex flex-col items-center justify-center">
-                                <div className="relative w-full h-full">
+                                <div className="relative w-full h-full transition-colors duration-300">
                                     <div
-                                        className={`w-6 h-6 bg-white rounded-full hover:bg-yellow-200 absolute top-[20rem] left-[14.3rem]`}/>
+                                        className={`w-6 h-6 bg-whiteSmoke rounded-full hover:bg-yellow-200 absolute top-[20rem] left-[14.3rem]`}/>
                                     <div
-                                        className={`w-6 h-6 bg-white rounded-full hover:bg-yellow-200 absolute top-[30.5rem] left-[9rem]`}/>
+                                        className={`w-6 h-6 bg-whiteSmoke rounded-full hover:bg-yellow-200 absolute top-[30.5rem] left-[9rem]`}/>
                                     <div
-                                        className={`w-6 h-6 bg-white rounded-full hover:bg-yellow-200 absolute top-[17rem] right-[16.6rem]`}/>
+                                        className={`w-6 h-6 bg-whiteSmoke rounded-full hover:bg-yellow-200 absolute top-[17rem] right-[16.6rem]`}/>
                                     <div
-                                        className={`w-6 h-6 bg-white rounded-full hover:bg-yellow-200 absolute bottom-[11.5rem] right-[4.4rem]`}/>
+                                        className={`w-6 h-6 bg-whiteSmoke rounded-full hover:bg-yellow-200 absolute bottom-[11.5rem] right-[4.4rem]`}/>
                                 </div>
                             </div>
                             <Button.Link

@@ -3,7 +3,7 @@ import Meta, {MetaTag} from "./utility/Meta";
 import MainMenu from "./shared/SideBars/MainMenu";
 
 interface IPageWrapperProps {
-    children: ReactNode | ReactNode[] | string | string[]
+    children: ReactNode | string
     title: string
     description: string
     metaTagsList?: MetaTag[]
@@ -20,7 +20,7 @@ const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaT
                 tagsList={metaTagsList}
             />
 
-            <main className="h-screen w-screen bg-white">
+            <main className="h-screen w-screen bg-whiteSmoke">
                 <MainMenu isHomeLocation={isHomeLocation} hide={hideHomeButton}/>
                 <div className="ml-8 overflow-x-hidden">
                     {children}

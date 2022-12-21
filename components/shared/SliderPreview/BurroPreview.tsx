@@ -56,7 +56,7 @@ const BurroPreview: FC<IProps> = ({
                         ${hover && !currentHover ? "w-198" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
         >
             <div
-                className={`slideItem w-full h-full overflow-x-hidden`}
+                className={`w-full h-full overflow-x-hidden`}
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >

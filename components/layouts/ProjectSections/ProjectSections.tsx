@@ -19,17 +19,15 @@ type ProjectSections =
 
 const ProjectSections: ProjectSections = ({children, className, border}) => {
     return (
-        <>
-            <div className="flex flex-row">
-                <div
-                    className={`flex flex-col items-center h-screen
+        <div className="flex flex-row">
+            <div
+                className={`flex flex-col items-center h-screen
                                 transform transition-width duration-200 ${className}
-                                ${border ? "border-r border-matterhorn" : ""} bg-white`}
-                >
-                    {children}
-                </div>
+                                ${border ? "border-r border-matterhorn" : ""} bg-whiteSmoke`}
+            >
+                {children}
             </div>
-        </>
+        </div>
     );
 };
 
