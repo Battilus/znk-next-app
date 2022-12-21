@@ -1,41 +1,39 @@
 import React, {FC, ReactNode, useState} from 'react';
 import {useDebounce} from "../../../features/hooks/useDebounce";
-import Image from "next/image";
 
 interface IProps {
-    children: ReactNode | ReactNode[] | string | string[]
-    name?: string
+    children: ReactNode | string
+    title: string
+    titleTextColor?: string
+    hoverTitleTextColor?: string
     imgSrc?: string
-    hoverImg?: string
+    bgImage?: string
     hover?: boolean
     setHover: (hover: boolean) => void
     disableBorder?: boolean
     widthDuration?: number
-    brightness?: number
-    contrast?: number
-    enGrayscale?: boolean
+    hoverClassName?: string
 }
 
 const BuroPreview: FC<IProps> = ({
                                      children,
-                                     name,
-                                     imgSrc,
-                                     hoverImg,
+                                     title, titleTextColor, hoverTitleTextColor,
+                                     bgImage,
                                      hover,
                                      setHover,
                                      disableBorder,
                                      widthDuration = 200,
-                                     brightness,
-                                     contrast,
-                                     enGrayscale
+                                     hoverClassName
                                  }) => {
     const debounce = useDebounce((callback) => callback(), widthDuration);
     const [currentHover, setCurrentHover] = useState<boolean>(false);
     const [enHover, setEnHover] = useState<boolean>(true);
+    const [showContent, setShowContent] = useState<boolean>(false);
 
     const onHover = () => {
+        debounce.bounce(() => setShowContent(true));
         if (enHover) {
-            debounce.cancel();
+            // debounce.cancel();
             setHover(true);
             setCurrentHover(true);
             setEnHover(false);
@@ -43,6 +41,7 @@ const BuroPreview: FC<IProps> = ({
     }
 
     const onLeave = () => {
+        setShowContent(false);
         if (!enHover) {
             setHover(false);
             setCurrentHover(false);
@@ -55,7 +54,7 @@ const BuroPreview: FC<IProps> = ({
     return (
         <div
             className={`h-screen ${!disableBorder ? "border-r border-matterhorn" : ""} 
-                        transition-width duration-${widthDuration} min-w-198
+                        transition-width duration-200 min-w-198
                         ${hover && !currentHover ? "w-198" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
         >
             <div
@@ -63,15 +62,33 @@ const BuroPreview: FC<IProps> = ({
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >
-                {imgSrc &&
-                    <div className={`relative w-full h-full ${currentHover ? `${hoverImg}` : `${imgSrc}`} bg-no-repeat bg-center bg-cover`}>
-                        <div className="w-full h-full">
-                            {children}
+                <div
+                    className={`relative w-full h-full transition-all duration-300 
+                                    ${bgImage} ${currentHover ? "grayscale-0" : `grayscale ${hoverClassName}`} 
+                                    bg-no-repeat bg-center bg-cover`}
+                >
+                    <div className="px-5 py-4.5 w-full h-full">
+                        <div className={`font-medium uppercase 
+                                            ${hover ? "text-sl leading-21.5" : "text-4xl leading-46.26"}
+                                            ${titleTextColor && hoverTitleTextColor ?
+                            currentHover ? `${hoverTitleTextColor}` : `${titleTextColor}`
+                            : titleTextColor ? titleTextColor : "text-matterhorn"}
+                                            `}
+                        >
+                            {title}
                         </div>
-                    </div>}
+                        <div
+                            className={`w-full h-full transition-opacity duration-100 ${showContent ? "opacity-100" : "opacity-0"}`}
+                        >
+                            {showContent && children}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 };
 
 export default BuroPreview;
+
+// ${currentHover ? `${hoverImg}` : `${imgSrc}`}

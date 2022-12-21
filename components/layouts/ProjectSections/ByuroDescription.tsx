@@ -5,7 +5,7 @@ import {useDebounce} from "../../../features/hooks/useDebounce";
 import Button from "../../shared/Button/Button";
 
 interface DescriptionProps {
-    children?: ReactNode | ReactNode[] | string | string[]
+    children?: ReactNode | string
     descriptionText?: string | ReactNode
     hide?: boolean
     widthDuration?: number
@@ -32,7 +32,7 @@ const ByuroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
         >
             <div
                 className={`px-4 h-full w-full min-w-48 transition-opacity duration-${200} ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"} 
-                                items-center text-matterhorn font-medium uppercase text-sm leading-18p text-justify space-y-6`}>
+                            font-medium items-center text-matterhorn font-medium uppercase text-sm leading-18p text-justify space-y-6`}>
                 {debouncedDescription}
             </div>
             {children &&

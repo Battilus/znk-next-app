@@ -15,7 +15,7 @@ module.exports = {
             matterhorn: '#575757'
         },
         fontFamily: {
-            sans: ['Atyp Display', ...defaultTheme.fontFamily.sans]
+            sans: ['Atyp Display', ...defaultTheme.fontFamily.sans],
         },
         fontSize: {
             's': '12px',
@@ -125,13 +125,14 @@ module.exports = {
             'buro_philosophy_hover': "url('/buro_philosophy_hover.png')",
             'buro_command': "url('/buro_command.png')",
             'buro_command_hover': "url('/buro_command_hover.png')",
+            'buro_command_hover_2': "url('/buro_command_hover_2.jpg')",
             'buro_achievements': "url('/buro_achievements.png')",
             'buro_achievements_hover': "url('/buro_achievements_hover.png')",
         },
     },
   },
   plugins: [
-      plugin(({addUtilities, addComponents, e, prefix, config}) => {
+      plugin(({addUtilities}) => {
           addUtilities({
               '.horizontal-tb': {
                   writingMode: 'horizontal-tb',
