@@ -8,12 +8,11 @@ interface DescriptionProps {
     children?: ReactNode | string
     descriptionText?: string | ReactNode
     hide?: boolean
-    widthDuration?: number
 }
 
-const ByuroDescription: FC<DescriptionProps> = ({children, descriptionText, hide, widthDuration=200}) => {
+const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide}) => {
     const [debouncedDescription, setDebouncedDescription] = useState<string | ReactNode>("");
-    const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 200);
+    const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 150);
 
     useEffect(() => {
         if (hide) {
@@ -27,11 +26,10 @@ const ByuroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
     return (
         <ProjectSections
             className={`${hide ? "w-0" : "w-64"} py-4`}
-            widthDuration={widthDuration}
             border={!hide}
         >
             <div
-                className={`px-4 h-full w-full min-w-48 transition-opacity duration-${200} ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"} 
+                className={`px-4 h-full w-full min-w-48 transition-opacity duration-200 ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"} 
                             font-medium items-center text-matterhorn font-medium uppercase text-sm leading-18p text-justify space-y-6`}>
                 {debouncedDescription}
             </div>
@@ -39,19 +37,20 @@ const ByuroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
                 <div className="h-full w-full px-4">
                     {children}
                 </div>}
-            <div className={`h-full w-full px-5 flex flex-col items-center justify-end transition-opacity duration-${200}
+            <div className={`h-full w-full px-5 flex flex-col items-center justify-end transition-opacity duration-200
                                  ${!debouncedDescription ? "opacity-0" : "opacity-100"}`}>
-                <Button
+                <Button.Link
+                    href={"/"}
                     styleType={"rounded"}
                     className="w-full border border-matterhorn"
                     childrenClassName="w-full flex flex-row justify-center"
                 >
                     <div className="text-xs font-medium text-center leading-15.42p mr-2">Презентация</div>
                     <DownloadIcon className="pt-0.5 h-4"/>
-                </Button>
+                </Button.Link>
             </div>
         </ProjectSections>
     );
 };
 
-export default ByuroDescription;
+export default BurroDescription;

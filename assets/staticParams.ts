@@ -6,7 +6,7 @@ export const SIDEBAR_LINKS: LinkButton[] = [
         className: "outline-0 w-full uppercase text-sm font-medium",
         description: "Бюро",
         type: "link",
-        href: "/buro",
+        href: "/burro",
         styleType: "inverse",
     },
     {

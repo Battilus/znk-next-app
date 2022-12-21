@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {useDebounce} from "../../../features/hooks/useDebounce";
 import Image from "next/image";
 import A from "../Link/A";
@@ -11,11 +11,10 @@ interface IProps {
     hover?: boolean
     setHover: (hover: boolean) => void
     disableBorder?: boolean
-    widthDuration?: number
 }
 
-const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, setHover, disableBorder, widthDuration=150}) => {
-    const debounce = useDebounce((callback) => callback(), widthDuration);
+const ProjectPreview: FC<IProps> = ({name, imgSrc, href, hover, setHover, disableBorder}) => {
+    const debounce = useDebounce((callback) => callback(), 200);
     const [currentHover, setCurrentHover] = useState<boolean>(false);
     const [enHover, setEnHover] = useState<boolean>(true);
 
@@ -41,12 +40,12 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, description, hover, set
     return (
         <A
             className={`h-screen ${!disableBorder ? "border-r border-matterhorn": ""} 
-                        transition-width duration-${widthDuration} min-w-33.5
+                        transition-width duration-200 min-w-33.5
                         ${hover && !currentHover ? "w-33.5" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
             href={href}
         >
             <div
-                className={`slideItem w-full h-full overflow-x-hidden transition-all duration-${widthDuration} ${currentHover ? "grayscale-0" : `grayscale`}`}
+                className={`slideItem w-full h-full overflow-x-hidden transition-all duration-200 ${currentHover ? "grayscale-0" : `grayscale`}`}
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >

@@ -11,21 +11,19 @@ interface IProps {
     hover?: boolean
     setHover: (hover: boolean) => void
     disableBorder?: boolean
-    widthDuration?: number
     hoverClassName?: string
 }
 
-const BuroPreview: FC<IProps> = ({
+const BurroPreview: FC<IProps> = ({
                                      children,
                                      title, titleTextColor, hoverTitleTextColor,
                                      bgImage,
                                      hover,
                                      setHover,
                                      disableBorder,
-                                     widthDuration = 200,
                                      hoverClassName
                                  }) => {
-    const debounce = useDebounce((callback) => callback(), widthDuration);
+    const debounce = useDebounce((callback) => callback(), 200);
     const [currentHover, setCurrentHover] = useState<boolean>(false);
     const [enHover, setEnHover] = useState<boolean>(true);
     const [showContent, setShowContent] = useState<boolean>(false);
@@ -71,8 +69,8 @@ const BuroPreview: FC<IProps> = ({
                         <div className={`font-medium uppercase 
                                             ${hover ? "text-sl leading-21.5" : "text-4xl leading-46.26"}
                                             ${titleTextColor && hoverTitleTextColor ?
-                            currentHover ? `${hoverTitleTextColor}` : `${titleTextColor}`
-                            : titleTextColor ? titleTextColor : "text-matterhorn"}
+                                                currentHover ? `${hoverTitleTextColor}` : `${titleTextColor}`
+                                                : titleTextColor ? titleTextColor : "text-matterhorn"}
                                             `}
                         >
                             {title}
@@ -89,6 +87,4 @@ const BuroPreview: FC<IProps> = ({
     );
 };
 
-export default BuroPreview;
-
-// ${currentHover ? `${hoverImg}` : `${imgSrc}`}
+export default BurroPreview;

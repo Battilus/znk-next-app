@@ -5,19 +5,17 @@ import LogoInfBody from "./utilityComponents/LogoInfBody";
 import LogoLink from "../../shared/Logo/LogoLink";
 
 interface IProps {
-    children?: ReactNode | ReactNode[] | string | string[]
+    children?: ReactNode | string
     hover?: boolean
-    widthDuration?: number
     staticWidth?: boolean
-    onLeaveChildren?: ReactNode | ReactNode[] | string | string[]
+    onLeaveChildren?: ReactNode | string
 }
 
-const LogoInf: FC<IProps> = ({children, hover, widthDuration=300, staticWidth, onLeaveChildren}) => {
+const LogoInf: FC<IProps> = ({children, hover, staticWidth, onLeaveChildren}) => {
     return (
         <>
             <ProjectSections
                 className={`${staticWidth ? "w-64" : hover ? "w-64" : "w-48"}`}
-                widthDuration={widthDuration}
                 border
             >
                 <div
@@ -36,10 +34,10 @@ const LogoInf: FC<IProps> = ({children, hover, widthDuration=300, staticWidth, o
                             {children}
                         </Transition> :
                         <>
-                            <LogoInfBody show={!!hover} enterDuration={500}>
+                            <LogoInfBody show={!!hover}>
                                 {hover && children}
                             </LogoInfBody>
-                            <LogoInfBody show={!hover} enterDuration={500}>
+                            <LogoInfBody show={!hover}>
                                 {!hover ? onLeaveChildren : null}
                             </LogoInfBody>
                         </>

@@ -2,13 +2,13 @@ import React, {useMemo, useState} from 'react';
 import {NextPage} from "next";
 import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
-import BuroPreview from '../components/shared/SliderPreview/BuroPreview';
-import DoubleSlachIcon from '../public/svg/double-slash.svg';
+import BurroPreview from '../components/shared/SliderPreview/BurroPreview';
+import DoubleSlashIcon from '../public/svg/double-slash.svg';
 import Button from "../components/shared/Button/Button";
 import CertificateCard from "../components/utility/CertificateCard";
 import {CertificateCardType} from '../types';
 
-const Buro: NextPage = () => {
+const Burro: NextPage = () => {
 
     const [hover, setHover] = useState<boolean>(false);
     const certificates: CertificateCardType[] = useMemo(() => ([
@@ -95,24 +95,23 @@ const Buro: NextPage = () => {
     ]), []);
 
     return (
-        <PageWrapper title={"ZNK App"} description={"Buro page"}>
+        <PageWrapper title={"ZNK App"} description={"Burro page"}>
             <div className="flex">
                 <div className="flex">
                     <ProjectSections.LogoInf/>
                 </div>
                 <div className="w-full h-full flex">
-                    <BuroPreview
+                    <BurroPreview
                         title={"философия"}
                         titleTextColor={"text-gray-800"}
                         hoverTitleTextColor={"text-white"}
                         bgImage={"bg-buro_philosophy_hover"}
                         hover={hover}
                         setHover={setHover}
-                        // widthDuration={300}
                         hoverClassName={"brightness-200"}
                     >
                         <div className="w-full h-full flex flex-col items-center justify-center gap-5">
-                            <DoubleSlachIcon/>
+                            <DoubleSlashIcon/>
                             <div
                                 className="w-2/4 flex flex-col items-center gap-10 font-medium uppercase text-white text-sm leading-18p text-justify">
                                 <div>«Знак: проект» — архитектурное бюро, работающее в области градостроительства,
@@ -126,17 +125,16 @@ const Buro: NextPage = () => {
                                     работе.
                                 </div>
                             </div>
-                            <DoubleSlachIcon/>
+                            <DoubleSlashIcon/>
                         </div>
-                    </BuroPreview>
-                    <BuroPreview
+                    </BurroPreview>
+                    <BurroPreview
                         title={"команда"}
                         titleTextColor={"text-matterhorn"}
                         hoverTitleTextColor={"text-white"}
                         bgImage={"bg-buro_command_hover_2"}
                         hover={hover}
                         setHover={setHover}
-                        // widthDuration={300}
                         hoverClassName={"brightness-75"}
                     >
                         <>
@@ -160,13 +158,12 @@ const Buro: NextPage = () => {
                                 вакансии
                             </Button.Link>
                         </>
-                    </BuroPreview>
-                    <BuroPreview
+                    </BurroPreview>
+                    <BurroPreview
                         title={"достижения"}
                         bgImage={"bg-buro_achievements_hover"}
                         hover={hover}
                         setHover={setHover}
-                        // widthDuration={300}
                         hoverClassName={"brightness-75"}
                     >
                         <div className="w-full h-full flex items-center justify-center">
@@ -182,11 +179,11 @@ const Buro: NextPage = () => {
                                     />)}
                             </div>
                         </div>
-                    </BuroPreview>
+                    </BurroPreview>
                 </div>
             </div>
         </PageWrapper>
     );
 };
 
-export default Buro;
+export default Burro;
