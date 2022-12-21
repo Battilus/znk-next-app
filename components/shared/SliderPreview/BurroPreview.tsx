@@ -15,14 +15,14 @@ interface IProps {
 }
 
 const BurroPreview: FC<IProps> = ({
-                                     children,
-                                     title, titleTextColor, hoverTitleTextColor,
-                                     bgImage,
-                                     hover,
-                                     setHover,
-                                     disableBorder,
-                                     hoverClassName
-                                 }) => {
+                                      children,
+                                      title, titleTextColor, hoverTitleTextColor,
+                                      bgImage,
+                                      hover,
+                                      setHover,
+                                      disableBorder,
+                                      hoverClassName
+                                  }) => {
     const debounce = useDebounce((callback) => callback(), 200);
     const [currentHover, setCurrentHover] = useState<boolean>(false);
     const [enHover, setEnHover] = useState<boolean>(true);
@@ -65,20 +65,23 @@ const BurroPreview: FC<IProps> = ({
                                     ${bgImage} ${currentHover ? "grayscale-0" : `grayscale ${hoverClassName}`} 
                                     bg-no-repeat bg-center bg-cover`}
                 >
-                    <div className="px-5 py-4.5 w-full h-full">
+                    <div className="px-5 py-4.5 w-full h-full flex flex-col">
                         <div className={`font-medium uppercase 
                                             ${hover ? "text-sl leading-21.5" : "text-4xl leading-46.26"}
                                             ${titleTextColor && hoverTitleTextColor ?
-                                                currentHover ? `${hoverTitleTextColor}` : `${titleTextColor}`
-                                                : titleTextColor ? titleTextColor : "text-matterhorn"}
+                                            currentHover ? `${hoverTitleTextColor}` : `${titleTextColor}`
+                                            : titleTextColor ? titleTextColor : "text-matterhorn"}
                                             `}
                         >
                             {title}
                         </div>
-                        <div
-                            className={`w-full h-full transition-opacity duration-100 ${showContent ? "opacity-100" : "opacity-0"}`}
-                        >
-                            {showContent && children}
+                        <div className="h-full flex flex-col items-center justify-center">
+                            {showContent &&
+                                <div
+                                    className={`w-full h-full transition-opacity duration-100 ${showContent ? "opacity-100" : "opacity-0"}`}
+                                >
+                                    {children}
+                                </div>}
                         </div>
                     </div>
                 </div>

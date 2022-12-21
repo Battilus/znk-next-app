@@ -100,7 +100,7 @@ const Burro: NextPage = () => {
                 <div className="flex">
                     <ProjectSections.LogoInf/>
                 </div>
-                <div className="w-full h-full flex overflow-hidden">
+                <div className="w-full h-full flex">
                     <BurroPreview
                         title={"философия"}
                         titleTextColor={"text-gray-800"}
