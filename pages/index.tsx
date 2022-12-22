@@ -62,7 +62,6 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
                 </div>
                 <ShowProjectSlider/>
             </div>
-
         </PageWrapper>
     )
 }
@@ -73,7 +72,7 @@ export const getStaticProps = async () => {
 
     return {
         props: {
-            previewProjects: previewProjects.length > 3 ? previewProjects.slice(2) : previewProjects
+            previewProjects: previewProjects.length > 3 ? previewProjects.slice(0, 3) : previewProjects
         },
         revalidate: 10,
     }

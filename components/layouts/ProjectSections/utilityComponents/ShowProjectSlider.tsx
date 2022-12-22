@@ -9,7 +9,7 @@ const ShowProjectSlider: FC = () => {
                 className={`h-full w-8 border-r border-matterhorn`}
                 href={"/projects"}
             >
-                <p className="vertical-rl pr-1.7 pl-1.3">Все проекты</p>
+                <div className="vertical-rl pr-1.7 pl-1.3">Все проекты</div>
             </Button.Link>
         </div>
     );
