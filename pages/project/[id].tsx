@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {NextPage} from "next";
 import PageWrapper from "../../components/PageWrapper";
 import ProjectSections from "../../components/layouts/ProjectSections/ProjectSections";
@@ -6,7 +6,7 @@ import {ProjectDescriptionType} from "../../components/layouts/ProjectSections/P
 import {projectsList} from "../../app/mock/fakeData";
 import Image from "next/image";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {Pagination} from "swiper";
+import {Autoplay, Navigation, Pagination} from "swiper";
 
 type IProjectsPath = {
     params: {
@@ -19,6 +19,9 @@ interface IProps {
 }
 
 const Project: NextPage<IProps> = ({project}) => {
+    const navigationPrevRef = useRef(null);
+    const navigationNextRef = useRef(null);
+
     return (
         <PageWrapper title={"ZNK Project"} description={"Project description"}>
             <div className="w-full h-full flex">
@@ -33,7 +36,34 @@ const Project: NextPage<IProps> = ({project}) => {
                             horizontalClass: "top-5",
                             dynamicBullets: true
                         }}
-                        modules={[Pagination]}
+                        navigation={{
+                            prevEl: navigationPrevRef.current,
+                            nextEl: navigationNextRef.current,
+                        }}
+                        onSwiper={(swiper) => {
+                            setTimeout(() => {
+
+                                if (swiper?.params?.navigation && typeof swiper.params.navigation === "object") {
+                                    if ("prevEl" in swiper.params.navigation) {
+                                        swiper.params.navigation.prevEl = navigationPrevRef.current;
+                                    }
+                                    if ("nextEl" in swiper.params.navigation) {
+                                        swiper.params.navigation.nextEl = navigationNextRef.current;
+                                    }
+                                }
+
+                                // Re-init navigation
+                                swiper?.navigation?.destroy();
+                                swiper?.navigation?.init();
+                                swiper?.navigation?.update();
+                            })
+                        }}
+                        modules={[Autoplay, Pagination, Navigation]}
+                        loop
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        }}
                     >
                         {project.images.map(image =>
                             <SwiperSlide key={image._id}>
@@ -47,6 +77,8 @@ const Project: NextPage<IProps> = ({project}) => {
                                     />
                                 </div>
                             </SwiperSlide>)}
+                        <div ref={navigationPrevRef} className="z-10 absolute top-0 left-0 h-full w-96"/>
+                        <div ref={navigationNextRef} className="z-10 absolute top-0 right-0 h-full w-96"/>
                     </Swiper>
                 </div>
             </div>
