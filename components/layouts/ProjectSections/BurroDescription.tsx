@@ -30,7 +30,7 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
         >
             <div
                 className={`px-4 h-full w-full min-w-48 transition-opacity duration-200 ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"} 
-                            font-medium items-center text-matterhorn font-medium uppercase text-sm leading-18p text-justify space-y-6`}>
+                            font-semibold items-center text-matterhorn font-medium uppercase text-sm leading-18p text-justify space-y-6`}>
                 {debouncedDescription}
             </div>
             {children &&
@@ -45,7 +45,7 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
                     className="w-full border border-matterhorn"
                     childrenClassName="w-full flex flex-row justify-center"
                 >
-                    <div className="text-xs font-medium text-center leading-15.42p mr-2">Презентация</div>
+                    <div className="text-xs font-semibold text-center leading-15.42p mr-2">Презентация</div>
                     <DownloadIcon className="pt-0.5 h-4"/>
                 </Button.Link>
             </div>
