@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {NextPage} from "next";
+import {GetStaticProps, NextPage} from "next";
 import PageWrapper from "../../components/PageWrapper";
 import ProjectSections from "../../components/layouts/ProjectSections/ProjectSections";
 import {ProjectDescriptionType} from "../../components/layouts/ProjectSections/ProjectDescription";
@@ -7,6 +7,7 @@ import {projectsList} from "../../app/mock/fakeData";
 import Image from "next/image";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, Pagination} from "swiper";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 type IProjectsPath = {
     params: {
@@ -86,10 +87,11 @@ const Project: NextPage<IProps> = ({project}) => {
     );
 };
 
-export const getStaticProps = async ({params}: any) => {
+export const getStaticProps: GetStaticProps = async ({params, locale}) => {
     return {
         props: {
-            project: projectsList.find(project => project._id === params.id)
+            project: projectsList.find(project => project._id === params?.id),
+            ...(await serverSideTranslations(locale!, ["common"])),
         },
         revalidate: 10,
     }
