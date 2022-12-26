@@ -13,7 +13,7 @@ interface DescriptionProps {
 
 const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide}) => {
     const [debouncedDescription, setDebouncedDescription] = useState<string | ReactNode>("");
-    const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 150);
+    const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 200);
 
     const {t} = useTranslation();
 
@@ -41,8 +41,8 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
                     {children}
                 </div>}
             <div className={`h-full w-full px-5 flex flex-col items-center justify-end transition-opacity duration-200
-                                 ${!debouncedDescription ? "opacity-0" : "opacity-100"}`}>
-                <Button.Link
+                                 ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"}`}>
+                {!hide && <Button.Link
                     href={"/"}
                     styleType={"rounded"}
                     className="w-full border border-matterhorn"
@@ -50,7 +50,7 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
                 >
                     <div className="text-xs font-semibold text-center leading-15.42p mr-2">{t("actionButtons.presentation")}</div>
                     <DownloadIcon className="pt-0.5 h-4"/>
-                </Button.Link>
+                </Button.Link>}
             </div>
         </ProjectSections>
     );
