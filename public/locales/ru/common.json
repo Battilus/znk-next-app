@@ -1,0 +1,67 @@
+{
+  "all_projects": "Все проекты",
+  "show": "открыть",
+  "sideBarLinks": {
+    "burro": "Бюро",
+    "allProjects": "Все проекты",
+    "contacts": "Контакты"
+  },
+  "actionButtons": {
+    "presentation": "Презентация",
+    "mainPage": "Главная"
+  },
+  "contacts": {
+    "ekaterina": {
+      "name": "екатерина холуянова"
+    },
+    "ilya": {
+      "name": "илья колесников"
+    }
+  },
+  "certificates": {
+    "pega": {
+      "title": "сертификат pega"
+    },
+    "lifecycle": {
+      "title": "сертификат Lifecycle"
+    },
+    "build": {
+      "title": "премия build architecture"
+    },
+    "architecture": {
+      "title": "премия architecture"
+    }
+  },
+  "pages": {
+    "main": {
+      "burroDescription": {
+        "text_p1": "Znak is an architecture office currently based IN saint-petersburg, russia",
+        "text_p2": "in russian znak means «sign» and signify the interplay between artistic endeavors and technical skills, which results in architecture of outstan-ding quality and value"
+      }
+    },
+    "burro": {
+      "philosophy": {
+        "title": "философия",
+        "description": {
+          "p1": "«Знак: проект» — архитектурное бюро, работающее в области градостроительства, архитектуры, консалтинга и дизайна из Санкт- Петербурга. Мы уверены, комплексный подход к архитектуре и градостроительству — основа устойчивого развития, соединяя качество, разнообразие, экологию и эсте-тическую ценность застройки.",
+          "p2": "Наша команда сосредоточена на вдумчивом и эффективном творческом процессе, для создания идеальных пространств для наших клиентов. Мы ценим людей, с которыми работаем. Уважение, честность и профессионализм руководят нами в нашей повседневной работе."
+        }
+      },
+      "command": {
+        "title": "команда",
+        "buttonLink": {
+          "title": "вакансии"
+        }
+      },
+      "achievements": {
+        "title": "достижения"
+      }
+    },
+    "404": {
+      "description": "что-то пошло не так :(",
+      "buttonLink": {
+        "title": "На главную"
+      }
+    }
+  }
+}

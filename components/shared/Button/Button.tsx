@@ -1,16 +1,26 @@
 import React, {FC, ReactNode} from 'react';
 import LinkButton from "./LinkButton";
 import ToggleSelectButton from "./ToggleSelectButton";
+import LocaleSwitcher from "./LocaleSwitcher";
+
+export type LinkButton = {
+    className: string
+    description: string
+    type: string
+    href?: string
+    styleType: "inverse" | "rounded"
+    onClickEn?: boolean
+}
 
 interface IButtonProps {
-    children: ReactNode | ReactNode[] | string | string[]
+    children: ReactNode | string
     styleType: "inverse" | "rounded"
     className?: string
     childrenClassName?: string
     onClick?: () => void
 }
 
-type ButtonFC = FC<IButtonProps> & { Link: typeof LinkButton } & { Selector: typeof ToggleSelectButton};
+type ButtonFC = FC<IButtonProps> & { Link: typeof LinkButton } & { Selector: typeof ToggleSelectButton} & { LocaleSwitcher: typeof LocaleSwitcher};
 
 export enum ButtonStyleType {
     inverse = `flex items-center justify-center outline-0
@@ -39,5 +49,6 @@ const Button: ButtonFC = ({children, styleType="inverse", className="", children
 
 Button.Link = LinkButton;
 Button.Selector = ToggleSelectButton;
+Button.LocaleSwitcher = LocaleSwitcher;
 
 export default Button;

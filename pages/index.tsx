@@ -1,4 +1,4 @@
-import type {NextPage} from 'next'
+import type {GetStaticProps, NextPage} from 'next'
 import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
 import React, {useCallback, useEffect, useState} from "react";
@@ -7,7 +7,9 @@ import ShowProjectSlider from "../components/layouts/ProjectSections/utilityComp
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
 import ProjectPreviewDescription
     from "../components/layouts/ProjectSections/utilityComponents/ProjectPreviewDescription";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import {projectsList} from "../app/mock/fakeData";
+import {useTranslation} from "next-i18next";
 
 interface IProps {
     previewProjects: ProjectDescriptionData[]
@@ -16,6 +18,8 @@ interface IProps {
 const Home: NextPage<IProps> = ({previewProjects}) => {
     const [hover, setHover] = useState<boolean>(false);
     const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+
+    const {t} = useTranslation();
 
     const hoverHandler = useCallback((val: boolean, index: number | null) => {
         setHover(val);
@@ -39,10 +43,8 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
                         hide={hover}
                         descriptionText={
                             <>
-                                <p>Znak is an architecture office currently based IN saint-petersburg, russia</p>
-                                <p>in russian znak means «sign» and signify the interplay between artistic
-                                    endeavors and technical skills, which results in architecture of outstan-ding
-                                    quality and value</p>
+                                <p>{t("pages.main.burroDescription.text_p1")}</p>
+                                <p>{t("pages.main.burroDescription.text_p2")}</p>
                             </>
                         }
                     />
@@ -66,13 +68,14 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
     )
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({locale}) => {
 
     const previewProjects = projectsList.filter(project => project.hasOwnProperty("mainPagePreview") && project.mainPagePreview);
 
     return {
         props: {
-            previewProjects: previewProjects.length > 3 ? previewProjects.slice(0, 3) : previewProjects
+            previewProjects: previewProjects.length > 3 ? previewProjects.slice(0, 3) : previewProjects,
+            ...(await serverSideTranslations(locale || "", ["common"])),
         },
         revalidate: 10,
     }

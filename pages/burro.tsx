@@ -1,98 +1,20 @@
-import React, {useMemo, useState} from 'react';
-import {NextPage} from "next";
+import React, {useState} from 'react';
+import {GetStaticProps, NextPage} from "next";
 import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
 import BurroPreview from '../components/shared/SliderPreview/BurroPreview';
 import DoubleSlashIcon from '../public/svg/double-slash.svg';
 import Button from "../components/shared/Button/Button";
 import CertificateCard from "../components/utility/CertificateCard";
-import {CertificateCardType} from '../types';
+import {CERTIFICATES} from "../assets/staticParams";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {useTranslation} from "next-i18next";
 
 const Burro: NextPage = () => {
 
     const [hover, setHover] = useState<boolean>(false);
-    const certificates: CertificateCardType[] = useMemo(() => ([
-        {
-            id: 1,
-            title: "сертификат pega",
-            logo: {
-                img: "/achievements/pega.png",
-                width: 66,
-                height: 53,
-            },
-            certificateHref: "/",
-        },
-        {
-            id: 2,
-            title: "сертификат pega",
-            logo: {
-                img: "/achievements/pega.png",
-                width: 66,
-                height: 53,
-            },
-            certificateHref: "/",
-        },
-        {
-            id: 3,
-            title: "сертификат Lifecycle",
-            logo: {
-                img: "/achievements/lifecycle.png",
-                width: 66,
-                height: 65,
-            },
-            certificateHref: "/",
-        },
-        {
-            id: 4,
-            title: "сертификат Lifecycle",
-            logo: {
-                img: "/achievements/lifecycle.png",
-                width: 66,
-                height: 65,
-            },
-            certificateHref: "/",
-        },
-        {
-            id: 5,
-            title: "премия build architecture",
-            logo: {
-                img: "/achievements/build_architecture.png",
-                width: 66,
-                height: 46,
-            },
-            certificateHref: "/",
-        },
-        {
-            id: 6,
-            title: "премия build architecture",
-            logo: {
-                img: "/achievements/build_architecture.png",
-                width: 66,
-                height: 46,
-            },
-            certificateHref: "/",
-        },
-        {
-            id: 7,
-            title: "премия architecture",
-            logo: {
-                img: "/achievements/architecture.png",
-                width: 66,
-                height: 74.33,
-            },
-            certificateHref: "/",
-        },
-        {
-            id: 8,
-            title: "премия architecture",
-            logo: {
-                img: "/achievements/architecture.png",
-                width: 66,
-                height: 74.33,
-            },
-            certificateHref: "/",
-        },
-    ]), []);
+
+    const {t} = useTranslation();
 
     return (
         <PageWrapper title={"ZNK App"} description={"Burro page"}>
@@ -102,7 +24,7 @@ const Burro: NextPage = () => {
                 </div>
                 <div className="w-full h-full flex">
                     <BurroPreview
-                        title={"философия"}
+                        title={t("pages.burro.philosophy.title")}
                         titleTextColor={"text-gray-800"}
                         hoverTitleTextColor={"text-white"}
                         bgImage={"bg-buro_philosophy_hover"}
@@ -114,22 +36,14 @@ const Burro: NextPage = () => {
                             <DoubleSlashIcon/>
                             <div
                                 className="w-2/4 flex flex-col items-center gap-10 font-medium uppercase text-white text-sm leading-18p text-justify">
-                                <div>«Знак: проект» — архитектурное бюро, работающее в области градостроительства,
-                                    архитектуры, консалтинга и дизайна из Санкт- Петербурга. Мы уверены, комплексный
-                                    подход к архитектуре и градостроительству — основа устойчивого развития, соединяя
-                                    качество, разнообразие, экологию и эсте-тическую ценность застройки.
-                                </div>
-                                <div>Наша команда сосредоточена на вдумчивом и эффективном творческом процессе, для
-                                    создания идеальных пространств для наших клиентов. Мы ценим людей, с которыми
-                                    работаем. Уважение, честность и профессионализм руководят нами в нашей повседневной
-                                    работе.
-                                </div>
+                                <div>{t("pages.burro.philosophy.description.p1")}</div>
+                                <div>{t("pages.burro.philosophy.description.p2")}</div>
                             </div>
                             <DoubleSlashIcon/>
                         </div>
                     </BurroPreview>
                     <BurroPreview
-                        title={"команда"}
+                        title={t("pages.burro.command.title")}
                         titleTextColor={"text-matterhorn"}
                         hoverTitleTextColor={"text-white"}
                         bgImage={"bg-buro_command_hover_2"}
@@ -155,12 +69,12 @@ const Burro: NextPage = () => {
                                 className="absolute bottom-5 left-5 font-medium"
                                 href="/"
                             >
-                                вакансии
+                                {t("pages.burro.buttonLink.title")}
                             </Button.Link>
                         </>
                     </BurroPreview>
                     <BurroPreview
-                        title={"достижения"}
+                        title={t("pages.burro.achievements.title")}
                         bgImage={"bg-buro_achievements_hover"}
                         hover={hover}
                         setHover={setHover}
@@ -168,10 +82,10 @@ const Burro: NextPage = () => {
                     >
                         <div className="w-full h-full flex items-center justify-center">
                             <div className="w-full max-w-[38.56rem] h-full max-h-[26rem] grid grid-cols-2 gap-8">
-                                {certificates.map(certificate =>
+                                {CERTIFICATES.map(certificate =>
                                     <CertificateCard
                                         key={certificate.id}
-                                        title={certificate.title}
+                                        title={t(`${certificate.title}`)}
                                         logoImg={certificate.logo.img}
                                         logoWidth={certificate.logo.width}
                                         logoHeight={certificate.logo.height}
@@ -186,4 +100,11 @@ const Burro: NextPage = () => {
     );
 };
 
+export const getStaticProps: GetStaticProps = async ({locale}) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale || "", ["common"])),
+        },
+    }
+}
 export default Burro;

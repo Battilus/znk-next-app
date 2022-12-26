@@ -7,6 +7,7 @@ import {CONTACTS, SIDEBAR_LINKS} from "../../../assets/staticParams";
 import Contacts from "./Contacts";
 import Button from "../Button/Button";
 import { useRouter } from 'next/router';
+import {useTranslation} from "next-i18next";
 
 interface IMainMenuProps {
     isHomeLocation?: boolean
@@ -18,6 +19,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isContactsOpen, setIsContactsOpen] = useState<boolean>(false);
 
+    const {t} = useTranslation();
     const router = useRouter();
 
     const closeMenu = () => {
@@ -92,7 +94,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                     childrenClassName="pt-1.7 pb-1.3"
                                     href={"/"}
                                 >
-                                    Главная
+                                    {t("actionButtons.mainPage")}
                                 </Button.Link>
                                 <div className="w-full h-px bg-matterhorn opacity-40"/>
                             </>}
@@ -102,10 +104,10 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                         <Button
                                             styleType={button.styleType}
                                             className={button.className}
-                                            onClick={button.description === "Контакты" ? () => setIsContactsOpen(true) : undefined}
+                                            onClick={button.onClickEn ? () => setIsContactsOpen(true) : undefined}
                                             childrenClassName="pt-1.7 pb-1.3"
                                         >
-                                            {button.description}
+                                            {t(`${button.description}`)}
                                         </Button>
                                         <div className="w-full h-px bg-matterhorn opacity-40"/>
                                     </React.Fragment>
@@ -117,7 +119,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                                 href={button.href}
                                                 childrenClassName="pt-1.7 pb-1.3"
                                             >
-                                                {button.description}
+                                                {t(`${button.description}`)}
                                             </Button.Link>
                                             <div className="w-full h-px bg-matterhorn opacity-40"/>
                                         </React.Fragment>)}
@@ -125,11 +127,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                     </Transition>
                 </div>
                 <div className="absolute left-0 bottom-0 w-full z-30">
-                    <Button.Selector
-                        suggestions={["RU", "EN"]}
-                        setSuggestion={() => {
-                        }}
-                    />
+                    <Button.LocaleSwitcher/>
                 </div>
             </div>
             <Contacts show={isContactsOpen} contacts={CONTACTS}/>

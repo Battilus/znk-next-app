@@ -3,6 +3,7 @@ import DownloadIcon from "../../../public/svg/download-arrow.svg";
 import ProjectSections from "./ProjectSections";
 import {useDebounce} from "../../../features/hooks/useDebounce";
 import Button from "../../shared/Button/Button";
+import {useTranslation} from "next-i18next";
 
 interface DescriptionProps {
     children?: ReactNode | string
@@ -13,6 +14,8 @@ interface DescriptionProps {
 const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide}) => {
     const [debouncedDescription, setDebouncedDescription] = useState<string | ReactNode>("");
     const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 150);
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         if (hide) {
@@ -45,7 +48,7 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
                     className="w-full border border-matterhorn"
                     childrenClassName="w-full flex flex-row justify-center"
                 >
-                    <div className="text-xs font-semibold text-center leading-15.42p mr-2">Презентация</div>
+                    <div className="text-xs font-semibold text-center leading-15.42p mr-2">{t("actionButtons.presentation")}</div>
                     <DownloadIcon className="pt-0.5 h-4"/>
                 </Button.Link>
             </div>

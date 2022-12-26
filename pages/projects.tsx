@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {NextPage} from "next";
+import {GetStaticProps, NextPage} from "next";
 import PageWrapper from "../components/PageWrapper";
 import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
@@ -8,6 +8,7 @@ import {projectsList} from "../app/mock/fakeData";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {chunkArray} from "../features/utils";
 import {Pagination} from "swiper";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 interface IProps {
     projects: ProjectDescriptionData[][]
@@ -71,11 +72,12 @@ const Projects: NextPage<IProps> = ({projects}) => {
     );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({locale})  => {
 
     return {
         props: {
             projects: chunkArray(projectsList, 6),
+            ...(await serverSideTranslations(locale || "", ["common"])),
         },
         revalidate: 10,
     }
