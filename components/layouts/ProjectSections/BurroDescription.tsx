@@ -28,12 +28,12 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
 
     return (
         <ProjectSections
-            className={`${hide ? "w-0" : "w-64"} py-4`}
+            className={`${hide ? "w-0" : "w-64 2xl:w-full"} py-4`}
             border={!hide}
         >
             <div
                 className={`px-4 h-full w-full min-w-48 transition-opacity duration-200 ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"} 
-                            font-semibold items-center text-matterhorn font-medium uppercase text-sm leading-18p text-justify space-y-6`}>
+                            font-semibold items-center text-matterhorn font-medium uppercase text-sm leading-18p 2xl:text-0.8vw 2xl:leading-1vw text-justify space-y-6`}>
                 {debouncedDescription}
             </div>
             {children &&

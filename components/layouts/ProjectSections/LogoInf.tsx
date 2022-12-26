@@ -15,7 +15,7 @@ const LogoInf: FC<IProps> = ({children, hover, staticWidth, onLeaveChildren}) =>
     return (
         <>
             <ProjectSections
-                className={`${staticWidth ? "w-64" : hover ? "w-64" : "w-48"}`}
+                className={`${staticWidth ? "w-64 2xl:w-full" : hover ? "w-64 2xl:w-full" : "w-48"}`}
                 border
             >
                 <div
