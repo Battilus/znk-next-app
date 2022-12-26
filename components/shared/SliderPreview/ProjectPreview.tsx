@@ -45,14 +45,12 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, hover, setHover, disabl
             href={href}
         >
             <div
-                className={`w-full h-full overflow-x-hidden transition-all duration-200 ${currentHover ? "grayscale-0" : `grayscale`}`}
+                className={`relative w-full h-full overflow-x-hidden object-center transition-all duration-200 ${currentHover ? "grayscale-0" : `grayscale`}`}
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
             >
                 {imgSrc &&
-                    <div className="relative w-full h-full">
-                        <Image className="w-full h-full object-cover object-center" src={imgSrc} alt={name} layout="fill" quality={100}/>
-                    </div>}
+                    <Image className="object-cover" src={imgSrc} alt={name} layout="fill" quality={100}/>}
             </div>
         </A>
     );

@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps = async ({locale}) => {
     return {
         props: {
             previewProjects: previewProjects.length > 3 ? previewProjects.slice(0, 3) : previewProjects,
-            ...(await serverSideTranslations(locale || "", ["common"])),
+            ...(await serverSideTranslations(locale!, ["common"])),
         },
         revalidate: 10,
     }

@@ -42,15 +42,20 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
                 </div>}
             <div className={`h-full w-full px-5 flex flex-col items-center justify-end transition-opacity duration-200
                                  ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"}`}>
-                {!hide && <Button.Link
-                    href={"/"}
-                    styleType={"rounded"}
-                    className="w-full border border-matterhorn"
-                    childrenClassName="w-full flex flex-row justify-center"
-                >
-                    <div className="text-xs font-semibold text-center leading-15.42p mr-2">{t("actionButtons.presentation")}</div>
-                    <DownloadIcon className="pt-0.5 h-4"/>
-                </Button.Link>}
+                {!hide &&
+                    <Button.Link
+                        href={"/"}
+                        styleType={"rounded"}
+                        className="w-full border border-matterhorn"
+                        childrenClassName="w-full flex flex-row justify-center"
+                    >
+                        <div
+                            className="text-xs font-semibold text-center leading-15.42p mr-2"
+                        >
+                            {t("actionButtons.presentation")}
+                        </div>
+                        <DownloadIcon className="pt-0.5 h-4"/>
+                    </Button.Link>}
             </div>
         </ProjectSections>
     );

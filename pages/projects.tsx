@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps = async ({locale})  => {
     return {
         props: {
             projects: chunkArray(projectsList, 6),
-            ...(await serverSideTranslations(locale || "", ["common"])),
+            ...(await serverSideTranslations(locale!, ["common"])),
         },
         revalidate: 10,
     }
