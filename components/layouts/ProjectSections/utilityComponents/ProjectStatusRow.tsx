@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {firstLetterCapitalize} from "../../../../features/utils";
 
 interface IProps {
-    title?: string
+    title?: string | null
     status?: string | number
 }
 

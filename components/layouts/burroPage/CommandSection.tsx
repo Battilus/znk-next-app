@@ -38,7 +38,7 @@ const CommandSection: FC<IProps> = ({hover, setHover, t}) => {
                     className="absolute bottom-5 2xl:bottom-1.39v left-5 2xl:left-1.39v font-medium"
                     href="/"
                 >
-                    {t("pages.burro.buttonLink.title")}
+                    {t("pages.burro.command.buttonLink.title")}
                 </Button.Link>
             </>
         </BurroPreview>

@@ -78,8 +78,8 @@ const Project: NextPage<IProps> = ({project}) => {
                                     />
                                 </div>
                             </SwiperSlide>)}
-                        <div ref={navigationPrevRef} className="z-10 absolute top-0 left-0 h-full w-96"/>
-                        <div ref={navigationNextRef} className="z-10 absolute top-0 right-0 h-full w-96"/>
+                        <div ref={navigationPrevRef} className="z-10 absolute top-0 left-0 h-full w-96 2xl:w-26.67v"/>
+                        <div ref={navigationNextRef} className="z-10 absolute top-0 right-0 h-full w-96 2xl:w-26.67v"/>
                     </Swiper>
                 </div>
             </div>

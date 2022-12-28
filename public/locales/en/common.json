@@ -10,6 +10,12 @@
     "presentation": "presentation",
     "mainPage": "Main page"
   },
+  "projectStatusRow": {
+    "destination": "destination",
+    "place": "place",
+    "year": "year",
+    "status": "status"
+  },
   "contacts": {
     "ekaterina": {
       "name": "екатерина холуянова"
