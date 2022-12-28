@@ -28,7 +28,7 @@ const ProjectDescription: FC<IProjectDescriptionProps> = ({description}) => {
                 <div className="flex flex-col w-full h-full">
                     <LogoLink href={'/'} align={"start"}/>
                     <div className="w-full flex flex-col">
-                        <div className="w-full h-px bg-matterhorn mb-1.5 2xl:mb-0.42v"/>
+                        <div className="w-full h-px 2xl:h-[0.07vw] bg-matterhorn mb-1.5 2xl:mb-0.42v"/>
                         <div className="uppercase text-matterhorn leading-18p 2xl:leading-1.25v font-medium text-sm 2xl:text-0.97v text-justify">
                             {description?.title}
                         </div>

@@ -23,11 +23,11 @@ const Contacts: FC<IContactProps> = ({show, contacts}) => {
                         border-r border-matterhorn bg-whiteSmoke z-30`}
         >
             <Logo align={"center"}/>
-            <div className="flex flex-col items-center text-matterhorn font-medium uppercase space-y-8">
+            <div className="flex flex-col items-center text-matterhorn font-medium uppercase gap-8.2 2xl:gap-2.36v">
                 {contacts.map(contact =>
                     <div key={contact.id} className="flex flex-col items-center">
                         {contact.name && <span className="text-sm 2xl:text-0.97v 2xl:leading-1.39v">{t(`${contact.name}`)}</span>}
-                        {contact.phone && <span className="text-xl">{contact.phone}</span>}
+                        {contact.phone && <span className="text-xl 2xl:text-1.39v 2xl:leading-1.94v">{contact.phone}</span>}
                         {contact.email && <span className="text-sm 2xl:text-0.97v 2xl:leading-1.39v">{contact.email}</span>}
                     </div>)}
             </div>

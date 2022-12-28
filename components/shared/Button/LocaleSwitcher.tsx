@@ -8,7 +8,7 @@ const LocaleSwitcher: FC = () => {
     const {locales, locale: activeLocale} = router;
 
     return (
-        <div className="flex flex-row items-center justify-center space-x-1 cursor-pointer">
+        <div className="flex items-center justify-center gap-1 2xl:gap-0.28v cursor-pointer">
             {locales?.map((localeItem, index) => {
                 const {pathname, query, asPath} = router;
                 return (
@@ -20,7 +20,7 @@ const LocaleSwitcher: FC = () => {
                                 </a>
                             </Link>
                         </span>
-                        {locales?.length - 1 !== index && <span className="font-medium">/</span>}
+                        {locales?.length - 1 !== index && <span className="font-medium text-sm 2xl:text-0.97v 2xl:leading-1.39v">/</span>}
                     </React.Fragment>
                 );
             })}

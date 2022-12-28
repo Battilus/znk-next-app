@@ -86,17 +86,17 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                         leaveTo="opacity-0"
                     >
                         <div className="mt-8 2xl:mt-2.22v z-30">
-                            {SIDEBAR_LINKS.length && <div className="w-full h-px bg-matterhorn opacity-40"/>}
+                            {SIDEBAR_LINKS.length && <div className="w-full h-px 2xl:h-[0.07vw] bg-matterhorn opacity-40"/>}
                             {!isHomeLocation && <>
                                 <Button.Link
                                     styleType={"inverse"}
                                     className="outline-0 w-full uppercase text-sm 2xl:text-0.97v 2xl:leading-1.39v font-medium"
-                                    childrenClassName="pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pt-0.35v"
+                                    childrenClassName="pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pb-0.35v"
                                     href={"/"}
                                 >
                                     {t("actionButtons.mainPage")}
                                 </Button.Link>
-                                <div className="w-full h-px bg-matterhorn opacity-40"/>
+                                <div className="w-full h-px 2xl:h-[0.07vw] bg-matterhorn opacity-40"/>
                             </>}
                             {SIDEBAR_LINKS.map(button =>
                                 button.type === "button" ?
@@ -109,7 +109,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                         >
                                             {t(`${button.description}`)}
                                         </Button>
-                                        <div className="w-full h-px bg-matterhorn opacity-40"/>
+                                        <div className="w-full h-px 2xl:h-[0.07vw] bg-matterhorn opacity-40"/>
                                     </React.Fragment>
                                     : button.type === "link" &&
                                         <React.Fragment key={button.description}>
@@ -121,7 +121,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                             >
                                                 {t(`${button.description}`)}
                                             </Button.Link>
-                                            <div className="w-full h-px bg-matterhorn opacity-40"/>
+                                            <div className="w-full h-px 2xl:h-[0.07vw] bg-matterhorn opacity-40"/>
                                         </React.Fragment>)}
                         </div>
                     </Transition>
