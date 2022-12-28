@@ -8,10 +8,10 @@ interface IProps {
 
 const ProjectPreviewDescription: FC<IProps> = ({description}) => {
     return (
-        <div className="w-full h-full flex flex-col justify-between min-w-48">
+        <div className="w-full h-full flex flex-col justify-between min-w-48 2xl:min-w-13.33v">
             <div>
-                <div className="w-full h-px bg-matterhorn mb-1.5"/>
-                <div className="uppercase text-matterhorn leading-18p font-medium text-sm text-justify">
+                <div className="w-full h-px bg-matterhorn mb-1.5 2xl:mb-0.42v"/>
+                <div className="uppercase text-matterhorn leading-18p 2xl:leading-1.25v font-medium text-sm 2xl:text-0.97v text-justify">
                     {description?.title}
                 </div>
             </div>

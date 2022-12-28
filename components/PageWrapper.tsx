@@ -22,7 +22,7 @@ const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaT
 
             <main className="h-screen w-screen bg-whiteSmoke">
                 <MainMenu isHomeLocation={isHomeLocation} hide={hideHomeButton}/>
-                <div className="ml-8 overflow-x-hidden">
+                <div className="ml-8 2xl:ml-2.22v overflow-x-hidden">
                     {children}
                 </div>
             </main>

@@ -18,7 +18,7 @@ const ToggleSelectButton: FC<IToggleSelectProps> = ({suggestions, setSuggestion}
             {suggestions.map((item, index) =>
                 <React.Fragment key={item}>
                     <button
-                        className={`text-center uppercase text-sm ${index === selected ? "font-medium" : "font-normal"}`}
+                        className={`text-center uppercase text-sm 2xl:text-0.97v 2xl:leading-1.39v ${index === selected ? "font-medium" : "font-normal"}`}
                         onClick={() => setSelected(index)}
                     >
                         {item}

@@ -1,8 +1,6 @@
 import React, {FC} from 'react';
 import ProjectSections from "./ProjectSections";
-import ProjectStatusRow from "./utilityComponents/ProjectStatusRow";
 import {ProjectDescriptionData, ProjectsCategoriesTag} from "../../../types/Api/dataTypes";
-import {Transition} from "@headlessui/react";
 import ProjectPreviewDescription from "./utilityComponents/ProjectPreviewDescription";
 
 interface IProps {
@@ -13,7 +11,7 @@ interface IProps {
     selectTag?: (selected: ProjectsCategoriesTag) => void
 }
 
-const ProjectsFilter: FC<IProps> = ({hover, description, categoriesTags, selectedTags}) => {
+const ProjectsFilter: FC<IProps> = ({hover, description}) => {
     return (
         <ProjectSections.LogoInf
             hover={hover}

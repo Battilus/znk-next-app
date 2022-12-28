@@ -40,8 +40,8 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, hover, setHover, disabl
     return (
         <A
             className={`h-screen ${!disableBorder ? "border-r border-matterhorn": ""} 
-                        transition-width duration-200 min-w-33.5
-                        ${hover && !currentHover ? "w-33.5" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
+                        transition-width duration-200 min-w-33.5 2xl:min-w-8.33v
+                        ${hover && !currentHover ? "w-33.5 2xl:w-8.33v" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
             href={href}
         >
             <div

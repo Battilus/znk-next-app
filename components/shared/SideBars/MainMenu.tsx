@@ -38,18 +38,18 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
             >
-                <div className="fixed left-0 w-8 h-16 flex flex-col z-50">
+                <div className="fixed left-0 w-8 2xl:w-2.22v h-16 2xl:h-4.44v flex flex-col z-50">
                     <Button
                         styleType={"inverse"}
-                        className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
+                        className={`w-8 2xl:w-2.22v h-8 2xl:h-2.22v ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
                         onClick={() => {
                             setIsOpen(!isOpen);
                             setIsContactsOpen(false);
                         }}
                     >
                         {isOpen
-                            ? <CrossIcon/>
-                            : <BurgerIcon/>}
+                            ? <CrossIcon className="w-2.7 2xl:w-0.76v h-2.7 2xl:h-0.76v"/>
+                            : <BurgerIcon className="w-3 2xl:w-0.83v h-2 2xl:h-0.83v"/>}
                     </Button>
                     <Transition
                         show={!isHomeLocation && !isOpen}
@@ -62,17 +62,17 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                     >
                         <Button
                             styleType={"inverse"}
-                            className={`w-8 h-8 ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
+                            className={`w-8 2xl:w-2.22v h-8 2xl:h-2.22v ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
                             onClick={() => router.back()}
                         >
-                            <ArrowLeftIcon/>
+                            <ArrowLeftIcon className="w-3.2 2xl:w-0.9v h-3.5 2xl:h-0.97v"/>
                         </Button>
                     </Transition>
                 </div>
             </Transition>
             <div
-                className={`flex flex-col h-screen w-42 fixed left-0 
-                            transform transition-all duration-700 ${isOpen ? "" : "-translate-x-38"} 
+                className={`flex flex-col h-screen w-42 2xl:w-11.67v fixed left-0 
+                            transform transition-all duration-700 ${isOpen ? "" : "-translate-x-38 2xl:-translate-x-9.44v"} 
                             border-r border-matterhorn bg-whiteSmoke z-40`}
             >
                 <div className="h-full w-full">
@@ -85,13 +85,13 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <div className="mt-8 z-30">
+                        <div className="mt-8 2xl:mt-2.22v z-30">
                             {SIDEBAR_LINKS.length && <div className="w-full h-px bg-matterhorn opacity-40"/>}
                             {!isHomeLocation && <>
                                 <Button.Link
                                     styleType={"inverse"}
-                                    className={"outline-0 w-full uppercase text-sm font-medium"}
-                                    childrenClassName="pt-1.7 pb-1.3"
+                                    className="outline-0 w-full uppercase text-sm 2xl:text-0.97v 2xl:leading-1.39v font-medium"
+                                    childrenClassName="pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pt-0.35v"
                                     href={"/"}
                                 >
                                     {t("actionButtons.mainPage")}
@@ -105,7 +105,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                             styleType={button.styleType}
                                             className={button.className}
                                             onClick={button.onClickEn ? () => setIsContactsOpen(true) : undefined}
-                                            childrenClassName="pt-1.7 pb-1.3"
+                                            childrenClassName="pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pb-0.35v"
                                         >
                                             {t(`${button.description}`)}
                                         </Button>
@@ -117,7 +117,7 @@ const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
                                                 styleType={button.styleType}
                                                 className={button.className}
                                                 href={button.href}
-                                                childrenClassName="pt-1.7 pb-1.3"
+                                                childrenClassName="pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pb-0.35v"
                                             >
                                                 {t(`${button.description}`)}
                                             </Button.Link>

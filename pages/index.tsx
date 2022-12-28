@@ -35,7 +35,7 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
     return (
         <PageWrapper title={"ZNK App"} description={"Main page"} isHomeLocation hideHomeButton={hover}>
             <div className="flex">
-                <div className="flex 2xl:w-32%">
+                <div className="flex">
                     <ProjectSections.LogoInf hover={hover}>
                         <ProjectPreviewDescription description={selectedProjectIndex !== null ? previewProjects[selectedProjectIndex] : undefined}/>
                     </ProjectSections.LogoInf>
@@ -49,7 +49,7 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
                         }
                     />
                 </div>
-                <div className="w-full h-full flex !mr-8">
+                <div className="w-full h-full flex !mr-8 2xl:!mr-2.22v">
                     {previewProjects.map((project, index) =>
                         <ProjectPreview
                             key={project._id}

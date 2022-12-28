@@ -15,11 +15,11 @@ const LogoInf: FC<IProps> = ({children, hover, staticWidth, onLeaveChildren}) =>
     return (
         <>
             <ProjectSections
-                className={`${staticWidth ? "w-64 2xl:w-full" : hover ? "w-64 2xl:w-full" : "w-48"}`}
+                className={`${staticWidth ? "w-64 2xl:w-17.78v" : hover ? "w-64 2xl:w-17.78v" : "w-48 2xl:w-13.33v"}`}
                 border
             >
                 <div
-                    className="px-7 pb-6 w-full h-full flex flex-col items-center text-matterhorn font-medium uppercase">
+                    className="px-7 2xl:px-[1.94vw] pb-6 2xl:pb-1.67v w-full h-full flex flex-col items-center text-matterhorn font-medium uppercase">
                     <LogoLink href={'/'} align={"start"}/>
                     {!onLeaveChildren ?
                         <Transition

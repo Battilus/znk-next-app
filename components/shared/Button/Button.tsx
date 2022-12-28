@@ -28,7 +28,7 @@ export enum ButtonStyleType {
                 hover:before:w-full
                 after:content-[''] after:absolute after:top-0 after:left-0 after:bg-matterhorn after:h-full after:w-0 after:transition-all after:duration-400
                 hover:after:w-full`,
-    rounded = `pt-2.5 pb-2 px-8 text-matterhorn uppercase text-xs leading-4 rounded-full
+    rounded = `pt-2.5 2xl:pt-0.69v pb-2 2xl:pb-0.56v px-8 2xl:px-[2.22vw] text-matterhorn uppercase text-xs 2xl:text-0.83v leading-4 2xl:leading-1.11v rounded-full
                bg-whiteSmoke hover:bg-matterhorn hover:text-whiteSmoke transition duration-200`
 }
 

@@ -28,33 +28,35 @@ const BurroDescription: FC<DescriptionProps> = ({children, descriptionText, hide
 
     return (
         <ProjectSections
-            className={`${hide ? "w-0" : "w-64 2xl:w-full"} py-4`}
+            className={`${hide ? "w-0" : "w-64 2xl:w-17.78v"} py-4 2xl:py-[1.11vw]`}
             border={!hide}
         >
             <div
-                className={`px-4 h-full w-full min-w-48 transition-opacity duration-200 ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"} 
-                            font-semibold items-center text-matterhorn font-medium uppercase text-sm leading-18p 2xl:text-0.8vw 2xl:leading-1vw text-justify space-y-6`}>
+                className={`px-4 2xl:px-[1.11vw] h-full w-full min-w-48 2xl:min-w-13.33v transition-opacity duration-300 
+                            ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"} 
+                            font-semibold items-center text-matterhorn font-medium uppercase 
+                            text-sm leading-18p 2xl:text-0.97v 2xl:leading-1.25v text-justify space-y-6`}>
                 {debouncedDescription}
             </div>
             {children &&
-                <div className="h-full w-full px-4">
+                <div className="h-full w-full px-4 2xl:px-[1.11vw]">
                     {children}
                 </div>}
-            <div className={`h-full w-full px-5 flex flex-col items-center justify-end transition-opacity duration-200
+            <div className={`h-full w-full px-5 2xl:px-[1.39vw] flex flex-col items-center justify-end transition-opacity duration-300
                                  ${!hide && debouncedDescription ? "opacity-100" : "opacity-0"}`}>
                 {!hide &&
                     <Button.Link
                         href={"/"}
                         styleType={"rounded"}
                         className="w-full border border-matterhorn"
-                        childrenClassName="w-full flex flex-row justify-center"
+                        childrenClassName="w-full flex items-center justify-center gap-2 2xl:gap-0.42v"
                     >
                         <div
-                            className="text-xs font-semibold text-center leading-15.42p mr-2"
+                            className="text-xs 2xl:text-0.83v font-semibold text-center leading-15.42p 2xl:leading-1.07v"
                         >
                             {t("actionButtons.presentation")}
                         </div>
-                        <DownloadIcon className="pt-0.5 h-4"/>
+                        <DownloadIcon className="w-3 2xl:w-0.83v h-2.4 2xl:h-0.63v -mt-[0.14rem] 2xl:-mt-[0.16vw]"/>
                     </Button.Link>}
             </div>
         </ProjectSections>

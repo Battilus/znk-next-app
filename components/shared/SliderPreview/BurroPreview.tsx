@@ -52,8 +52,8 @@ const BurroPreview: FC<IProps> = ({
     return (
         <div
             className={`h-screen ${!disableBorder ? "border-r border-matterhorn" : ""} 
-                        transition-width duration-200 min-w-198
-                        ${hover && !currentHover ? "w-198" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
+                        transition-width duration-200 min-w-13.75v
+                        ${hover && !currentHover ? "w-13.75v" : hover && currentHover ? "w-full flex basis-auto" : "w-full"}`}
         >
             <div
                 className={`w-full h-full overflow-x-hidden`}
@@ -65,9 +65,9 @@ const BurroPreview: FC<IProps> = ({
                                     ${bgImage} ${currentHover ? "grayscale-0" : `grayscale ${hoverClassName}`} 
                                     bg-no-repeat bg-center bg-cover`}
                 >
-                    <div className="px-5 py-4.5 w-full h-full flex flex-col">
-                        <div className={`font-medium uppercase 
-                                            ${hover ? "text-sl leading-21.5" : "text-4xl leading-46.26"}
+                    <div className="px-5 2xl:px-[1.39vw] py-4.5 2xl:py-[1.25vw] w-full h-full flex flex-col">
+                        <div className={`font-medium uppercase transition-all duration-200
+                                            ${hover ? "text-sl 2xl:text-1.18v leading-21.5 2xl:leading-1.51v" : "text-4xl 2xl:text-2.5v leading-46.26 2xl:leading-3.21v"}
                                             ${titleTextColor && hoverTitleTextColor ?
                                             currentHover ? `${hoverTitleTextColor}` : `${titleTextColor}`
                                             : titleTextColor ? titleTextColor : "text-matterhorn"}
@@ -78,7 +78,7 @@ const BurroPreview: FC<IProps> = ({
                         <div className="h-full flex flex-col items-center justify-center">
                             {showContent &&
                                 <div
-                                    className={`w-full h-full transition-opacity duration-100 ${showContent ? "opacity-100" : "opacity-0"}`}
+                                    className={`w-full h-full transition-opacity duration-200 ${showContent ? "opacity-100" : "opacity-0"}`}
                                 >
                                     {children}
                                 </div>}
