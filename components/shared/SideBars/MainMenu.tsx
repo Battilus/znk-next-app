@@ -9,12 +9,12 @@ import Button from "../Button/Button";
 import { useRouter } from 'next/router';
 import {useTranslation} from "next-i18next";
 
-interface IMainMenuProps {
+interface IProps {
     isHomeLocation?: boolean
     hide?: boolean
 }
 
-const MainMenu: FC<IMainMenuProps> = ({isHomeLocation, hide}) => {
+const MainMenu: FC<IProps> = ({isHomeLocation, hide}) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isContactsOpen, setIsContactsOpen] = useState<boolean>(false);

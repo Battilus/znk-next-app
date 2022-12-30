@@ -1,15 +1,13 @@
 import type {GetStaticProps, NextPage} from 'next'
 import PageWrapper from "../components/PageWrapper";
-import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
-import React, {useCallback, useEffect, useState} from "react";
-import ProjectPreview from "../components/shared/SliderPreview/ProjectPreview";
-import ShowProjectSlider from "../components/layouts/ProjectSections/utilityComponents/ShowProjectSlider";
+import React, {useState} from "react";
 import {ProjectDescriptionData} from "../types/Api/dataTypes";
-import ProjectPreviewDescription
-    from "../components/layouts/ProjectSections/utilityComponents/ProjectPreviewDescription";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {projectsList} from "../app/mock/fakeData";
 import {useTranslation} from "next-i18next";
+import {useScreen} from "../features/hooks/useScreen";
+import MobileWrapper from "../components/layouts/mainPage/MobileWrapper";
+import DesktopWrapper from "../components/layouts/mainPage/DesktopWrapper";
 
 interface IProps {
     previewProjects: ProjectDescriptionData[]
@@ -17,53 +15,26 @@ interface IProps {
 
 const Home: NextPage<IProps> = ({previewProjects}) => {
     const [hover, setHover] = useState<boolean>(false);
-    const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
 
     const {t} = useTranslation();
-
-    const hoverHandler = useCallback((val: boolean, index: number | null) => {
-        setHover(val);
-        setSelectedProjectIndex(index);
-    }, []);
-
-    useEffect(() => {
-        if (!hover) {
-            setSelectedProjectIndex(null);
-        }
-    }, [hover]);
+    const {breakpoints: {mobileSm: iPhone} , screens: {tablet}} = useScreen();
 
     return (
         <PageWrapper title={"ZNK App"} description={"Main page"} isHomeLocation hideHomeButton={hover}>
-            <div className="flex">
-                <div className="flex">
-                    <ProjectSections.LogoInf hover={hover}>
-                        <ProjectPreviewDescription description={selectedProjectIndex !== null ? previewProjects[selectedProjectIndex] : undefined}/>
-                    </ProjectSections.LogoInf>
-                    <ProjectSections.BurroDescription
-                        hide={hover}
-                        descriptionText={
-                            <>
-                                <p>{t("pages.main.burroDescription.text_p1")}</p>
-                                <p>{t("pages.main.burroDescription.text_p2")}</p>
-                            </>
-                        }
-                    />
-                </div>
-                <div className="w-full h-full flex !mr-8 2xl:!mr-2.22v">
-                    {previewProjects.map((project, index) =>
-                        <ProjectPreview
-                            key={project._id}
-                            href={`/project/${project._id}`}
-                            name={project.title}
-                            imgSrc={project.images[0].src}
-                            hover={hover}
-                            setHover={(val) => hoverHandler(val, index)}
-                            disableBorder={previewProjects.length - 1 === index}
-                        />
-                    )}
-                </div>
-                <ShowProjectSlider/>
-            </div>
+            {tablet ?
+                <MobileWrapper
+                    previewProjects={previewProjects}
+                    t={t}
+                    alignLogo={iPhone ? "center" : "start"}
+                    isPhone={iPhone}
+                /> :
+                <DesktopWrapper
+                    previewProjects={previewProjects}
+                    t={t}
+                    hover={hover}
+                    setHover={setHover}
+                />
+            }
         </PageWrapper>
     )
 }

@@ -14,7 +14,7 @@ export type LinkButton = {
 
 interface IButtonProps {
     children: ReactNode | string
-    styleType: "inverse" | "rounded"
+    styleType: "inverse" | "rounded" | "transparent"
     className?: string
     childrenClassName?: string
     onClick?: () => void
@@ -29,7 +29,8 @@ export enum ButtonStyleType {
                 after:content-[''] after:absolute after:top-0 after:left-0 after:bg-matterhorn after:h-full after:w-0 after:transition-all after:duration-400
                 hover:after:w-full`,
     rounded = `pt-2.5 2xl:pt-0.69v pb-2 2xl:pb-0.56v px-8 2xl:px-[2.22vw] text-matterhorn uppercase text-xs 2xl:text-0.83v leading-4 2xl:leading-1.11v rounded-full
-               bg-whiteSmoke hover:bg-matterhorn hover:text-whiteSmoke transition duration-200`
+               bg-whiteSmoke hover:bg-matterhorn hover:text-whiteSmoke transition duration-200`,
+    transparent = `rounded-full`,
 }
 
 const Button: ButtonFC = ({children, styleType="inverse", className="", childrenClassName, onClick}) => {
@@ -39,7 +40,7 @@ const Button: ButtonFC = ({children, styleType="inverse", className="", children
                 className={`${styleType === "inverse" ? "relative bg-whiteSmoke" : ""} ${className ? className : "border border-matterhorn"} ${ButtonStyleType[styleType]}`}
                 onClick={onClick}
             >
-                <div className={`${styleType === "inverse" ? "rounded-full bg-whiteSmoke w-full h-full flex items-center justify-center z-10" : ""} ${childrenClassName}`}>
+                <div className={`${styleType === "inverse" ? "rounded-full bg-whiteSmoke w-full h-full flex items-center justify-center z-10" : ""} ${childrenClassName || ""}`}>
                     {children}
                 </div>
             </button>

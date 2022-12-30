@@ -8,19 +8,23 @@ interface IProps {
     children?: ReactNode | string
     hover?: boolean
     staticWidth?: boolean
+    mobile?: boolean
+    alignLogo?: "start" | "center"
     onLeaveChildren?: ReactNode | string
 }
 
-const LogoInf: FC<IProps> = ({children, hover, staticWidth, onLeaveChildren}) => {
+const LogoInf: FC<IProps> = ({children, hover, staticWidth, mobile, alignLogo="start", onLeaveChildren}) => {
     return (
         <>
             <ProjectSections
-                className={`${staticWidth ? "w-64 2xl:w-17.78v" : hover ? "w-64 2xl:w-17.78v" : "w-48 2xl:w-13.33v"}`}
+                className={`${staticWidth ? mobile ? "w-[13.4375rem] sm:w-[17.375rem]" : "w-64 2xl:w-17.78v" : hover ? "w-64 2xl:w-17.78v" : "w-48 2xl:w-13.33v"}`}
                 border
             >
                 <div
-                    className="px-7 2xl:px-[1.94vw] pb-6 2xl:pb-1.67v w-full h-full flex flex-col items-center text-matterhorn font-medium uppercase">
-                    <LogoLink href={'/'} align={"start"}/>
+                    className="px-3 sm:px-7 2xl:px-[1.94vw] pb-2.5 sm:pb-6 2xl:pb-1.67v w-full h-full flex flex-col items-center
+                                text-matterhorn font-medium uppercase"
+                >
+                    <LogoLink href={'/'} align={alignLogo}/>
                     {!onLeaveChildren ?
                         <Transition
                             show={!!hover}

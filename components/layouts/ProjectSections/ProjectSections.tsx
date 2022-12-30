@@ -3,6 +3,7 @@ import BurroDescription from "./BurroDescription";
 import ProjectDescription from "./ProjectDescription";
 import LogoInf from './LogoInf';
 import ProjectsFilter from './ProjectsFilter';
+import BurroDescriptionMobile from './BurroDescriptionMobile';
 
 interface ProjectSectionsProps {
     children?: ReactNode | string
@@ -14,6 +15,7 @@ type ProjectSections =
     FC<ProjectSectionsProps>
     & { LogoInf: typeof LogoInf }
     & { BurroDescription: typeof BurroDescription }
+    & { BurroDescriptionMobile: typeof BurroDescriptionMobile }
     & { ProjectDescription: typeof ProjectDescription }
     & { ProjectsFilter: typeof ProjectsFilter }
 
@@ -33,5 +35,6 @@ export default ProjectSections;
 
 ProjectSections.LogoInf = LogoInf;
 ProjectSections.BurroDescription = BurroDescription;
+ProjectSections.BurroDescriptionMobile = BurroDescriptionMobile;
 ProjectSections.ProjectDescription = ProjectDescription;
 ProjectSections.ProjectsFilter = ProjectsFilter;
