@@ -1,26 +1,35 @@
-import React, {FC, ReactNode} from 'react';
-import LinkButton from "./LinkButton";
+import React, {FC, MouseEventHandler, ReactNode} from 'react';
 import ToggleSelectButton from "./ToggleSelectButton";
 import LocaleSwitcher from "./LocaleSwitcher";
+import LinkButton from './LinkButton';
+import DropdownMenuButton from "./DropdownButton";
 
-export type LinkButton = {
+export type LinkButtonType = {
     className: string
     description: string
-    type: string
+    type: "button" | "link" | "dropdown"
     href?: string
-    styleType: "inverse" | "rounded"
+    styleType: "inverse" | "rounded" | "transparent"
     onClickEn?: boolean
+    onClickHandlerKey?: string
+    childrenClassName?: string
+    childrenStyle?: {[key: string]: string | number}
+    suggestions?: LinkButtonType[]
 }
 
 interface IButtonProps {
     children: ReactNode | string
-    styleType: "inverse" | "rounded" | "transparent"
+    styleType?: "inverse" | "rounded" | "transparent"
     className?: string
     childrenClassName?: string
-    onClick?: () => void
+    onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-type ButtonFC = FC<IButtonProps> & { Link: typeof LinkButton } & { Selector: typeof ToggleSelectButton} & { LocaleSwitcher: typeof LocaleSwitcher};
+type ButtonFC = FC<IButtonProps> &
+    { Link: typeof LinkButton } &
+    { Selector: typeof ToggleSelectButton} &
+    { LocaleSwitcher: typeof LocaleSwitcher} &
+    { DropdownMenu: typeof DropdownMenuButton};
 
 export enum ButtonStyleType {
     inverse = `flex items-center justify-center outline-0
@@ -30,7 +39,7 @@ export enum ButtonStyleType {
                 hover:after:w-full`,
     rounded = `pt-2.5 2xl:pt-0.69v pb-2 2xl:pb-0.56v px-8 2xl:px-[2.22vw] text-matterhorn uppercase text-xs 2xl:text-0.83v leading-4 2xl:leading-1.11v rounded-full
                bg-whiteSmoke hover:bg-matterhorn hover:text-whiteSmoke transition duration-200`,
-    transparent = `rounded-full`,
+    transparent = "flex items-center justify-center",
 }
 
 const Button: ButtonFC = ({children, styleType="inverse", className="", childrenClassName, onClick}) => {
@@ -51,5 +60,6 @@ const Button: ButtonFC = ({children, styleType="inverse", className="", children
 Button.Link = LinkButton;
 Button.Selector = ToggleSelectButton;
 Button.LocaleSwitcher = LocaleSwitcher;
+Button.DropdownMenu = DropdownMenuButton;
 
 export default Button;

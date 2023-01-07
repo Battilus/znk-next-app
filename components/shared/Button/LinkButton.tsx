@@ -3,21 +3,22 @@ import A from "../Link/A";
 import {ButtonStyleType} from "./Button";
 
 interface ILinkButtonProps {
-    children: ReactNode | ReactNode[] | string | string[]
-    styleType: "inverse" | "rounded"
+    children: ReactNode | string
+    styleType: "inverse" | "rounded" | "transparent"
     className?: string
     childrenClassName?: string
     href?: string
+    childrenStyle?: {[key: string]: string | number}
 }
 
-const LinkButton: FC<ILinkButtonProps> = ({children, styleType="inverse", className="", childrenClassName, href}) => {
+const LinkButton: FC<ILinkButtonProps> = ({children, styleType="inverse", className="", childrenClassName, href, childrenStyle}) => {
     return (
         <>
             <A
                 className={`${styleType === "inverse" ? "relative bg-whiteSmoke" : ""} ${className ? className : "border"} ${ButtonStyleType[styleType]}`}
                 href={href || ""}
             >
-                <div className={`${styleType === "inverse" ? "rounded-full bg-whiteSmoke w-full h-full flex items-center justify-center z-10" : ""} ${childrenClassName}`}>
+                <div style={childrenStyle} className={`${styleType === "inverse" ? "rounded-full bg-whiteSmoke w-full h-full flex items-center justify-center z-10" : ""} ${childrenClassName}`}>
                     {children}
                 </div>
             </A>

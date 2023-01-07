@@ -1,14 +1,15 @@
 import {Contact} from "../components/shared/SideBars/Contacts";
-import {LinkButton} from "../components/shared/Button/Button";
+import {LinkButtonType} from "../components/shared/Button/Button";
 import {CertificateCardType} from "../types";
 
-export const SIDEBAR_LINKS: LinkButton[] = [
+export const SIDEBAR_LINKS: LinkButtonType[] = [
     {
         className: "outline-0 w-full uppercase text-sm font-medium 2xl:text-0.97v 2xl:leading-1.39v",
         description: "sideBarLinks.burro",
         type: "link",
         href: "/burro",
         styleType: "inverse",
+        childrenClassName: "pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pb-0.35v",
     },
     {
         className: "outline-0 w-full uppercase text-sm font-medium 2xl:text-0.97v 2xl:leading-1.39v",
@@ -16,13 +17,71 @@ export const SIDEBAR_LINKS: LinkButton[] = [
         type: "link",
         href: "/projects",
         styleType: "inverse",
+        childrenClassName: "pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pb-0.35v",
     },
     {
         className: "outline-0 w-full uppercase text-sm font-medium 2xl:text-0.97v 2xl:leading-1.39v",
         description: "sideBarLinks.contacts",
         type: "button",
         styleType: "inverse",
+        childrenClassName: "pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pb-0.35v",
         onClickEn: true
+    }
+]
+
+export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
+    {
+        className: "outline-0 w-full",
+        description: "sideBarLinks.burro",
+        type: "dropdown",
+        styleType: "transparent",
+        childrenClassName: "pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-medium",
+        suggestions: [
+            {
+                className: "outline-0 w-full",
+                description: "sideBarLinks.philosophy",
+                type: "link",
+                href: "/burro",
+                styleType: "transparent",
+                childrenClassName: "pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light",
+                // childrenStyle: {fontWeight: 300}
+            },
+            {
+                className: "outline-0 w-full",
+                description: "sideBarLinks.command",
+                type: "link",
+                href: "/burro",
+                styleType: "transparent",
+                childrenClassName: "pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light",
+                // childrenStyle: {fontWeight: 300}
+            },
+            {
+                className: "outline-0 w-full",
+                description: "sideBarLinks.achievements",
+                type: "link",
+                href: "/burro",
+                styleType: "transparent",
+                childrenClassName: "pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light",
+                // childrenStyle: {fontWeight: 300}
+            }
+        ]
+    },
+    {
+        className: "outline-0 w-full uppercase text-sl leading-24.4p font-medium",
+        description: "sideBarLinks.allProjects",
+        type: "link",
+        href: "/projects",
+        styleType: "transparent",
+        childrenClassName: "pt-1.7 pb-1.3",
+    },
+    {
+        className: "outline-0 w-full uppercase text-sl leading-24.4p font-medium",
+        description: "sideBarLinks.contacts",
+        type: "button",
+        styleType: "transparent",
+        childrenClassName: "pt-1.7 pb-1.3",
+        onClickEn: true,
+        onClickHandlerKey: "openContacts"
     }
 ]
 

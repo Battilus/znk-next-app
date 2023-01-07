@@ -4,7 +4,10 @@
   "sideBarLinks": {
     "burro": "Burro",
     "allProjects": "All projects",
-    "contacts": "Contacts"
+    "contacts": "Contacts",
+    "philosophy": "philosophy",
+    "command": "command",
+    "achievements": "achievements"
   },
   "actionButtons": {
     "presentation": "presentation",

@@ -4,7 +4,10 @@
   "sideBarLinks": {
     "burro": "Бюро",
     "allProjects": "Все проекты",
-    "contacts": "Контакты"
+    "contacts": "Контакты",
+    "philosophy": "философия",
+    "command": "команда",
+    "achievements": "достижения"
   },
   "actionButtons": {
     "presentation": "Презентация",

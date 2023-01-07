@@ -37,6 +37,7 @@ module.exports = {
             '15.42p': '0.963rem',
             '17p': '1.062rem',
             '18p': '1.125rem',
+            '24.4p': '1.529rem',
             '46.26': '2.89rem',
             '21.5': '1.36rem',
             '23': '1.5rem',
@@ -268,6 +269,7 @@ module.exports = {
             '56': '13.5rem',
             '57': '14rem',
             '58': '14.5rem',
+            '128': '32rem',
             '9.44v': '9.44vw',
             '11.67v': '11.67vw',
             '15.56v': '15.56vw',
@@ -278,6 +280,7 @@ module.exports = {
         transitionDuration: {
             '0': '0ms',
             '250': '250ms',
+            '800': '800ms',
         },
         gap: {
             '8.2': '2.125rem', //34
@@ -305,6 +308,10 @@ module.exports = {
             '1.39v': '1.39vw', //20
             '10v': '10vw', //144
             '15.89v': '15.89vw', //228.8
+            '128': '32rem',
+        },
+        right: {
+            '128': '32rem',
         },
         backgroundImage: {
             'buro_philosophy': "url('/buro_philosophy.png')",
