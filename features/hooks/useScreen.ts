@@ -1,13 +1,19 @@
 import {useWindowSize} from "./useWindowSize";
 import {useEffect, useState} from "react";
 
-type ScreenBreakpoints = {
+export type ScreenBreakpoints = {
     mobileSm: boolean,
     mobileMd: boolean,
     tabletLg: boolean,
     screenXl: boolean,
     screenXxl: boolean,
     screenWide: boolean,
+}
+
+export type CommonScreenBreakpoints = {
+    mobile: boolean,
+    tablet: boolean,
+    desktop: boolean,
 }
 
 type UseScreenHookType = (
@@ -18,11 +24,7 @@ type UseScreenHookType = (
     xxl?: string | number
 ) => {
     breakpoints: ScreenBreakpoints,
-    screens: {
-        mobile: boolean,
-        tablet: boolean,
-        desktop: boolean,
-    },
+    screens: CommonScreenBreakpoints,
     breakpointHandler: (breakpointName: string, value: boolean) => void
 }
 

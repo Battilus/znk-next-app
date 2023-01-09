@@ -1,19 +1,18 @@
 import React, {memo, useState} from 'react';
 import {GetStaticProps, NextPage} from "next";
 import PageWrapper from "../components/PageWrapper";
-import ProjectSections from "../components/layouts/ProjectSections/ProjectSections";
 import {CERTIFICATES} from "../assets/staticParams";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
 import {CertificateCardType} from "../types";
-import PhilosophySection from "../components/layouts/burroPage/PhilosophySection";
-import CommandSection from "../components/layouts/burroPage/CommandSection";
-import AchievementsSection from "../components/layouts/burroPage/AchievementsSection";
+import BurroDesktop from "../components/layouts/burroPage/desktop/BurroDesktop";
+import BurroMobile from '../components/layouts/burroPage/mobile/BurroMobile';
 
 
 interface IProps {
     certificates: CertificateCardType[]
 }
+
 const Burro: NextPage<IProps> = ({certificates}) => {
 
     const [hover, setHover] = useState<boolean>(false);
@@ -21,30 +20,19 @@ const Burro: NextPage<IProps> = ({certificates}) => {
     const {t} = useTranslation();
 
     return (
-        <PageWrapper title={"ZNK App"} description={"Burro page"}>
-            <div className="flex">
-                <div className="flex">
-                    <ProjectSections.LogoInf/>
-                </div>
-                <div className="w-full h-full flex">
-                    <PhilosophySection
-                        hover={hover}
-                        setHover={setHover}
-                        t={t}
-                    />
-                    <CommandSection
-                        hover={hover}
-                        setHover={setHover}
-                        t={t}
-                    />
-                    <AchievementsSection
+        <PageWrapper title={"ZNK App"} description={"Burro page"} screenBreakpoints>
+            {({screens: {tablet}}) =>
+                tablet ?
+                    <BurroMobile
                         certificates={certificates}
+                        t={t}
+                    /> :
+                    <BurroDesktop
+                        certificates={certificates}
+                        t={t}
                         hover={hover}
                         setHover={setHover}
-                        t={t}
-                    />
-                </div>
-            </div>
+                    />}
         </PageWrapper>
     );
 };

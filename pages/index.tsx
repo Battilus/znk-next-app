@@ -5,7 +5,6 @@ import {ProjectDescriptionData} from "../types/Api/dataTypes";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {projectsList} from "../app/mock/fakeData";
 import {useTranslation} from "next-i18next";
-import {useScreen} from "../features/hooks/useScreen";
 import MobileWrapper from "../components/layouts/mainPage/MobileWrapper";
 import DesktopWrapper from "../components/layouts/mainPage/DesktopWrapper";
 
@@ -17,23 +16,23 @@ const Home: NextPage<IProps> = ({previewProjects}) => {
     const [hover, setHover] = useState<boolean>(false);
 
     const {t} = useTranslation();
-    const {breakpoints: {mobileSm: iPhone} , screens: {tablet}} = useScreen();
 
     return (
-        <PageWrapper title={"ZNK App"} description={"Main page"} isHomeLocation hideHomeButton={hover}>
-            {tablet ?
-                <MobileWrapper
-                    previewProjects={previewProjects}
-                    t={t}
-                    alignLogo={iPhone ? "center" : "start"}
-                    isPhone={iPhone}
-                /> :
-                <DesktopWrapper
-                    previewProjects={previewProjects}
-                    t={t}
-                    hover={hover}
-                    setHover={setHover}
-                />
+        <PageWrapper title={"ZNK App"} description={"Main page"} isHomeLocation hideHomeButton={hover} screenBreakpoints>
+            {({breakpoints: {mobileSm: iPhone}, screens: {tablet}}) =>
+                tablet ?
+                    <MobileWrapper
+                        previewProjects={previewProjects}
+                        t={t}
+                        alignLogo={iPhone ? "center" : "start"}
+                        isPhone={iPhone}
+                    /> :
+                    <DesktopWrapper
+                        previewProjects={previewProjects}
+                        t={t}
+                        hover={hover}
+                        setHover={setHover}
+                    />
             }
         </PageWrapper>
     )
