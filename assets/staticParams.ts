@@ -41,7 +41,7 @@ export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
                 className: "outline-0 w-full",
                 description: "sideBarLinks.philosophy",
                 type: "link",
-                href: "/burro",
+                href: "/burro/#philosophy",
                 styleType: "transparent",
                 childrenClassName: "pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light",
                 // childrenStyle: {fontWeight: 300}
@@ -50,7 +50,7 @@ export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
                 className: "outline-0 w-full",
                 description: "sideBarLinks.command",
                 type: "link",
-                href: "/burro",
+                href: "/burro/#command",
                 styleType: "transparent",
                 childrenClassName: "pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light",
                 // childrenStyle: {fontWeight: 300}
@@ -59,7 +59,7 @@ export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
                 className: "outline-0 w-full",
                 description: "sideBarLinks.achievements",
                 type: "link",
-                href: "/burro",
+                href: "/burro/#achievements",
                 styleType: "transparent",
                 childrenClassName: "pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light",
                 // childrenStyle: {fontWeight: 300}

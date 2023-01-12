@@ -15,7 +15,7 @@ const PhilosophySection: FC<IProps> = ({hover, setHover, t}) => {
             title={t("pages.burro.philosophy.title")}
             titleTextColor={"text-gray-800"}
             hoverTitleTextColor={"text-white"}
-            bgImage={"bg-buro_philosophy_hover"}
+            bgImage={"bg-burro_philosophy_hover"}
             hover={hover}
             setHover={setHover}
             hoverClassName={"brightness-200"}

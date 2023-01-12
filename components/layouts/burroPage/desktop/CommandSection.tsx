@@ -15,7 +15,7 @@ const CommandSection: FC<IProps> = ({hover, setHover, t}) => {
             title={t("pages.burro.command.title")}
             titleTextColor={"text-matterhorn"}
             hoverTitleTextColor={"text-white"}
-            bgImage={"bg-buro_command_hover_2"}
+            bgImage={"bg-burro_command_hover_2"}
             hover={hover}
             setHover={setHover}
             hoverClassName={"brightness-75"}

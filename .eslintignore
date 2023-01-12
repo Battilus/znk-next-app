@@ -1,0 +1,4 @@
+/tailwind.config.js
+
+node_modules/*
+!node_modules/eslint-plugin-react/

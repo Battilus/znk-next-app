@@ -4,7 +4,7 @@ import MainMenu from "./shared/SideBars/mainMenu";
 import {CommonScreenBreakpoints, ScreenBreakpoints, useScreen} from "../features/hooks/useScreen";
 
 interface IPageWrapperProps {
-    children: FC<{breakpoints: ScreenBreakpoints, screens: CommonScreenBreakpoints}> | ReactNode
+    children: FC<{ breakpoints: ScreenBreakpoints, screens: CommonScreenBreakpoints }> | ReactNode
     title: string
     description: string
     metaTagsList?: MetaTag[]
@@ -13,7 +13,15 @@ interface IPageWrapperProps {
     screenBreakpoints?: boolean
 }
 
-const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaTagsList, isHomeLocation, hideHomeButton, screenBreakpoints}) => {
+const PageWrapper: FC<IPageWrapperProps> = ({
+                                                children,
+                                                title,
+                                                description,
+                                                metaTagsList,
+                                                isHomeLocation,
+                                                hideHomeButton,
+                                                screenBreakpoints
+                                            }) => {
     const {breakpoints, screens} = useScreen();
     return (
         <>
@@ -25,6 +33,7 @@ const PageWrapper: FC<IPageWrapperProps> = ({children, title, description, metaT
             <main className="h-screen w-screen bg-whiteSmoke">
                 <MainMenu hideHomeButton={hideHomeButton} isHomeLocation={isHomeLocation}/>
                 <div className="ml-0 lg:ml-8 2xl:ml-2.22v overflow-x-hidden">
+                    {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                     {/*@ts-ignore*/}
                     {screenBreakpoints ? children({breakpoints, screens}) : children}
                 </div>

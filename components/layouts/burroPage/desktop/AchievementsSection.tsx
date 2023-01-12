@@ -15,7 +15,7 @@ const AchievementsSection: FC<IProps> = ({certificates, hover, setHover, t}) => 
     return (
         <BurroPreview
             title={t("pages.burro.achievements.title")}
-            bgImage={"bg-buro_achievements_hover"}
+            bgImage={"bg-burro_achievements_hover"}
             hover={hover}
             setHover={setHover}
             hoverClassName={"brightness-75"}

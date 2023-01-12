@@ -45,7 +45,7 @@ const MainMenuTablet: FC<IProps> = ({
                     >
                         {isOpen
                             ? <CrossIcon className="w-[1.875rem] h-[1.6975rem]"/>
-                            : <BurgerIcon className="w-8.5 h-5"/>}
+                            : <BurgerIcon className="w-8.5 h-5 text-white"/>}
                     </Button>
                 </div>
             </Transition>

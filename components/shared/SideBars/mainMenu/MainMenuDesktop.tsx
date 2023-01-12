@@ -49,7 +49,7 @@ const MainMenuDesktop: FC<IProps> = ({
                     >
                         {isOpen
                             ? <CrossIcon className="w-2.7 2xl:w-0.76v h-2.7 2xl:h-0.76v"/>
-                            : <BurgerIcon className="w-3 2xl:w-0.83v h-2 2xl:h-0.83v"/>}
+                            : <BurgerIcon className="w-3 2xl:w-0.83v h-2 2xl:h-0.83v text-matterhorn"/>}
                     </Button>
                     <Transition
                         show={!isHomeLocation && !isOpen}
@@ -65,7 +65,7 @@ const MainMenuDesktop: FC<IProps> = ({
                             className={`w-8 2xl:w-2.22v h-8 2xl:h-2.22v ${isOpen ? "" : ""} border-b border-r border-matterhorn`}
                             onClick={() => router.back()}
                         >
-                            <ArrowLeftIcon className="w-3.2 2xl:w-0.9v h-3.5 2xl:h-0.97v"/>
+                            <ArrowLeftIcon className="w-3.2 2xl:w-0.9v h-3.5 2xl:h-0.97v text-matterhorn"/>
                         </Button>
                     </Transition>
                 </div>
