@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useRef} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {CertificateCardType} from "../../../../types";
 import {TFunction} from "i18next";
 import {Swiper, SwiperRef, SwiperSlide} from "swiper/react";
@@ -27,17 +27,18 @@ const BurroMobile: FC<IProps> = ({certificates, t}) => {
     const swiperExtRef = useRef<SwiperRef>(null);
     const router= useRouter();
 
-    const slideFromPath = useMemo<string | undefined>(() => router.asPath.split('#')[1], [router]);
-
     const slideTo = (index: number) => {
         swiperExtRef?.current?.swiper.slideTo(index - 1, 300);
     };
 
     useEffect(() => {
+        const slideFromPath = router.asPath.split('#')[1];
+
         if (slideFromPath) {
             slideTo(SlideIndex[slideFromPath as SlidesPath]);
         }
-    }, [slideFromPath]);
+
+    }, [router]);
 
     return (
         <div className="h-full w-full">
