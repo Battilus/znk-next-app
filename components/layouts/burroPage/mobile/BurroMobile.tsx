@@ -12,6 +12,7 @@ import {useRouter} from "next/router";
 interface IProps {
     certificates: CertificateCardType[]
     t: TFunction<"translation", undefined, "translation">
+    isMobileScreen: boolean
 }
 
 type SlidesPath = "philosophy" | "command" | "achievements"
@@ -22,7 +23,7 @@ enum SlideIndex {
     achievements = 3
 }
 
-const BurroMobile: FC<IProps> = ({certificates, t}) => {
+const BurroMobile: FC<IProps> = ({certificates, t, isMobileScreen}) => {
 
     const swiperExtRef = useRef<SwiperRef>(null);
     const router= useRouter();
@@ -61,7 +62,7 @@ const BurroMobile: FC<IProps> = ({certificates, t}) => {
                         <div className="w-full h-full flex flex-col items-center justify-center gap-5">
                             <DoubleSlashIcon className="w-[27px] h-[33px]"/>
                             <div
-                                className="w-2/4 flex flex-col items-center gap-10 font-medium uppercase text-white
+                                className="w-full sm:w-3/4 md:w-2/4 flex flex-col items-center gap-10 font-medium uppercase text-white
                                            text-sm leading-18p text-justify">
                                 <div>{t("pages.burro.philosophy.description.p1")}</div>
                                 <div>{t("pages.burro.philosophy.description.p2")}</div>
@@ -70,7 +71,7 @@ const BurroMobile: FC<IProps> = ({certificates, t}) => {
                         </div>
                         <div
                             className="fixed right-9 bottom-8 text-white font-medium uppercase text-sl leading-21.5 flex items-center gap-[0.718rem]"
-                            onClick={() => slideTo(2)}
+                            onClick={() => slideTo(SlideIndex.command)}
                         >
                             <div>{t("pages.burro.command.title")}</div>
                             <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1"/>
@@ -86,19 +87,36 @@ const BurroMobile: FC<IProps> = ({certificates, t}) => {
                         <div
                             className="flex flex-row items-center gap-8 font-medium uppercase text-white
                                            text-sm leading-18p text-justify">
-                            <div>{t("pages.burro.command.mobile.p1")}</div>
-                            <div>{t("pages.burro.command.mobile.p2")}</div>
+                            {isMobileScreen ?
+                                <div className="w-[363px] h-full">
+                                    <Swiper
+                                        slidesPerView={1}
+                                        spaceBetween={32}
+                                    >
+                                        <SwiperSlide>
+                                            <div className="w-[363px] h-[252px]">{t("pages.burro.command.mobile.p1")}</div>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <div className="w-[363px] h-[252px]">{t("pages.burro.command.mobile.p2")}</div>
+                                        </SwiperSlide>
+                                    </Swiper>
+                                </div> :
+                                <>
+                                    <div>{t("pages.burro.command.mobile.p1")}</div>
+                                    <div>{t("pages.burro.command.mobile.p2")}</div>
+                                </>
+                            }
                         </div>
                         <div
                             className="fixed left-9 bottom-8 text-white font-medium uppercase text-sl leading-21.5 flex items-center gap-[0.718rem]"
-                            onClick={() => slideTo(1)}
+                            onClick={() => slideTo(SlideIndex.philosophy)}
                         >
                             <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1 rotate-180"/>
                             <div>{t("pages.burro.philosophy.title")}</div>
                         </div>
                         <div
                             className="fixed right-9 bottom-8 text-white font-medium uppercase text-sl leading-21.5 flex items-center gap-[0.718rem]"
-                            onClick={() => slideTo(3)}
+                            onClick={() => slideTo(SlideIndex.achievements)}
                         >
                             <div>{t("pages.burro.achievements.title")}</div>
                             <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1"/>
@@ -119,7 +137,7 @@ const BurroMobile: FC<IProps> = ({certificates, t}) => {
                         </div>
                         <div
                             className="fixed left-9 bottom-8 text-white font-medium uppercase text-sl leading-21.5 flex items-center gap-[0.718rem]"
-                            onClick={() => slideTo(2)}
+                            onClick={() => slideTo(SlideIndex.command)}
                         >
                             <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1 rotate-180"/>
                             <div>{t("pages.burro.command.title")}</div>

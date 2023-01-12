@@ -21,11 +21,12 @@ const Burro: NextPage<IProps> = ({certificates}) => {
 
     return (
         <PageWrapper title={"ZNK App"} description={"Burro page"} screenBreakpoints>
-            {({screens: {tablet}}) =>
+            {({breakpoints: {mobileSm}, screens: {tablet}}) =>
                 tablet ?
                     <BurroMobile
                         certificates={certificates}
                         t={t}
+                        isMobileScreen={mobileSm}
                     /> :
                     <BurroDesktop
                         certificates={certificates}
