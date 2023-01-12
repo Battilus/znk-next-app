@@ -20,7 +20,7 @@ const Burro: NextPage<IProps> = ({certificates}) => {
     const {t} = useTranslation();
 
     return (
-        <PageWrapper title={"ZNK App"} description={"Burro page"} screenBreakpoints>
+        <PageWrapper title={"ZNK App"} description={"Burro page"} screenBreakpoints menuButtonColor={"text-white"}>
             {({breakpoints: {mobileSm}, screens: {tablet}}) =>
                 tablet ?
                     <BurroMobile

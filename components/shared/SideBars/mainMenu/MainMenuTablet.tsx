@@ -15,6 +15,7 @@ interface IProps {
     openContacts: () => void
     t: TFunction<"translation", undefined, "translation">
     menuButtonHandler: () => void
+    menuButtonColor?: string
 }
 
 const MainMenuTablet: FC<IProps> = ({
@@ -24,7 +25,8 @@ const MainMenuTablet: FC<IProps> = ({
                                         isContactsOpen,
                                         openContacts,
                                         t,
-                                        menuButtonHandler
+                                        menuButtonHandler,
+                                        menuButtonColor
                                     }) => {
     return (
         <div className="fixed right-0 top-0 z-999">
@@ -45,7 +47,7 @@ const MainMenuTablet: FC<IProps> = ({
                     >
                         {isOpen
                             ? <CrossIcon className="w-[1.875rem] h-[1.6975rem]"/>
-                            : <BurgerIcon className="w-8.5 h-5 text-white"/>}
+                            : <BurgerIcon className={`w-8.5 h-5 ${menuButtonColor || "text-matterhorn"}`}/>}
                     </Button>
                 </div>
             </Transition>

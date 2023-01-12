@@ -11,6 +11,7 @@ interface IPageWrapperProps {
     isHomeLocation?: boolean
     hideHomeButton?: boolean
     screenBreakpoints?: boolean
+    menuButtonColor?: string
 }
 
 const PageWrapper: FC<IPageWrapperProps> = ({
@@ -20,7 +21,8 @@ const PageWrapper: FC<IPageWrapperProps> = ({
                                                 metaTagsList,
                                                 isHomeLocation,
                                                 hideHomeButton,
-                                                screenBreakpoints
+                                                screenBreakpoints,
+                                                menuButtonColor
                                             }) => {
     const {breakpoints, screens} = useScreen();
     return (
@@ -31,7 +33,7 @@ const PageWrapper: FC<IPageWrapperProps> = ({
                 tagsList={metaTagsList}
             />
             <main className="h-screen w-screen bg-whiteSmoke">
-                <MainMenu hideHomeButton={hideHomeButton} isHomeLocation={isHomeLocation}/>
+                <MainMenu hideHomeButton={hideHomeButton} isHomeLocation={isHomeLocation} menuButtonColor={menuButtonColor}/>
                 <div className="ml-0 lg:ml-8 2xl:ml-2.22v overflow-x-hidden">
                     {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                     {/*@ts-ignore*/}

@@ -10,9 +10,10 @@ import MainMenuMobile from './MainMenuMobile';
 interface IProps {
     isHomeLocation?: boolean
     hideHomeButton?: boolean
+    menuButtonColor?: string
 }
 
-const MainMenu: FC<IProps> = ({isHomeLocation, hideHomeButton}) => {
+const MainMenu: FC<IProps> = ({isHomeLocation, hideHomeButton, menuButtonColor}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isContactsOpen, setIsContactsOpen] = useState<boolean>(false);
 
@@ -56,6 +57,7 @@ const MainMenu: FC<IProps> = ({isHomeLocation, hideHomeButton}) => {
                     openContacts={openContacts}
                     t={t}
                     menuButtonHandler={menuButtonHandler}
+                    menuButtonColor={menuButtonColor}
                 />}
             {mobileSm &&
                 <MainMenuMobile
@@ -66,6 +68,7 @@ const MainMenu: FC<IProps> = ({isHomeLocation, hideHomeButton}) => {
                     openContacts={openContacts}
                     t={t}
                     menuButtonHandler={menuButtonHandler}
+                    menuButtonColor={menuButtonColor}
                 />}
             <div className="fixed top-0 left-0 z-99">
                 <Transition
