@@ -1,6 +1,8 @@
 {
   "all_projects": "all projects",
   "show": "show",
+  "learn_more": "Learn more",
+  "empty_projects": "There is no projects",
   "sideBarLinks": {
     "burro": "Burro",
     "allProjects": "All projects",

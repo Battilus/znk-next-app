@@ -4,8 +4,8 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: [
-      "./pages/**/*.{js,ts,jsx,tsx}",
-      "./components/**/*.{js,ts,jsx,tsx}",
+      "./src/pages/**/*.{js,ts,jsx,tsx}",
+      "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -312,6 +312,9 @@ module.exports = {
         },
         right: {
             '128': '32rem',
+        },
+        screens: {
+            's': '385px',
         },
         backgroundImage: {
             'burro_philosophy': "url('/png/burro_philosophy.png')",

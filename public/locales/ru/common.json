@@ -1,6 +1,8 @@
 {
   "all_projects": "Все проекты",
   "show": "открыть",
+  "learn_more": "Узнать больше",
+  "empty_projects": "Проекты отсутствуют",
   "sideBarLinks": {
     "burro": "Бюро",
     "allProjects": "Все проекты",
