@@ -1,3 +1,9 @@
+export type Locales = "ru" | "en"
+
+export type ProjectId = string | number
+
+export type YearOfBuild = string | number
+
 export type ProjectImage = {
     _id: string | number
     src: string
@@ -7,26 +13,27 @@ export type ProjectImage = {
 }
 
 export type ProjectsCategoriesTag = {
-    _id: string | number
+    _id: ProjectId
     tagName?: string
     category?: ProjectsCategory
 }
 
 export type ProjectsCategory = {
-    _id: string | number
+    _id: ProjectId
     name: string
 }
 
 export type ProjectDescriptionData = {
-    _id: string | number
+    _id: ProjectId
     title: string
     location: string
-    yearOfBuild: string | number
+    yearOfBuild: YearOfBuild
     status: string
-    appointment?: string
+    assignment?: string
     description: string
     mainPagePreview?: boolean
     images: ProjectImage[]
     tags?: ProjectsCategoriesTag[]
+    locale?: Locales
 }
 

@@ -18,7 +18,15 @@ const CertificateCard: FC<CertificateCardType> = ({logo, title, certificateHref}
                 }
             }>
                 <div className="relative w-full h-full">
-                    <Image className="w-full h-full object-contain" src={logo.img} layout="fill" quality={100}/>
+                    <Image
+                        className="w-full h-full object-contain"
+                        src={logo.img}
+                        layout="fill"
+                        quality={100}
+                        priority
+                        // blurDataURL={}
+                        // placeholder="blur"
+                    />
                 </div>
             </div>
             <div

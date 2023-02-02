@@ -69,8 +69,9 @@ const Project: NextPage<IProps> = ({meta, project}) => {
                                         className="object-cover object-center"
                                         src={image.src}
                                         alt={`Project preview ${image._id}`}
-                                        layout={"fill"}
+                                        layout="fill"
                                         quality={100}
+                                        priority
                                     />
                                 </div>
                             </SwiperSlide>)}

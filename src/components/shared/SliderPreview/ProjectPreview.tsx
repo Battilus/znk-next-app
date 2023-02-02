@@ -50,7 +50,14 @@ const ProjectPreview: FC<IProps> = ({name, imgSrc, href, hover, setHover, disabl
                 onMouseLeave={onLeave}
             >
                 {imgSrc &&
-                    <Image className="object-cover" src={imgSrc} alt={name} layout="fill" quality={100}/>}
+                    <Image
+                        className="object-cover"
+                        src={imgSrc}
+                        alt={name}
+                        layout="fill"
+                        quality={100}
+                        priority
+                    />}
             </div>
         </A>
     );

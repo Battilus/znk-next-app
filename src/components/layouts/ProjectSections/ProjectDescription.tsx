@@ -7,7 +7,7 @@ import {useTranslation} from "next-i18next";
 
 export type ProjectDescriptionType = ProjectDescriptionData & {
     text: ReactNode | string
-    appointment: string
+    assignment: string
 }
 
 interface IProjectDescriptionProps {
@@ -40,7 +40,7 @@ const ProjectDescription: FC<IProjectDescriptionProps> = ({description}) => {
                         {description?.description ? splitIndents(description?.description) : null}
                     </div>
                     <div className="w-full h-full flex flex-col justify-end items-end space-y-3">
-                        <ProjectStatusRow title={t("projectStatusRow.destination")} status={description?.appointment}/>
+                        <ProjectStatusRow title={t("projectStatusRow.destination")} status={description?.assignment}/>
                         <ProjectStatusRow title={t("projectStatusRow.place")} status={description?.location}/>
                         <ProjectStatusRow title={t("projectStatusRow.year")} status={description?.yearOfBuild}/>
                         <ProjectStatusRow title={t("projectStatusRow.status")} status={description?.status}/>

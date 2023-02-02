@@ -12,6 +12,10 @@ const nextConfig = {
     return config;
   },
   i18n,
+  env: {
+    ZNAK_API_URL: process.env.ZNAK_API_URL,
+    ZNAK_BASE_URL: process.env.ZNAK_BASE_URL
+  }
 }
 
 module.exports = nextConfig

@@ -23,7 +23,14 @@ const MobileProjectPreview: FC<IProps> = ({name, imgSrc, href, openSlide, t, isP
                 className={`relative w-full h-full overflow-x-hidden object-center`}
             >
                 {imgSrc &&
-                    <Image className="object-cover" src={imgSrc} alt={name} layout="fill" quality={100}/>}
+                    <Image
+                        className="object-cover"
+                        src={imgSrc}
+                        alt={name}
+                        layout="fill"
+                        quality={100}
+                        priority
+                    />}
                 <Transition
                     show={openSlide}
                     enter="transform transition-opacity duration-500"

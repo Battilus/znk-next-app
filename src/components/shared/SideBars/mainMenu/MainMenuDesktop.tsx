@@ -53,10 +53,10 @@ const MainMenuDesktop: FC<IProps> = ({
                     </Button>
                     <Transition
                         show={!isHomeLocation && !isOpen}
-                        enter="transform transition-all duration-200"
+                        enter="transform transition-opacity duration-200"
                         enterFrom="opacity-0"
                         enterTo="opacity-100"
-                        leave="transform transition-all duration-200"
+                        leave="transform transition-opacity duration-200"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
@@ -78,10 +78,10 @@ const MainMenuDesktop: FC<IProps> = ({
                 <div className="h-full w-full">
                     <Transition
                         show={isOpen}
-                        enter="transform transition-all duration-700"
+                        enter="transform transition-opacity duration-700"
                         enterFrom="opacity-0"
                         enterTo="opacity-100"
-                        leave="transform transition-all duration-700"
+                        leave="transform transition-opacity duration-700"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
