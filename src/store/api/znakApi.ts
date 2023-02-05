@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
 import { axiosBaseQuery } from "../../features/api/axiosBaseQuery";
+import {BffFilterParam, ProjectDescriptionData, ProjectImage} from "../../types/Api/dataTypes";
 
 export const znakApi = createApi({
     reducerPath: 'znakApi',
@@ -13,31 +14,74 @@ export const znakApi = createApi({
         }
     },
     endpoints: (builder) => ({
-        // getPokemonByName: builder.query<
-        //     { species: { name: string }; sprites: { front_shiny: string } },
-        //     string
-        // >({
-        //     query: (name) => ({
-        //         url: `pokemon/${name}`,
-        //         method: "GET"
-        //     }),
-        // }),
-        // getPokemonList: builder.query<{ results: Array<{ name: string }> }, void>({
-        //     query: () => ({
-        //         url: `pokemon/`,
-        //         method: "GET"
-        //     }),
-        // }),
+        getAllProjects: builder.query<ProjectDescriptionData[], string>({
+            query: () => ({
+                url: `projects/`,
+                method: "GET"
+            }),
+        }),
+        getProjectsPreview: builder.query<ProjectDescriptionData[], string>({
+            query: () => ({
+                url: `projects/preview/`,
+                method: "GET"
+            }),
+        }),
+        getProjectsWithSpecifiedTag: builder.query<ProjectDescriptionData[], string>({
+            query: (tag) => ({
+                url: `projects/${tag}`,
+                method: "GET"
+            }),
+        }),
+        getOneProjectById: builder.query<ProjectDescriptionData, string>({
+            query: (projectId) => ({
+                url: `project/${projectId}`,
+                method: "GET"
+            }),
+        }),
+        getOneProjectByTitle: builder.query<ProjectDescriptionData, string>({
+            query: (projectTitle) => ({
+                url: `project/title/${projectTitle}`,
+                method: "GET"
+            }),
+        }),
+        getImageByProjectId: builder.query<ProjectImage, string>({
+            query: (projectId) => ({
+                url: `project_image/project_id/${projectId}`,
+                method: "GET"
+            }),
+        }),
+        getPreviewImageByProjectId: builder.query<ProjectImage, string>({
+            query: (projectId) => ({
+                url: `project_image/preview/${projectId}`,
+                method: "GET"
+            }),
+        }),
+        getBffServices: builder.query<BffFilterParam[], string>({
+            query: () => ({
+                url: `bff/services/`,
+                method: "GET"
+            }),
+        }),
+        getBffAssignments: builder.query<BffFilterParam[], string>({
+            query: () => ({
+                url: `bff/assignments/`,
+                method: "GET"
+            }),
+        }),
+        getBffYearsOfBuilds: builder.query<BffFilterParam[], string>({
+            query: () => ({
+                url: `bff/build_years/`,
+                method: "GET"
+            }),
+        }),
     }),
 });
 
 export const {
-    // useGetPokemonByNameQuery,
-    // useGetPokemonListQuery,
+    // useGetAllProjectsQuery,
     util: { getRunningQueriesThunk },
 } = znakApi;
 
 // export const {
-//     getPokemonByName,
-//     getPokemonList
+//     getAllProjects,
 // } = znakApi.endpoints;

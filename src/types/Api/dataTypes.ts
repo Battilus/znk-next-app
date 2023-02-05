@@ -5,9 +5,9 @@ export type ProjectId = string | number
 export type YearOfBuild = string | number
 
 export type ProjectImage = {
-    _id: string | number
     src: string
     alt?: string
+    showOrder: number,
     description?: string
     projectPreview?: boolean
 }
@@ -22,6 +22,8 @@ export type ProjectsCategory = {
     _id: ProjectId
     name: string
 }
+
+export type BffFilterParam = string
 
 export type ProjectDescriptionData = {
     _id: ProjectId

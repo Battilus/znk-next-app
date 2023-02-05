@@ -63,12 +63,12 @@ const Project: NextPage<IProps> = ({meta, project}) => {
                         }}
                     >
                         {project.images.map(image =>
-                            <SwiperSlide key={image._id}>
+                            <SwiperSlide key={image.showOrder}>
                                 <div className="w-full h-screen">
                                     <Image
                                         className="object-cover object-center"
                                         src={image.src}
-                                        alt={`Project preview ${image._id}`}
+                                        alt={`Project preview ${image.alt || image.showOrder}`}
                                         layout="fill"
                                         quality={100}
                                         priority
