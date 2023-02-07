@@ -8,7 +8,7 @@ export const projectsSlice = createSlice({
     initialState,
     reducers: {
         setFilterParam(state, action) {
-            state = action.payload;
+            state.projectsFilter = action.payload;
         },
         extraReducers: {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -21,5 +21,7 @@ export const projectsSlice = createSlice({
     },
 });
 
-export const {setFilterParam} = projectsSlice.actions;
+export const {
+    setFilterParam
+} = projectsSlice.actions;
 export default projectsSlice.reducer;

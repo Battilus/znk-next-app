@@ -1,12 +1,6 @@
-import {ProjectDescriptionData, YearOfBuild} from "./Api/dataTypes";
-
-export type ProjectsFilters = {
-    services: string,
-    assignment: string,
-    yearOfBuild: YearOfBuild,
-}
+import {ProjectDescriptionData} from "./Api/dataTypes";
 
 export type ProjectsStore = {
     projects: ProjectDescriptionData[],
-    filters: ProjectsFilters,
+    projectsFilter: "",
 }

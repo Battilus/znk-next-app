@@ -13,7 +13,7 @@ export type LinkButtonType = {
     onClickEn?: boolean
     onClickHandlerKey?: string
     childrenClassName?: string
-    childrenStyle?: {[key: string]: string | number}
+    childrenStyle?: { [key: string]: string | number }
     suggestions?: LinkButtonType[]
 }
 
@@ -23,13 +23,17 @@ interface IButtonProps {
     className?: string
     childrenClassName?: string
     onClick?: MouseEventHandler<HTMLButtonElement>
+    isActive?: boolean
+    activeClassName?: string
+    roundedPadding?: string
+    disabled?: boolean
 }
 
 type ButtonFC = FC<IButtonProps> &
     { Link: typeof LinkButton } &
-    { Selector: typeof ToggleSelectButton} &
-    { LocaleSwitcher: typeof LocaleSwitcher} &
-    { DropdownMenu: typeof DropdownMenuButton};
+    { Selector: typeof ToggleSelectButton } &
+    { LocaleSwitcher: typeof LocaleSwitcher } &
+    { DropdownMenu: typeof DropdownMenuButton };
 
 export enum ButtonStyleType {
     inverse = `flex items-center justify-center outline-0
@@ -37,19 +41,34 @@ export enum ButtonStyleType {
                 hover:before:w-full
                 after:content-[''] after:absolute after:top-0 after:left-0 after:bg-matterhorn after:h-full after:w-0 after:transition-all after:duration-400
                 hover:after:w-full`,
-    rounded = `pt-2.5 2xl:pt-0.69v pb-2 2xl:pb-0.56v px-8 2xl:px-[2.22vw] text-matterhorn uppercase text-xs 2xl:text-0.83v leading-4 2xl:leading-1.11v rounded-full
+    rounded = `text-matterhorn uppercase text-xs 2xl:text-0.83v leading-4 2xl:leading-1.11v rounded-full
                bg-whiteSmoke hover:bg-matterhorn hover:text-whiteSmoke transition duration-200`,
     transparent = "flex items-center justify-center",
 }
 
-const Button: ButtonFC = ({children, styleType="inverse", className="", childrenClassName, onClick}) => {
+const Button: ButtonFC = ({
+                              children,
+                              styleType = "inverse",
+                              className = "",
+                              childrenClassName,
+                              onClick,
+                              isActive,
+                              activeClassName,
+                              roundedPadding,
+                              disabled
+                          }) => {
     return (
         <>
             <button
-                className={`${styleType === "inverse" ? "relative bg-whiteSmoke" : ""} ${className ? className : "border border-matterhorn"} ${ButtonStyleType[styleType]}`}
+                className={`${styleType === "inverse" ? "relative bg-whiteSmoke" : ""} 
+                            ${className ? className : "border border-matterhorn"} 
+                            ${styleType === "rounded" ? roundedPadding ? roundedPadding : "pt-2.5 2xl:pt-0.69v pb-2 2xl:pb-0.56v px-8 2xl:px-[2.22vw]" : ""}
+                            ${ButtonStyleType[styleType]} ${isActive && activeClassName ? activeClassName : ""}`}
                 onClick={onClick}
+                disabled={disabled}
             >
-                <div className={`${styleType === "inverse" ? "rounded-full bg-whiteSmoke w-full h-full flex items-center justify-center z-10" : ""} ${childrenClassName || ""}`}>
+                <div
+                    className={`${styleType === "inverse" ? "rounded-full bg-whiteSmoke w-full h-full flex items-center justify-center z-10" : ""} ${childrenClassName || ""}`}>
                     {children}
                 </div>
             </button>

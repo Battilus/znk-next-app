@@ -85,10 +85,19 @@ const Project: NextPage<IProps> = ({meta, project}) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({params, locale}) => {
+
+    const foundProject = projectsList.find(project => project._id === params?.id);
+    const project = foundProject ?
+        {
+            ...foundProject,
+            images: [...foundProject.images]
+                .sort((a, b) => a.showOrder - b.showOrder)
+        } : {};
+
     return {
         props: {
             meta: {title: "ZNK Project Burro", description: "Project description"},
-            project: projectsList.find(project => project._id === params?.id),
+            project,
             ...(await serverSideTranslations(locale!, ["common"])),
         }
     }
