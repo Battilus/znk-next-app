@@ -86,7 +86,8 @@ const Projects: NextPage<IProps> = ({meta, projects, bffServices, bffAssignments
                                             imgSrc={imagePreview?.src || ""}
                                             hover={hover}
                                             setHover={(val) => hoverHandler(val, index, chunkIndex)}
-                                        />})}
+                                        />
+                                    })}
                                 </div>
                             </SwiperSlide>
                         )}
@@ -98,18 +99,25 @@ const Projects: NextPage<IProps> = ({meta, projects, bffServices, bffAssignments
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-    () => async ({locale})  => {
+    () => async ({locale}) => {
 
-    return {
-        props: {
-            meta: {title: "ZNK Project Burro", description:"Projects page"},
-            projects: chunkArray(projectsList, 6),
-            bffServices: mockBffServices,
-            bffAssignments: mockBffAssignments,
-            bffYearsOfBuilds: mockBffYearsOfBuilds,
-            ...(await serverSideTranslations(locale!, ["common"])),
+        const meta = {title: "ZNK Project Burro", description: "Projects page"};
+
+        const projects = chunkArray(projectsList, 6);
+        const bffServices = mockBffServices;
+        const bffAssignments = mockBffAssignments;
+        const bffYearsOfBuilds = mockBffYearsOfBuilds;
+
+        return {
+            props: {
+                meta,
+                projects,
+                bffServices,
+                bffAssignments,
+                bffYearsOfBuilds,
+                ...(await serverSideTranslations(locale!, ["common"])),
+            }
         }
-    }
-})
+    })
 
 export default Projects;
