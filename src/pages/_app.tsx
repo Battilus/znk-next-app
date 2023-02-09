@@ -5,10 +5,18 @@ import "swiper/css/navigation";
 import type { AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next'
 import { wrapper } from '../store';
+import {Provider} from "react-redux";
 
 function ZnkApp({ Component, pageProps }: AppProps) {
-  // eslint-disable-next-line react/react-in-jsx-scope
-  return <Component {...pageProps} />
+  const {store, props} = wrapper.useWrappedStore(pageProps);
+
+  return (
+      // eslint-disable-next-line react/react-in-jsx-scope
+      <Provider store={store}>
+        {/* eslint-disable-next-line react/react-in-jsx-scope */}
+        <Component {...props} />
+      </Provider>
+  )
 }
 
-export default wrapper.withRedux(appWithTranslation(ZnkApp));
+export default appWithTranslation(ZnkApp);

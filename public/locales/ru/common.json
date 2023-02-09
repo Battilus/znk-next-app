@@ -3,6 +3,11 @@
   "show": "открыть",
   "learn_more": "Узнать больше",
   "empty_projects": "Проекты отсутствуют",
+  "projects_filters": {
+    "services": "услуги",
+    "assignment": "назначение",
+    "year": "год"
+  },
   "sideBarLinks": {
     "burro": "Бюро",
     "allProjects": "Все проекты",
