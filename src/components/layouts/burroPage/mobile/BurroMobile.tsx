@@ -42,7 +42,7 @@ const BurroMobile: FC<IProps> = ({certificates, t, isMobileScreen}) => {
     }, [router]);
 
     return (
-        <div className="h-full w-full">
+        <div className="w-full">
             <Swiper
                 ref={swiperExtRef}
                 slidesPerView={1}
@@ -53,13 +53,14 @@ const BurroMobile: FC<IProps> = ({certificates, t, isMobileScreen}) => {
                     dynamicBullets: true,
                 }}
                 modules={[Pagination]}
+                className={"h-[100vh]"}
             >
                 <SwiperSlide>
                     <BurroPreviewTablet
                         title={t("pages.burro.philosophy.title")}
                         bgImage={"bg-burro_philosophy_mobile"}
                     >
-                        <div className="w-full h-full flex flex-col items-center justify-center gap-5">
+                        <div className="w-full flex flex-col items-center justify-center gap-5">
                             <DoubleSlashIcon className="w-[27px] h-[33px]"/>
                             <div
                                 className="w-full sm:w-3/4 md:w-2/4 flex flex-col items-center gap-10 font-medium uppercase text-white
@@ -70,7 +71,7 @@ const BurroMobile: FC<IProps> = ({certificates, t, isMobileScreen}) => {
                             <DoubleSlashIcon className="w-[27px] h-[33px]"/>
                         </div>
                         <div
-                            className="fixed right-9 bottom-8 text-white font-medium uppercase text-xsm s:text-sl leading-21.5 flex items-center gap-[0.718rem]"
+                            className="fixed right-9 bottom-8 text-white font-medium uppercase text-xsm s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
                             onClick={() => slideTo(SlideIndex.command)}
                         >
                             <div>{t("pages.burro.command.title")}</div>
@@ -94,10 +95,10 @@ const BurroMobile: FC<IProps> = ({certificates, t, isMobileScreen}) => {
                                         spaceBetween={32}
                                     >
                                         <SwiperSlide>
-                                            <div className="w-full max-w-[318px] s:max-w-[363px] h-[252px]">{t("pages.burro.command.mobile.p1")}</div>
+                                            <div className="w-full max-w-[318px] s:!max-w-[363px] h-[252px]">{t("pages.burro.command.mobile.p1")}</div>
                                         </SwiperSlide>
                                         <SwiperSlide>
-                                            <div className="w-full max-w-[318px] s:max-w-[363px] h-[252px]">{t("pages.burro.command.mobile.p2")}</div>
+                                            <div className="w-full max-w-[318px] s:!max-w-[363px] h-[252px]">{t("pages.burro.command.mobile.p2")}</div>
                                         </SwiperSlide>
                                     </Swiper>
                                 </div> :
@@ -108,14 +109,14 @@ const BurroMobile: FC<IProps> = ({certificates, t, isMobileScreen}) => {
                             }
                         </div>
                         <div
-                            className="fixed left-9 bottom-8 text-white font-medium uppercase text-s s:text-sl leading-21.5 flex items-center gap-[0.718rem]"
+                            className="fixed left-9 bottom-8 text-white font-medium uppercase text-s s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
                             onClick={() => slideTo(SlideIndex.philosophy)}
                         >
                             <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1 rotate-180"/>
                             <div>{t("pages.burro.philosophy.title")}</div>
                         </div>
                         <div
-                            className="fixed right-9 bottom-8 text-white font-medium uppercase text-s s:text-sl leading-21.5 flex items-center gap-[0.718rem]"
+                            className="fixed right-9 bottom-8 text-white font-medium uppercase text-s s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
                             onClick={() => slideTo(SlideIndex.achievements)}
                         >
                             <div>{t("pages.burro.achievements.title")}</div>
@@ -136,7 +137,7 @@ const BurroMobile: FC<IProps> = ({certificates, t, isMobileScreen}) => {
                                 />)}
                         </div>
                         <div
-                            className="fixed left-9 bottom-8 text-white font-medium uppercase text-xsm s:text-sl leading-21.5 flex items-center gap-[0.718rem]"
+                            className="fixed left-9 bottom-8 text-white font-medium uppercase text-xsm s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
                             onClick={() => slideTo(SlideIndex.command)}
                         >
                             <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1 rotate-180"/>

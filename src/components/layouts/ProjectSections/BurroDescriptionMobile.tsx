@@ -6,7 +6,7 @@ interface DescriptionProps {
 
 const BurroDescriptionMobile: FC<DescriptionProps> = ({descriptionText}) => {
     return (
-        <div className="h-full flex flex-col justify-end">
+        <div className="flex flex-col justify-end">
             <div className="font-semibold text-matterhorn uppercase text-base sm:text-sm leading-[1.285rem] sm:leading-18p text-justify space-y-6">
                 {descriptionText}
             </div>

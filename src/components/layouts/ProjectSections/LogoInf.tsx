@@ -21,7 +21,7 @@ const LogoInf: FC<IProps> = ({children, hover, staticWidth, mobile, alignLogo="s
             border={!disableBorder}
         >
             <div
-                className="px-3 sm:px-7 2xl:px-[1.94vw] pb-2.5 sm:pb-6 2xl:pb-1.67v w-full h-full flex flex-col items-center
+                className="px-3 sm:px-7 2xl:px-[1.94vw] pb-2.5 sm:pb-6 2xl:pb-1.67v w-full h-full flex flex-col justify-between items-center
                                 text-matterhorn font-medium uppercase"
             >
                 <LogoLink href={'/'} align={alignLogo}/>

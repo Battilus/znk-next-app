@@ -12,8 +12,8 @@ const LogoInfBody: FC<IProps> = ({children, show}) => {
             appear={true}
             show={show}
             enter={`transform transition-opacity duration-500`}
-            enterFrom="opacity-0 w-full h-full"
-            enterTo="opacity-100 w-full h-full"
+            enterFrom="opacity-0 w-full"
+            enterTo="opacity-100 w-full"
         >
             {children}
         </Transition>
