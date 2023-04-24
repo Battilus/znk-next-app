@@ -158,6 +158,8 @@ const projectConfig = {
     'no-console': 'off',
     'no-empty': 'warn',
     'no-param-reassign': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
   overrides: [
     {
