@@ -7,6 +7,11 @@ import { projectToClient } from './entities/projectDescription/adapters/adapters
 import { ProjectServer } from './entities/projectDescription/types/server';
 import { QueryMethod } from './entities/types';
 import { BaseQueryMeta } from '@reduxjs/toolkit/src/query/baseQueryTypes';
+import { Locale } from '../../types/locales';
+
+type QueryParams = {
+  localization: Locale
+}
 
 type ResponseProjectData = {
   data: Project[];
@@ -24,9 +29,9 @@ export const znakApi = createApi({
     }
   },
   endpoints: (builder) => ({
-    getAllProjects: builder.query<ResponseProjectData, string>({
-      query: () => ({
-        url: `projects/`,
+    getAllProjects: builder.query<ResponseProjectData, QueryParams>({
+      query: ({ localization }) => ({
+        url: `projects/?localization=${localization.toUpperCase()}`,
         method: QueryMethod.GET,
       }),
       transformResponse(response: ProjectServer[], meta): Promise<ResponseProjectData> | ResponseProjectData {
@@ -38,9 +43,9 @@ export const znakApi = createApi({
         };
       },
     }),
-    getProjectsPreview: builder.query<ProjectDescriptionData[], string>({
-      query: () => ({
-        url: `projects/preview/`,
+    getProjectsPreview: builder.query<ProjectDescriptionData[], QueryParams>({
+      query: ({ localization }) => ({
+        url: `projects/preview/?localization=${localization.toUpperCase()}`,
         method: QueryMethod.GET,
       }),
     }),
@@ -96,7 +101,7 @@ export const znakApi = createApi({
 });
 
 export const {
-  // useGetAllProjectsQuery,
+  useGetAllProjectsQuery,
   util: { getRunningQueriesThunk },
 } = znakApi;
 

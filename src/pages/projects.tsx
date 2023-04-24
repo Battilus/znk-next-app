@@ -15,6 +15,7 @@ import { setFilterParam } from '../redux/reducers/projectsSlice';
 import { getProjectsFilterParam } from '../redux/selectors/projects';
 import { wrapper } from '../redux';
 import { Locale } from '../types/locales';
+import { getRunningQueriesThunk, useGetAllProjectsQuery } from '../redux/api/queries';
 
 interface IProps {
   meta: PageMeta;
@@ -32,6 +33,10 @@ const Projects: NextPage<IProps> = ({ meta, projects, bffServices, bffAssignment
   const selectedFilter = useAppSelector(getProjectsFilterParam);
 
   const dispatch = useAppDispatch();
+
+  const { data } = useGetAllProjectsQuery({ localization: Locale.RU })
+  console.log(data);
+  // const selectedFilter = useAppSelector(getProjectsFilterParam);
 
   const setSelectedFilter = (param: string) => {
     dispatch(setFilterParam(param));
@@ -103,7 +108,7 @@ const Projects: NextPage<IProps> = ({ meta, projects, bffServices, bffAssignment
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  () => async ({ locale }) => {
+  (store) => async ({ locale }) => {
 
     const meta = { title: 'ZNK Project Burro', description: 'Projects page' };
 
@@ -111,6 +116,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     const bffServices = mockBffServices;
     const bffAssignments = mockBffAssignments;
     const bffYearsOfBuilds = mockBffYearsOfBuilds;
+
+    await Promise.all(store.dispatch(getRunningQueriesThunk()))
 
     return {
       props: {
