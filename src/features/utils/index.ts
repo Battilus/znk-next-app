@@ -1,17 +1,17 @@
 export const firstLetterCapitalize = (string: string): string => {
-    return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
-}
+  return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
+};
 
-export const chunkArray = (arr: any[], size: number): any[][] => {
-    const result = [];
+export const chunkArray = <T>(arr: T[], size: number): T[][] => {
+  const result = [];
 
-    for (let i = 0; i < Math.ceil(arr.length/size); i++) {
-        result.push(arr.slice((i * size), (i * size) + size));
-    }
+  for (let i = 0; i < Math.ceil(arr.length / size); i++) {
+    result.push(arr.slice((i * size), (i * size) + size));
+  }
 
-    return result;
-}
+  return result;
+};
 
 export const mathPercent = (to: number, from: number): number => {
-    return Math.floor((to / from) * 100)
-}
+  return Math.floor((to / from) * 100);
+};

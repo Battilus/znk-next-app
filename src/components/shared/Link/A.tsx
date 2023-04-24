@@ -1,24 +1,25 @@
-import React, {FC, MouseEventHandler, ReactNode} from 'react';
-import Link from "next/link";
+import React, { FC, MouseEventHandler, ReactNode } from 'react';
+import Link from 'next/link';
 
 interface IAProps {
-    children: ReactNode | string
-    href: string
-    className?: string
-    onMouseEnter?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>
-    onMouseLeave?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>
+  children: ReactNode | string;
+  href: string;
+  className?: string;
+  onMouseEnter?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>;
+  onMouseLeave?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>;
 }
 
-const A: FC<IAProps> = ({children, href, className, onMouseEnter, onMouseLeave}) => {
-    return (
-        <Link
-            href={href}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-        >
-            <a className={`decoration-0 ${className}`}>{children}</a>
-        </Link>
-    );
+const A: FC<IAProps> = ({ children, href, className, onMouseEnter, onMouseLeave }) => {
+  return (
+    <Link
+      href={href}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <a className={`decoration-0 ${className}`}>{children}</a>
+    </Link>
+  );
 };
 
 export default A;

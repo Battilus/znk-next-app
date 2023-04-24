@@ -1,64 +1,80 @@
-import type {GetServerSideProps, NextPage} from 'next'
-import PageWrapper from "../components/PageWrapper";
-import React, {useState} from "react";
-import {ProjectDescriptionData} from "../types/Api/dataTypes";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import {projectsList} from "../app/mock/fakeData";
-import {useTranslation} from "next-i18next";
-import MobileWrapper from "../components/layouts/mainPage/MobileWrapper";
-import DesktopWrapper from "../components/layouts/mainPage/DesktopWrapper";
-import {PageMeta} from "../types";
-import NoProjectsWrapper from "../components/layouts/noProjects/NoProjectsWrapper";
+import type { GetServerSideProps, NextPage } from 'next';
+import PageWrapper from '../components/PageWrapper';
+import React, { useState } from 'react';
+import { ProjectDescriptionData } from '../types/Api/dataTypes';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { projectsList } from '../app/mock/fakeData';
+import { useTranslation } from 'next-i18next';
+import MobileWrapper from '../components/layouts/mainPage/MobileWrapper';
+import DesktopWrapper from '../components/layouts/mainPage/DesktopWrapper';
+import { PageMeta } from '../types';
+import { Locale } from '../types/locales';
 
 interface IProps {
-    meta: PageMeta
-    previewProjects: ProjectDescriptionData[]
+  meta: PageMeta;
+  previewProjects: ProjectDescriptionData[];
 }
 
-const Home: NextPage<IProps> = ({meta, previewProjects}) => {
-    const [hover, setHover] = useState<boolean>(false);
+const Home: NextPage<IProps> = ({ meta, previewProjects }) => {
+  const [ hover, setHover ] = useState<boolean>(false);
 
-    const {t} = useTranslation();
+  const { t } = useTranslation();
+
+  const renderWrapper = ({ previewProjects, tablet, iPhone }: {
+    previewProjects: ProjectDescriptionData[],
+    tablet: boolean,
+    iPhone: boolean
+  }) => {
+    if (previewProjects.length === 0) {
+      return null;
+    }
+
+    if (tablet) {
+      return (
+        <MobileWrapper
+          previewProjects={previewProjects}
+          t={t}
+          alignLogo={iPhone ? 'center' : 'start'}
+          isPhone={iPhone}
+        />
+      );
+    }
 
     return (
-        <PageWrapper
-            meta={meta}
-            isHomeLocation
-            hideHomeButton={hover}
-            screenBreakpoints
-        >
-            {({breakpoints: {mobileSm: iPhone}, screens: {tablet}}) =>
-                previewProjects.length ?
-                    tablet ?
-                        <MobileWrapper
-                            previewProjects={previewProjects}
-                            t={t}
-                            alignLogo={iPhone ? "center" : "start"}
-                            isPhone={iPhone}
-                        /> :
-                        <DesktopWrapper
-                            previewProjects={previewProjects}
-                            t={t}
-                            hover={hover}
-                            setHover={setHover}
-                        />
-                    : <NoProjectsWrapper t={t} isPhone={iPhone}/>
-            }
-        </PageWrapper>
-    )
-}
+      <DesktopWrapper
+        previewProjects={previewProjects}
+        t={t}
+        hover={hover}
+        setHover={setHover}
+      />
+    );
+  };
 
-export const getServerSideProps: GetServerSideProps = async ({locale}) => {
+  return (
+    <PageWrapper
+      meta={meta}
+      isHomeLocation={true}
+      hideHomeButton={hover}
+      screenBreakpoints={true}
+    >
+      {({ breakpoints: { mobileSm: iPhone }, screens: { tablet } }) =>
+        renderWrapper({ previewProjects, tablet, iPhone })
+      }
+    </PageWrapper>
+  );
+};
 
-    const previewProjects = projectsList.filter(project => project?.mainPagePreview && project.mainPagePreview);
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 
-    return {
-        props: {
-            meta: {title: "ZNK Project Burro", description: "Main page"},
-            previewProjects: previewProjects.length > 3 ? previewProjects.slice(0, 3) : previewProjects,
-            ...(await serverSideTranslations(locale!, ["common"])),
-        }
-    }
-}
+  const previewProjects = projectsList.filter(project => project?.mainPagePreview && project.mainPagePreview);
 
-export default Home
+  return {
+    props: {
+      meta: { title: 'ZNK Project Burro', description: 'Main page' },
+      previewProjects: previewProjects.length > 3 ? previewProjects.slice(0, 3) : previewProjects,
+      ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
+    },
+  };
+};
+
+export default Home;

@@ -1,11 +1,11 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
 const LoadingScreen: FC = () => {
-    return (
-        <div>
-
-        </div>
-    );
+  return (
+    <div>
+      Loading...
+    </div>
+  );
 };
 
 export default LoadingScreen;

@@ -13,20 +13,20 @@ export type ProjectImage = {
 }
 
 export type ProjectsCategoriesTag = {
-    _id: ProjectId
+    id: ProjectId
     tagName?: string
     category?: ProjectsCategory
 }
 
 export type ProjectsCategory = {
-    _id: ProjectId
+    id: ProjectId
     name: string
 }
 
 export type BffFilterParam = string
 
 export type ProjectDescriptionData = {
-    _id: ProjectId
+    id: ProjectId
     title: string
     location: string
     yearOfBuild: YearOfBuild

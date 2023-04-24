@@ -2,7 +2,7 @@ import {BffFilterParam, ProjectDescriptionData} from "../../types/Api/dataTypes"
 
 export const projectsList: ProjectDescriptionData[] = [
     {
-        _id: "project_1",
+        id: "project_1",
         title: "общественное пространство «среда»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -34,7 +34,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_2",
+        id: "project_2",
         title: "общественное пространство «ведомство»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -66,7 +66,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_3",
+        id: "project_3",
         title: "ревитализация территории завода",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -98,7 +98,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_4",
+        id: "project_4",
         title: "общественное пространство «среда»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -130,7 +130,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_5",
+        id: "project_5",
         title: "общественное пространство «ведомство»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -162,7 +162,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_6",
+        id: "project_6",
         title: "ревитализация территории завода",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -224,7 +224,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_7",
+        id: "project_7",
         title: "общественное пространство «среда»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -256,7 +256,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_8",
+        id: "project_8",
         title: "общественное пространство «ведомство»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -288,7 +288,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_9",
+        id: "project_9",
         title: "ревитализация территории завода",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -320,7 +320,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_10",
+        id: "project_10",
         title: "общественное пространство «среда»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -352,7 +352,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_11",
+        id: "project_11",
         title: "общественное пространство «ведомство»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -384,7 +384,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_12",
+        id: "project_12",
         title: "ревитализация территории завода",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -446,7 +446,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_13",
+        id: "project_13",
         title: "общественное пространство «среда»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -478,7 +478,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_14",
+        id: "project_14",
         title: "общественное пространство «ведомство»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -510,7 +510,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_15",
+        id: "project_15",
         title: "ревитализация территории завода",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -542,7 +542,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_16",
+        id: "project_16",
         title: "общественное пространство «среда»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -574,7 +574,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_17",
+        id: "project_17",
         title: "общественное пространство «ведомство»",
         location: "санкт-петербург",
         yearOfBuild: "2020",
@@ -606,7 +606,7 @@ export const projectsList: ProjectDescriptionData[] = [
         ]
     },
     {
-        _id: "project_18",
+        id: "project_18",
         title: "ревитализация территории завода",
         location: "санкт-петербург",
         yearOfBuild: "2020",
