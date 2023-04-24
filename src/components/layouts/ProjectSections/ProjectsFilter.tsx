@@ -8,9 +8,6 @@ import { useTranslation } from 'next-i18next';
 interface IProps {
   hover?: boolean;
   description?: ProjectDescriptionData;
-  categoriesTags?: ProjectsCategoriesTag[];
-  selectedTags?: ProjectsCategoriesTag[];
-  selectTag?: (selected: ProjectsCategoriesTag) => void;
   bffParams?: {
     bffServices: BffFilterParam[]
     bffAssignments: BffFilterParam[]

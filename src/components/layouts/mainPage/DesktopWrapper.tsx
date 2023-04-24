@@ -19,7 +19,7 @@ const DesktopWrapper: FC<IProps> = ({ previewProjects, t, hover, setHover }) => 
   const hoverHandler = useCallback((val: boolean, index: number | null) => {
     setHover(val);
     setSelectedProjectIndex(index);
-  }, []);
+  }, [setHover]);
 
   useEffect(() => {
     if (!hover) {
