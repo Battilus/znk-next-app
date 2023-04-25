@@ -1,6 +1,11 @@
-import {ProjectsStore} from "../../types/store";
+import { ProjectsStore } from '../../types/store';
 
 export const initialState: ProjectsStore = {
-    projects: [],
-    projectsFilter: "",
-}
+  projects: [],
+  projectsFilter: '',
+  bff: {
+    services: [],
+    assignments: [],
+    buildYears: [],
+  },
+};

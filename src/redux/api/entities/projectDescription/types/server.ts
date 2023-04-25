@@ -1,13 +1,17 @@
-type ProjectImageServer = {
+export type ProjectImageServer = {
   src: string;
   showOrder: number;
-  projectPreview: string;
+  alt?: string;
+  description?: string;
+  projectPreview: boolean;
 }
 
-type TagServer = {
+export type TagServer = {
   tagName: string;
   tagDescription: string;
 }
+
+export type BffServer = string;
 
 export type ProjectServer = {
   id: number;

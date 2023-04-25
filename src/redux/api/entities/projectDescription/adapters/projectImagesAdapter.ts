@@ -3,10 +3,12 @@ import { Project } from '../types/client';
 
 export const projectImagesAdapter = {
   toClient(data: ProjectServer['images']): Project['images'] {
-    return data.map(image => ({
-      src: image.src,
-      showOrder: Number(image.showOrder),
-      projectPreview: image.projectPreview === 'true'
+    return data.map(({ src, showOrder, projectPreview, alt, description }) => ({
+      src: String(src),
+      showOrder: Number(showOrder),
+      projectPreview: Boolean(projectPreview),
+      alt,
+      description,
     }))
   }
 }

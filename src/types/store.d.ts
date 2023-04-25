@@ -1,6 +1,13 @@
-import {ProjectDescriptionData} from "./Api/dataTypes";
+import { ProjectDescriptionData } from './Api/dataTypes';
+
+export type BffParams = {
+  services: string[];
+  assignments: string[];
+  buildYears: string[];
+}
 
 export type ProjectsStore = {
-    projects: ProjectDescriptionData[],
-    projectsFilter: "",
+  projects: ProjectDescriptionData[];
+  projectsFilter: string;
+  bff: BffParams;
 }

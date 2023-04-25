@@ -1,6 +1,8 @@
-type ProjectImage = {
+export type ProjectImage = {
   src: string;
   showOrder: number;
+  alt?: string;
+  description?: string;
   projectPreview: boolean;
 }
 
@@ -8,6 +10,8 @@ type ProjectTag = {
   tagName: string;
   tagDescription: string;
 }
+
+export type Bff = string;
 
 export type Project = {
   id: number;

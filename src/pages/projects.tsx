@@ -34,8 +34,12 @@ const Projects: NextPage<IProps> = ({ meta, projects, bffServices, bffAssignment
 
   const dispatch = useAppDispatch();
 
-  const { data } = useGetAllProjectsQuery({ localization: Locale.RU })
-  console.log(data);
+  const { data, isSuccess } = useGetAllProjectsQuery({ localization: Locale.RU })
+
+  if (isSuccess) {
+    console.log(data);
+  }
+
   // const selectedFilter = useAppSelector(getProjectsFilterParam);
 
   const setSelectedFilter = (param: string) => {
