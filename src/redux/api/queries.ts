@@ -1,14 +1,13 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 import { axiosBaseQuery } from '../../features/api/axiosBaseQuery';
-import { BffFilterParam, ProjectDescriptionData, ProjectImage } from '../../types/Api/dataTypes';
+import { ProjectImage } from '../../types/Api/dataTypes';
 import { Bff, Project } from './entities/projectDescription/types/client';
 import { projectToClient } from './entities/projectDescription/adapters/adapters';
 import { BffServer, ProjectImageServer, ProjectServer } from './entities/projectDescription/types/server';
 import { QueryMethod } from './entities/types';
 import { BaseQueryMeta } from '@reduxjs/toolkit/src/query/baseQueryTypes';
 import { Locale } from '../../types/locales';
-import { images } from 'next/dist/build/webpack/config/blocks/images';
 import { projectImagesAdapter } from './entities/projectDescription/adapters/projectImagesAdapter';
 import { bffAdapter } from './entities/projectDescription/adapters/bffAdapter';
 import { setBffFromServer } from '../reducers/projectsSlice';
