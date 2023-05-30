@@ -7,15 +7,15 @@ import { useTranslation } from 'next-i18next';
 import { CertificateCardType, PageMeta } from '../types';
 import BurroDesktop from '../components/layouts/burroPage/desktop/BurroDesktop';
 import BurroMobile from '../components/layouts/burroPage/mobile/BurroMobile';
-import { Locale } from '../types/locales';
+import { Locale } from '../api/types/locales';
 
 
-interface IProps {
+type Props = {
   meta: PageMeta;
   certificates: CertificateCardType[];
 }
 
-const Burro: NextPage<IProps> = ({ meta, certificates }) => {
+const Burro: NextPage<Props> = ({ meta, certificates }) => {
 
   const [ hover, setHover ] = useState<boolean>(false);
 
@@ -40,7 +40,7 @@ const Burro: NextPage<IProps> = ({ meta, certificates }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => {
   return {
     props: {
       meta: { title: 'ZNK Project Burro', description: 'Burro page' },

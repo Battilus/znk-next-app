@@ -1,20 +1,12 @@
-export type ProjectImage = {
-  src: string;
-  showOrder: number;
-  alt?: string;
-  description?: string;
-  projectPreview: boolean;
-}
+import { ProjectImage } from '../../images/types/client';
 
 type ProjectTag = {
   tagName: string;
   tagDescription: string;
 }
 
-export type Bff = string;
-
 export type Project = {
-  id: number;
+  id: string;
   title: string;
   location: string;
   yearOfBuild: string;

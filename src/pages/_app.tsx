@@ -1,22 +1,26 @@
+import React, { useState } from 'react';
 import '../../styles/globals.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
-import { wrapper } from '../redux';
-import { Provider } from 'react-redux';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 function ZnkApp({ Component, pageProps }: AppProps) {
-  const { store, props } = wrapper.useWrappedStore(pageProps);
+  const [queryClient] = useState(() => new QueryClient())
 
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
-    <Provider store={store}>
-      {/* eslint-disable-next-line react/react-in-jsx-scope */}
-      <Component {...props} />
-    </Provider>
-  );
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Component {...pageProps} />
+      </Hydrate>
+    </QueryClientProvider>
+  )
 }
 
 export default appWithTranslation(ZnkApp);

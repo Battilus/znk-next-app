@@ -11,7 +11,7 @@ export type ProjectDescriptionType = ProjectDescriptionData & {
 }
 
 interface IProjectDescriptionProps {
-  description?: ProjectDescriptionType;
+  description?: Partial<ProjectDescriptionType>;
 }
 
 const ProjectDescription: FC<IProjectDescriptionProps> = ({ description }) => {

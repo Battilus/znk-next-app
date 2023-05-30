@@ -9,14 +9,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageMeta } from '../../types';
-import { Locale } from '../../types/locales';
+import { Locale } from '../../api/types/locales';
 
-interface IProps {
+type Props = {
   meta: PageMeta;
-  project: ProjectDescriptionType;
+  project: Partial<ProjectDescriptionType>;
 }
 
-const Project: NextPage<IProps> = ({ meta, project }) => {
+const Project: NextPage<Props> = ({ meta, project }) => {
   const navigationPrevRef = useRef<HTMLDivElement>(null);
   const navigationNextRef = useRef<HTMLDivElement>(null);
 
@@ -64,7 +64,7 @@ const Project: NextPage<IProps> = ({ meta, project }) => {
               disableOnInteraction: false,
             }}
           >
-            {project.images.map(image =>
+            {project?.images?.map(image =>
               <SwiperSlide key={image.showOrder}>
                 <div className="w-full h-screen">
                   <Image
@@ -86,8 +86,9 @@ const Project: NextPage<IProps> = ({ meta, project }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params, locale }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ params, locale }) => {
 
+  const meta = { title: 'ZNK Project Burro', description: 'Project description' };
   const foundProject = projectsList.find(project => project.id === params?.id);
   const project = foundProject ?
     {
@@ -98,7 +99,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
 
   return {
     props: {
-      meta: { title: 'ZNK Project Burro', description: 'Project description' },
+      meta,
       project,
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
     },

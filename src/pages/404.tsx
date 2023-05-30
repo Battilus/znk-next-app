@@ -4,7 +4,7 @@ import PageWrapper from '../components/PageWrapper';
 import Button from '../components/shared/Button/Button';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { Locale } from '../types/locales';
+import { Locale } from '../api/types/locales';
 
 const NotFound: NextPage = () => {
   const { t } = useTranslation();

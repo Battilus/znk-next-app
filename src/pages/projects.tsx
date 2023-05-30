@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../components/PageWrapper';
 import ProjectSections from '../components/layouts/ProjectSections/ProjectSections';
@@ -10,14 +10,10 @@ import { chunkArray } from '../features/utils';
 import { Pagination } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageMeta } from '../types';
-import { useAppDispatch, useAppSelector } from '../redux/utils';
-import { setFilterParam } from '../redux/reducers/projectsSlice';
-import { getProjectsFilterParam } from '../redux/selectors/projects';
-import { wrapper } from '../redux';
-import { Locale } from '../types/locales';
-import { getRunningQueriesThunk, useGetAllProjectsQuery } from '../redux/api/queries';
+import { Locale } from '../api/types/locales';
+import * as apiRoutes from '../api/endpoints';
 
-interface IProps {
+type Props = {
   meta: PageMeta;
   projects: ProjectDescriptionData[][];
   bffServices: BffFilterParam[];
@@ -25,32 +21,23 @@ interface IProps {
   bffYearsOfBuilds: BffFilterParam[];
 }
 
-const Projects: NextPage<IProps> = ({ meta, projects, bffServices, bffAssignments, bffYearsOfBuilds }) => {
+const Projects: NextPage<Props> = ({ meta, projects, bffServices, bffAssignments, bffYearsOfBuilds }) => {
   const [ hover, setHover ] = useState<boolean>(false);
   const [ selectedProjectIndex, setSelectedProjectIndex ] = useState<number | null>(null);
   const [ selectedProjectsChunkIndex, setSelectedProjectsChunkIndex ] = useState<number | null>(null);
+  const [ selectedFilter, setSelectedFilter ] = useState<string>('');
 
-  const selectedFilter = useAppSelector(getProjectsFilterParam);
-
-  const dispatch = useAppDispatch();
-
-  const { data, isSuccess } = useGetAllProjectsQuery({ localization: Locale.RU })
-
-  if (isSuccess) {
-    console.log(data);
+  const getFilterDescription = () => {
+    return selectedProjectIndex !== null && selectedProjectsChunkIndex !== null ?
+      projects[selectedProjectsChunkIndex][selectedProjectIndex]
+      : undefined;
   }
 
-  // const selectedFilter = useAppSelector(getProjectsFilterParam);
-
-  const setSelectedFilter = (param: string) => {
-    dispatch(setFilterParam(param));
-  };
-
-  const hoverHandler = useCallback((val: boolean, index: number | null, chunkIndex: number | null) => {
-    setHover(val);
+  const hoverHandler = (isHover: boolean, index: number | null, chunkIndex: number | null) => {
+    setHover(isHover);
     setSelectedProjectIndex(index);
     setSelectedProjectsChunkIndex(chunkIndex);
-  }, []);
+  };
 
   useEffect(() => {
     if (!hover) {
@@ -64,7 +51,7 @@ const Projects: NextPage<IProps> = ({ meta, projects, bffServices, bffAssignment
         <div className="flex">
           <ProjectSections.ProjectsFilter
             hover={hover}
-            description={selectedProjectIndex !== null && selectedProjectsChunkIndex !== null ? projects[selectedProjectsChunkIndex][selectedProjectIndex] : undefined}
+            description={getFilterDescription()}
             bffParams={{
               bffServices,
               bffAssignments,
@@ -93,7 +80,7 @@ const Projects: NextPage<IProps> = ({ meta, projects, bffServices, bffAssignment
                     return (
                       <ProjectPreview
                         key={project.id}
-                        href={`/project/${project.id}`}
+                        href={`/${apiRoutes.project()}/${project.id}`}
                         name={project.title}
                         imgSrc={imagePreview?.src}
                         hover={hover}
@@ -111,28 +98,25 @@ const Projects: NextPage<IProps> = ({ meta, projects, bffServices, bffAssignment
   );
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  (store) => async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => {
 
-    const meta = { title: 'ZNK Project Burro', description: 'Projects page' };
+  const meta = { title: 'ZNK Project Burro', description: 'Projects page' };
 
-    const projects = chunkArray(projectsList, 6);
-    const bffServices = mockBffServices;
-    const bffAssignments = mockBffAssignments;
-    const bffYearsOfBuilds = mockBffYearsOfBuilds;
+  const projects = chunkArray(projectsList, 6);
+  const bffServices = mockBffServices;
+  const bffAssignments = mockBffAssignments;
+  const bffYearsOfBuilds = mockBffYearsOfBuilds;
 
-    await Promise.all(store.dispatch(getRunningQueriesThunk()))
-
-    return {
-      props: {
-        meta,
-        projects,
-        bffServices,
-        bffAssignments,
-        bffYearsOfBuilds,
-        ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
-      },
-    };
-  });
+  return {
+    props: {
+      meta,
+      projects,
+      bffServices,
+      bffAssignments,
+      bffYearsOfBuilds,
+      ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
+    },
+  };
+}
 
 export default Projects;
