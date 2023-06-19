@@ -1,7 +1,6 @@
 import React, { FC, TouchEventHandler, useState } from 'react';
 import ProjectSections from '../ProjectSections/ProjectSections';
 import ProjectPreviewMobileSlider from './ProjectPreviewMobileSlider';
-import { ProjectDescriptionData } from '../../../types/Api/dataTypes';
 import { TFunction } from 'i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { mathPercent } from '../../../features/utils';
@@ -9,9 +8,10 @@ import { Pagination } from 'swiper';
 import LogoLink from '../../shared/Logo/LogoLink';
 import Button from '../../shared/Button/Button';
 import DownloadIcon from '../../../../public/svg/download-arrow.svg';
+import { Project } from '../../../api/entities/project/types/client';
 
 interface IProps {
-  previewProjects: ProjectDescriptionData[];
+  previewProjects: Project[];
   t: TFunction<'translation', undefined, 'translation'>;
   alignLogo?: 'start' | 'center';
   isPhone?: boolean;

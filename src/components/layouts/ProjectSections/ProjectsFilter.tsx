@@ -4,20 +4,22 @@ import { BffFilterParam, ProjectDescriptionData, ProjectsCategoriesTag } from '.
 import ProjectPreviewDescription from './utilityComponents/ProjectPreviewDescription';
 import FilterTagsSelector from '../../utility/FilterTagsSelector';
 import { useTranslation } from 'next-i18next';
+import { Project } from '../../../api/entities/project/types/client';
+import { BffTag } from '../../../api/entities/bffTags/types/client';
 
 interface IProps {
   hover?: boolean;
-  description?: ProjectDescriptionData;
+  project: Project | null;
   bffParams?: {
     bffServices: BffFilterParam[]
-    bffAssignments: BffFilterParam[]
-    bffYearsOfBuilds: BffFilterParam[]
+    bffPurposes: BffFilterParam[]
+    bffBuildYears: BffFilterParam[]
   };
-  selectedFilter?: string;
+  selectedFilter: BffTag | null;
   setSelectedFilter?: (val: string) => void;
 }
 
-const ProjectsFilter: FC<IProps> = ({ hover, description, bffParams, selectedFilter, setSelectedFilter }) => {
+const ProjectsFilter: FC<IProps> = ({ hover, project, bffParams, selectedFilter, setSelectedFilter }) => {
   const { t } = useTranslation();
 
   return (
@@ -36,14 +38,14 @@ const ProjectsFilter: FC<IProps> = ({ hover, description, bffParams, selectedFil
 
             <FilterTagsSelector
               title={t('projects_filters.assignment')}
-              bffParams={bffParams?.bffAssignments}
+              bffParams={bffParams?.bffPurposes}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
             />
 
             <FilterTagsSelector
               title={t('projects_filters.year')}
-              bffParams={bffParams?.bffYearsOfBuilds}
+              bffParams={bffParams?.bffBuildYears}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
             />
@@ -51,7 +53,7 @@ const ProjectsFilter: FC<IProps> = ({ hover, description, bffParams, selectedFil
         </div>
       }
     >
-      <ProjectPreviewDescription description={description}/>
+      <ProjectPreviewDescription project={project}/>
     </ProjectSections.LogoInf>
   );
 };

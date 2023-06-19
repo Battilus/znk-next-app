@@ -1,22 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../../components/PageWrapper';
 import ProjectSections from '../../components/layouts/ProjectSections/ProjectSections';
-import { ProjectDescriptionType } from '../../components/layouts/ProjectSections/ProjectDescription';
-import { projectsList } from '../../app/mock/fakeData';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageMeta } from '../../types';
-import { Locale } from '../../api/types/locales';
+import { ApiLocale } from '../../api/types/locales';
+import { Project } from '../../api/entities/project/types/client';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { ProjectQueryKey } from '../../api/constants';
+import { getOneProjectById, useGetOneProjectByIdQuery } from '../../api/entities/project/queries';
+import { useRouter } from 'next/router';
 
 type Props = {
   meta: PageMeta;
-  project: Partial<ProjectDescriptionType>;
+  projectId: string;
 }
 
-const Project: NextPage<Props> = ({ meta, project }) => {
+const Project: NextPage<Props> = ({ meta, projectId }) => {
+  const {locale} = useRouter();
+
+  const projectQuery = useGetOneProjectByIdQuery(projectId, { localization: locale?.toUpperCase() as ApiLocale });
+
+  const project = useMemo<Partial<Project> | null>(() => {
+    return projectQuery.isSuccess ? projectQuery.data : null;
+  }, [projectQuery.isSuccess, projectQuery.data])
+
   const navigationPrevRef = useRef<HTMLDivElement>(null);
   const navigationNextRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +35,7 @@ const Project: NextPage<Props> = ({ meta, project }) => {
     <PageWrapper meta={meta}>
       <div className="w-full h-full flex">
         <ProjectSections.ProjectDescription
-          description={project}
+          project={project}
         />
         <div className="w-full h-full overflow-hidden">
           <Swiper
@@ -87,21 +98,18 @@ const Project: NextPage<Props> = ({ meta, project }) => {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params, locale }) => {
+  const localization = locale?.toUpperCase() as ApiLocale;
 
-  const meta = { title: 'ZNK Project Burro', description: 'Project description' };
-  const foundProject = projectsList.find(project => project.id === params?.id);
-  const project = foundProject ?
-    {
-      ...foundProject,
-      images: [ ...foundProject.images ]
-        .sort((a, b) => a.showOrder - b.showOrder),
-    } : {};
+  const projectId = `${params?.id}`;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery([ ProjectQueryKey.One, projectId, { localization } ], getOneProjectById);
 
   return {
     props: {
-      meta,
-      project,
-      ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
+      meta: { title: 'ZNK Project Burro', description: 'Project description' },
+      ...(await serverSideTranslations(localization, [ 'common' ])),
+      dehydratedState: dehydrate(queryClient),
+      projectId,
     },
   };
 };

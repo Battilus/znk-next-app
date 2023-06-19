@@ -1,26 +1,26 @@
 import React, { FC } from 'react';
-import { ProjectDescriptionData } from '../../../../types/Api/dataTypes';
 import ProjectStatusRow from './ProjectStatusRow';
+import { Project } from '../../../../api/entities/project/types/client';
 
 interface IProps {
-  description?: ProjectDescriptionData;
+  project: Project | null;
 }
 
-const ProjectPreviewDescription: FC<IProps> = ({ description }) => {
+const ProjectPreviewDescription: FC<IProps> = ({ project }) => {
   return (
     <div className="w-full h-full flex flex-col justify-between min-w-48 2xl:min-w-13.33v">
       <div>
         <div className="w-full h-px 2xl:h-[0.07vw] bg-matterhorn mb-1.5 2xl:mb-0.42v"/>
 
         <div className="uppercase text-matterhorn leading-18p 2xl:leading-1.25v font-medium text-sm 2xl:text-0.97v text-justify">
-          {description?.title}
+          {project?.title}
         </div>
       </div>
 
       <div className="w-full h-full flex flex-col justify-end items-end space-y-3">
-        <ProjectStatusRow status={description?.location}/>
-        <ProjectStatusRow status={description?.yearOfBuild}/>
-        <ProjectStatusRow status={description?.status}/>
+        <ProjectStatusRow status={project?.location}/>
+        <ProjectStatusRow status={project?.yearOfBuild}/>
+        <ProjectStatusRow status={project?.status}/>
       </div>
     </div>
   );

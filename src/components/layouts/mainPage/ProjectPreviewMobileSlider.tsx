@@ -2,9 +2,10 @@ import React, { FC, TouchEventHandler } from 'react';
 import { ProjectDescriptionData } from '../../../types/Api/dataTypes';
 import MobileProjectPreview from '../../shared/SliderPreview/MobileProjectPreview';
 import { TFunction } from 'i18next';
+import { Project } from '../../../api/entities/project/types/client';
 
 interface IProps {
-  previewProject: ProjectDescriptionData;
+  previewProject: Project;
   className?: string;
   widthClassName?: string;
   onTouchMove?: TouchEventHandler<HTMLDivElement>;

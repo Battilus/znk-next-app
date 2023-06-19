@@ -5,6 +5,7 @@ import * as apiRoutes from '../../endpoints';
 import { ProjectImage } from './types/client';
 import { ApiLocale } from '../../types/locales';
 import { projectImagesAdapter } from './adapters/adapters';
+import { ProjectImagesQueryKey } from '../../constants';
 
 type QueryParams = {
   localization: ApiLocale
@@ -38,7 +39,7 @@ export const useGetProjectImagesQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<ProjectImage[], unknown, ProjectImage[], [ string, string, QueryParams ]>
 ) => {
-  return useQuery(['projectImages', projectId, queryParams], getImagesByProjectId, options);
+  return useQuery([ProjectImagesQueryKey.List, projectId, queryParams], getImagesByProjectId, options);
 };
 
 export const useGetPreviewProjectImagesQuery = (
@@ -46,5 +47,5 @@ export const useGetPreviewProjectImagesQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<ProjectImage[], unknown, ProjectImage[], [ string, string, QueryParams ]>
 ) => {
-  return useQuery(['previewProjectImages', projectId, queryParams], getPreviewImagesByProjectId, options);
+  return useQuery([ProjectImagesQueryKey.PreviewList, projectId, queryParams], getPreviewImagesByProjectId, options);
 };

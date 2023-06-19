@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { ProjectDescriptionData } from '../../../types/Api/dataTypes';
 import ProjectPreview from '../../shared/SliderPreview/ProjectPreview';
+import { Project } from '../../../api/entities/project/types/client';
 
 interface IProps {
-  previewProjects: ProjectDescriptionData[];
+  previewProjects: Project[];
   hover?: boolean;
   hoverHandler: (val: boolean, index: number | null) => void;
 }

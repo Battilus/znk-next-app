@@ -6,14 +6,15 @@ import { ApiLocale } from '../../types/locales';
 import { bffTagAdapter } from './adapters/adapters';
 import { BffTag } from './types/client';
 import { ServerBffTag } from './types/server';
+import { BffTagsQueryKey } from '../../constants';
 
 type QueryParams = {
   localization: ApiLocale
 }
 
 const getBffServicesUrl = () => apiRoutes.bffServices();
-const getBffAssignmentsUrl = () => apiRoutes.bffAssignments();
-const getBffYearsOfBuildsUrl = () => apiRoutes.bffYearsOfBuilds();
+const getBffPurposesUrl = () => apiRoutes.bffPurposes();
+const getBffBuildYearsUrl = () => apiRoutes.bffBuildYears();
 
 export const getBffServicesList: QueryFunction<BffTag[], [ string, QueryParams ]> = ({ queryKey }) => {
   const [, queryParams] = queryKey;
@@ -25,20 +26,20 @@ export const getBffServicesList: QueryFunction<BffTag[], [ string, QueryParams ]
     );
 };
 
-export const getBffAssignmentsList: QueryFunction<BffTag[], [ string, QueryParams ]> = ({ queryKey }) => {
+export const getBffPurposesList: QueryFunction<BffTag[], [ string, QueryParams ]> = ({ queryKey }) => {
   const [, queryParams] = queryKey;
 
-  return superagent.get(getBffAssignmentsUrl())
+  return superagent.get(getBffPurposesUrl())
     .query(queryParams)
     .then((response) => response.body as ServerBffTag[])
     .then((bffData) => bffTagAdapter.toClient(bffData)
     );
 };
 
-export const getBffYearsOfBuildsList: QueryFunction<BffTag[], [ string, QueryParams ]> = ({ queryKey }) => {
+export const getBffBuildYearsList: QueryFunction<BffTag[], [ string, QueryParams ]> = ({ queryKey }) => {
   const [, queryParams] = queryKey;
 
-  return superagent.get(getBffYearsOfBuildsUrl())
+  return superagent.get(getBffBuildYearsUrl())
     .query(queryParams)
     .then((response) => response.body as ServerBffTag[])
     .then((bffData) => bffTagAdapter.toClient(bffData)
@@ -49,19 +50,19 @@ export const useGetBffServicesListQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<BffTag[], unknown, BffTag[], [ string, QueryParams ]>
 ) => {
-  return useQuery(['bffServices', queryParams], getBffServicesList, options);
+  return useQuery([BffTagsQueryKey.Services, queryParams], getBffServicesList, options);
 };
 
-export const useGetBffAssignmentsListQuery = (
+export const useGetBffPurposesListQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<BffTag[], unknown, BffTag[], [ string, QueryParams ]>
 ) => {
-  return useQuery(['bffAssignments', queryParams], getBffAssignmentsList, options);
+  return useQuery([BffTagsQueryKey.Purposes, queryParams], getBffPurposesList, options);
 };
 
-export const useGetBffYearsOfBuildsListQuery = (
+export const useGetBffBuildYearsListQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<BffTag[], unknown, BffTag[], [ string, QueryParams ]>
 ) => {
-  return useQuery(['bffYearsOfBuilds', queryParams], getBffYearsOfBuildsList, options);
+  return useQuery([BffTagsQueryKey.BuildYears, queryParams], getBffBuildYearsList, options);
 };

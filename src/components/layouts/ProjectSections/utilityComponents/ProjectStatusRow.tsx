@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const ProjectStatusRow: FC<IProps> = ({ title, status }) => {
-  if (!title && !(status || typeof status === 'number')) {
+  if (!title || !(status || typeof status === 'number')) {
     return null;
   }
 

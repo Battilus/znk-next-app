@@ -6,6 +6,8 @@ import { Project } from './types/client';
 import { projectAdapter } from './adapters/adapters';
 import { ServerProject } from './types/server';
 import { ApiLocale } from '../../types/locales';
+import { ProjectQueryKey } from '../../constants';
+import { BffTag } from '../bffTags/types/client';
 
 type QueryParams = {
   localization: ApiLocale
@@ -13,6 +15,7 @@ type QueryParams = {
 
 const getPreviewProjectsListUrl = () => apiRoutes.projectsPreview();
 const getProjectsListByTagUrl = (tag: string) => apiRoutes.projectsByTag({tag});
+const getAllProjectsUrl = () => apiRoutes.allProjects();
 const getOneProjectByIdUrl = (projectId: string) => apiRoutes.projectById({projectId});
 const getOneProjectByTitleUrl = (projectTitle: string) => apiRoutes.projectByTitle({projectTitle});
 
@@ -24,6 +27,16 @@ export const getPreviewProjectsList: QueryFunction<Project[], [ string, QueryPar
     .then((response) => response.body as ServerProject[])
     .then((serverProjects) => serverProjects.map(projectData => projectAdapter.toClient(projectData))
   );
+};
+
+export const getAllProjectsList: QueryFunction<Project[], [ string, QueryParams ]> = ({ queryKey }) => {
+  const [, queryParams] = queryKey;
+
+  return superagent.get(getAllProjectsUrl())
+    .query(queryParams)
+    .then((response) => response.body as ServerProject[])
+    .then((serverProjects) => serverProjects.map(projectData => projectAdapter.toClient(projectData))
+    );
 };
 
 export const getProjectsListByTag: QueryFunction<Project[], [ string, string, QueryParams ]> = ({ queryKey }) => {
@@ -60,15 +73,15 @@ export const useGetPreviewProjectsListQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<Project[], unknown, Project[], [ string, QueryParams ]>
 ) => {
-  return useQuery(['previewProjects', queryParams], getPreviewProjectsList, options);
+  return useQuery([ProjectQueryKey.Preview, queryParams], getPreviewProjectsList, options);
 };
 
 export const useGetProjectsListByTagQuery = (
-  tag: string,
+  tag: BffTag,
   queryParams: QueryParams,
   options?: UseQueryOptions<Project[], unknown, Project[], [ string, string, QueryParams ]>
 ) => {
-  return useQuery(['projects', tag, queryParams], getProjectsListByTag, options);
+  return useQuery([ProjectQueryKey.List, tag, queryParams], getProjectsListByTag, options);
 };
 
 export const useGetOneProjectByIdQuery = (
@@ -76,7 +89,7 @@ export const useGetOneProjectByIdQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<Project, unknown, Project, [ string, string, QueryParams ]>
 ) => {
-  return useQuery(['project', projectId, queryParams], getOneProjectById, options);
+  return useQuery([ProjectQueryKey.One, projectId, queryParams], getOneProjectById, options);
 };
 
 export const useGetOneProjectByTitleQuery = (
@@ -84,5 +97,5 @@ export const useGetOneProjectByTitleQuery = (
   queryParams: QueryParams,
   options?: UseQueryOptions<Project, unknown, Project, [ string, string, QueryParams ]>
 ) => {
-  return useQuery(['project', projectTitle, queryParams], getOneProjectByTitle, options);
+  return useQuery([ProjectQueryKey.One, projectTitle, queryParams], getOneProjectByTitle, options);
 };

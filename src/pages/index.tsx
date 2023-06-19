@@ -1,44 +1,42 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../components/PageWrapper';
-import React, { useEffect, useState } from 'react';
-import { ProjectDescriptionData } from '../types/Api/dataTypes';
+import React, { useMemo, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { projectsList } from '../app/mock/fakeData';
 import { useTranslation } from 'next-i18next';
 import MobileWrapper from '../components/layouts/mainPage/MobileWrapper';
 import DesktopWrapper from '../components/layouts/mainPage/DesktopWrapper';
 import { PageMeta } from '../types';
-import { ApiLocale, Locale } from '../api/types/locales';
+import { ApiLocale } from '../api/types/locales';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { getPreviewProjectsList, useGetPreviewProjectsListQuery } from '../api/entities/project/queries';
+import { ProjectQueryKey } from '../api/constants';
+import { Project } from '../api/entities/project/types/client';
+import { useRouter } from 'next/router';
 
 type Props = {
   meta: PageMeta;
-  previewProjects: ProjectDescriptionData[];
 }
 
-const Home: NextPage<Props> = ({ meta, previewProjects }) => {
+const Home: NextPage<Props> = ({ meta }) => {
   const [ hover, setHover ] = useState<boolean>(false);
 
+  const {locale} = useRouter();
   const { t } = useTranslation();
 
-  // const previewProjectsQuery = useGetPreviewProjectsListQuery(
-  //   { localization: ApiLocale.RU },
-  //   { refetchInterval: false },
-  // );
-  //
-  // useEffect(() => {
-  //   if (previewProjectsQuery.isSuccess) {
-  //     console.log(previewProjectsQuery.data);
-  //   }
-  // }, [ previewProjectsQuery.isSuccess ]);
+  const previewProjectsQuery = useGetPreviewProjectsListQuery(
+    { localization: locale?.toUpperCase() as ApiLocale },
+  );
+
+  const projectsList = useMemo<Project[] | null>(() => {
+    return previewProjectsQuery.isSuccess ? previewProjectsQuery.data : null;
+  }, [ previewProjectsQuery.isSuccess ]);
 
   const renderWrapper = ({ previewProjects, tablet, iPhone }: {
-    previewProjects: ProjectDescriptionData[],
+    previewProjects: Project[] | null,
     tablet: boolean,
     iPhone: boolean
   }) => {
-    if (previewProjects.length === 0) {
+    if (!previewProjects || previewProjects.length === 0) {
       return null;
     }
 
@@ -59,6 +57,7 @@ const Home: NextPage<Props> = ({ meta, previewProjects }) => {
         t={t}
         hover={hover}
         setHover={setHover}
+        isLoading={previewProjectsQuery.isLoading}
       />
     );
   };
@@ -71,24 +70,23 @@ const Home: NextPage<Props> = ({ meta, previewProjects }) => {
       screenBreakpoints={true}
     >
       {({ breakpoints: { mobileSm: iPhone }, screens: { tablet } }) =>
-        renderWrapper({ previewProjects, tablet, iPhone })
+        renderWrapper({ previewProjects: projectsList, tablet, iPhone })
       }
     </PageWrapper>
   );
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => {
-  // const queryClient = new QueryClient();
-  // await queryClient.prefetchQuery([ 'previewProjects', { localization: ApiLocale.RU } ], getPreviewProjectsList);
+  const localization = locale?.toUpperCase() as ApiLocale;
 
-  const previewProjects = projectsList.filter(project => project?.mainPagePreview && project.mainPagePreview);
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery([ ProjectQueryKey.Preview, { localization } ], getPreviewProjectsList);
 
   return {
     props: {
       meta: { title: 'ZNK Project Burro', description: 'Main page' },
-      previewProjects: previewProjects.length > 3 ? previewProjects.slice(0, 3) : previewProjects,
-      ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
-      // dehydratedState: dehydrate(queryClient),
+      ...(await serverSideTranslations(localization, [ 'common' ])),
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };
