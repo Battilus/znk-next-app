@@ -3,7 +3,8 @@ const api = (endpoint: string) => {
 }
 
 export const projects = () => 'projects';
-export const allProjects = () => api(`${projects()}`);
+export const projectsList = () => api(`${projects()}`);
+export const projectsListFilter = () => api(`${projects()}/filter/`);
 export const projectsPreview = () => api(`${projects()}/preview`);
 export const projectsByTag = ({ tag }: { tag: string }) => api(`${projects()}/${tag}`);
 export const project = () => 'project';

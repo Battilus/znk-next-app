@@ -13,6 +13,7 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { ProjectQueryKey } from '../../api/constants';
 import { getOneProjectById, useGetOneProjectByIdQuery } from '../../api/entities/project/queries';
 import { useRouter } from 'next/router';
+import ThereIsNoProjects from '../../components/shared/Logo/ThereIsNoProjects';
 
 type Props = {
   meta: PageMeta;
@@ -20,13 +21,13 @@ type Props = {
 }
 
 const Project: NextPage<Props> = ({ meta, projectId }) => {
-  const {locale} = useRouter();
+  const { locale } = useRouter();
 
   const projectQuery = useGetOneProjectByIdQuery(projectId, { localization: locale?.toUpperCase() as ApiLocale });
 
   const project = useMemo<Partial<Project> | null>(() => {
     return projectQuery.isSuccess ? projectQuery.data : null;
-  }, [projectQuery.isSuccess, projectQuery.data])
+  }, [ projectQuery.isSuccess, projectQuery.data ]);
 
   const navigationPrevRef = useRef<HTMLDivElement>(null);
   const navigationNextRef = useRef<HTMLDivElement>(null);
@@ -75,19 +76,23 @@ const Project: NextPage<Props> = ({ meta, projectId }) => {
               disableOnInteraction: false,
             }}
           >
-            {project?.images?.map(image =>
-              <SwiperSlide key={image.showOrder}>
-                <div className="w-full h-screen">
-                  <Image
-                    className="object-cover object-center"
-                    src={image.src}
-                    alt={`Project preview ${image.alt || image.showOrder}`}
-                    layout="fill"
-                    quality={100}
-                    priority={true}
-                  />
-                </div>
-              </SwiperSlide>)}
+
+            {project?.images?.length &&
+              project.images.map(image =>
+                <SwiperSlide key={image.showOrder}>
+                  <div className="w-full h-screen">
+                    <Image
+                      className="object-cover object-center"
+                      src={image.src}
+                      alt={`Project preview ${image.alt || image.showOrder}`}
+                      layout="fill"
+                      quality={100}
+                      priority={true}
+                    />
+                  </div>
+                </SwiperSlide>)
+              || <ThereIsNoProjects onlyLogo={true}/>}
+
             <div ref={navigationPrevRef} className="z-10 absolute top-0 left-0 h-full w-96 2xl:w-26.67v"/>
             <div ref={navigationNextRef} className="z-10 absolute top-0 right-0 h-full w-96 2xl:w-26.67v"/>
           </Swiper>

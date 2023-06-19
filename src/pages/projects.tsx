@@ -11,11 +11,8 @@ import { PageMeta } from '../types';
 import { ApiLocale, Locale } from '../api/types/locales';
 import * as apiRoutes from '../api/endpoints';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { BffTagsQueryKey, ProjectQueryKey } from '../api/constants';
-import {
-  getProjectsListByTag,
-  useGetProjectsListByTagQuery,
-} from '../api/entities/project/queries';
+import { BffTagsQueryKey } from '../api/constants';
+import { useGetProjectsListByFilterQuery } from '../api/entities/project/queries';
 import {
   getBffPurposesList,
   getBffServicesList,
@@ -26,6 +23,12 @@ import { Project } from '../api/entities/project/types/client';
 import { BffTag } from '../api/entities/bffTags/types/client';
 import { useRouter } from 'next/router';
 import LoadingScreen from '../components/shared/Loader/LoadingScreen';
+import ThereIsNoProjects from '../components/shared/Logo/ThereIsNoProjects';
+
+export type SelectedFilterParam = {
+  type: BffTagsQueryKey | null;
+  tag: BffTag | null
+};
 
 type Props = {
   meta: PageMeta;
@@ -35,7 +38,10 @@ const Projects: NextPage<Props> = ({ meta }) => {
   const [ hover, setHover ] = useState<boolean>(false);
   const [ selectedProjectIndex, setSelectedProjectIndex ] = useState<number | null>(null);
   const [ selectedProjectsChunkIndex, setSelectedProjectsChunkIndex ] = useState<number | null>(null);
-  const [ selectedFilter, setSelectedFilter ] = useState<BffTag | null>(null);
+  const [ selectedFilter, setSelectedFilter ] = useState<SelectedFilterParam>({
+    type: null,
+    tag: null,
+  });
 
   const { locale } = useRouter();
 
@@ -59,10 +65,14 @@ const Projects: NextPage<Props> = ({ meta }) => {
     return buildYearsTagsQuery.isSuccess ? buildYearsTagsQuery.data : [];
   }, [ buildYearsTagsQuery.isSuccess, buildYearsTagsQuery.data ]);
 
-  const projectsQuery = useGetProjectsListByTagQuery(
-    selectedFilter!,
-    { localization },
-    { enabled: Boolean(localization) && Boolean(selectedFilter) },
+  const isProjectsQueryEnabled = Boolean(localization) && Boolean(selectedFilter.tag) && Boolean(selectedFilter.type);
+
+  const projectsQuery = useGetProjectsListByFilterQuery(
+    {
+      localization,
+      [selectedFilter.type as BffTagsQueryKey]: selectedFilter.tag,
+    },
+    { enabled: isProjectsQueryEnabled },
   );
 
   const projects = useMemo<Project[][] | null>(() => {
@@ -92,9 +102,13 @@ const Projects: NextPage<Props> = ({ meta }) => {
       servicesTagsQuery.isLoading ||
       purposesTagsQuery.isLoading ||
       buildYearsTagsQuery.isLoading ||
-      projectsQuery.isLoading
+      (isProjectsQueryEnabled && projectsQuery.isLoading)
     ) {
       return <LoadingScreen/>;
+    }
+
+    if (!isProjectsQueryEnabled) {
+      return <ThereIsNoProjects noFilters={true}/>;
     }
 
     return (
@@ -162,7 +176,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
   await queryClient.prefetchQuery([ BffTagsQueryKey.Services, { localization } ], getBffServicesList);
   await queryClient.prefetchQuery([ BffTagsQueryKey.Purposes, { localization } ], getBffPurposesList);
   await queryClient.prefetchQuery([ BffTagsQueryKey.BuildYears, { localization } ], getBffBuildYearsList);
-  await queryClient.prefetchQuery([ ProjectQueryKey.List, '2021', { localization } ], getProjectsListByTag);
+  // await queryClient.prefetchQuery([ ProjectQueryKey.List, { localization, [BffTagsQueryKey.BuildYears]: '2023' } ], getProjectsListByFilter);
 
   return {
     props: {

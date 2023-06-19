@@ -10,7 +10,8 @@ export enum ProjectImagesQueryKey {
 }
 
 export enum BffTagsQueryKey {
-  Services = 'bffServices',
-  Purposes = 'bffPurposes',
-  BuildYears = 'bffBuildYears',
+  Status = 'status',
+  Services = 'service',
+  Purposes = 'purpose',
+  BuildYears = 'yearOfBuild',
 }

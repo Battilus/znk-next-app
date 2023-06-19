@@ -1,20 +1,24 @@
 import React, { FC } from 'react';
 import Button from '../shared/Button/Button';
 import { BffTag } from '../../api/entities/bffTags/types/client';
+import { SelectedFilterParam } from '../../pages/projects';
+import { BffTagsQueryKey } from '../../api/constants';
 
 interface IProps {
   title: string;
+  type: BffTagsQueryKey;
   bffParams?: BffTag[];
-  selectedFilter: BffTag | null;
-  setSelectedFilter?: (val: string) => void;
+  selectedFilter: SelectedFilterParam;
+  setSelectedFilter?: (val: SelectedFilterParam) => void;
 }
 
-const FilterTagsSelector: FC<IProps> = ({ title, bffParams, selectedFilter, setSelectedFilter }) => {
+const FilterTagsSelector: FC<IProps> = ({ title, type, bffParams, selectedFilter, setSelectedFilter }) => {
 
-  const selectHandler = (filterParam: string) => {
-    if (setSelectedFilter) {
-      setSelectedFilter(selectedFilter === filterParam ? '' : filterParam);
-    }
+  const selectHandler = (filterParam: BffTag) => {
+    setSelectedFilter?.({
+      type,
+      tag: selectedFilter.tag !== filterParam ? filterParam : null,
+    });
   };
 
   if (!bffParams || bffParams.length === 0) {
@@ -31,7 +35,7 @@ const FilterTagsSelector: FC<IProps> = ({ title, bffParams, selectedFilter, setS
             key={filterTag}
             styleType="rounded"
             onClick={() => selectHandler(filterTag)}
-            isActive={filterTag === selectedFilter}
+            isActive={filterTag === selectedFilter.tag}
             activeClassName="bg-matterhorn text-whiteSmoke"
             roundedPadding="px-[0.4375rem] 2xl:px-[0.49vw] pt-[0.1875rem] 2xl:pt-[0.21vw] pb-[0.125rem] 2xl:pb-[0.14vw]"
           >

@@ -3,6 +3,7 @@
   "show": "show",
   "learn_more": "Learn more",
   "empty_projects": "There is no projects",
+  "thereIsNoFilter": "There is no filter",
   "projects_filters": {
     "services": "services",
     "assignment": "assignment",

@@ -33,13 +33,13 @@ const ProjectDescription: FC<IProjectDescriptionProps> = ({ project }) => {
             </div>
 
             <div
-              className="h-full my-9 2xl:my-[2.5vw] text-matterhorn text-xs 2xl:text-0.83v leading-13p 2xl:leading-0.9v
+              className="h-full overflow-y-scroll my-9 2xl:my-[2.5vw] text-matterhorn text-xs 2xl:text-0.83v leading-13p 2xl:leading-0.9v
                          font-normal text-justify space-y-0.5">
                 {project?.description ? splitIndents(project?.description) : null}
             </div>
 
             <div className="w-full h-full flex flex-col justify-end items-end space-y-3">
-                <ProjectStatusRow title={t('projectStatusRow.destination')} status={project?.service}/>
+                <ProjectStatusRow title={t('projectStatusRow.purpose')} status={project?.purpose}/>
                 <ProjectStatusRow title={t('projectStatusRow.place')} status={project?.location}/>
                 <ProjectStatusRow title={t('projectStatusRow.year')} status={project?.yearOfBuild}/>
                 <ProjectStatusRow title={t('projectStatusRow.status')} status={project?.status}/>

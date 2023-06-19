@@ -5,6 +5,8 @@ import FilterTagsSelector from '../../utility/FilterTagsSelector';
 import { useTranslation } from 'next-i18next';
 import { Project } from '../../../api/entities/project/types/client';
 import { BffTag } from '../../../api/entities/bffTags/types/client';
+import { SelectedFilterParam } from '../../../pages/projects';
+import { BffTagsQueryKey } from '../../../api/constants';
 
 interface IProps {
   hover?: boolean;
@@ -14,8 +16,8 @@ interface IProps {
     bffPurposes: BffTag[]
     bffBuildYears: BffTag[]
   };
-  selectedFilter: BffTag | null;
-  setSelectedFilter?: (val: string) => void;
+  selectedFilter: SelectedFilterParam;
+  setSelectedFilter?: (val: SelectedFilterParam) => void;
 }
 
 const ProjectsFilter: FC<IProps> = ({ hover, project, bffParams, selectedFilter, setSelectedFilter }) => {
@@ -30,6 +32,7 @@ const ProjectsFilter: FC<IProps> = ({ hover, project, bffParams, selectedFilter,
           <div className="w-full flex flex-col justify-between gap-[3.25rem] 2xl:gap-[3.61vw]">
             <FilterTagsSelector
               title={t('projects_filters.services')}
+              type={BffTagsQueryKey.Services}
               bffParams={bffParams?.bffServices}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
@@ -37,6 +40,7 @@ const ProjectsFilter: FC<IProps> = ({ hover, project, bffParams, selectedFilter,
 
             <FilterTagsSelector
               title={t('projects_filters.assignment')}
+              type={BffTagsQueryKey.Purposes}
               bffParams={bffParams?.bffPurposes}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
@@ -44,6 +48,7 @@ const ProjectsFilter: FC<IProps> = ({ hover, project, bffParams, selectedFilter,
 
             <FilterTagsSelector
               title={t('projects_filters.year')}
+              type={BffTagsQueryKey.BuildYears}
               bffParams={bffParams?.bffBuildYears}
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
