@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import ProjectSections from './ProjectSections';
-import { BffFilterParam, ProjectDescriptionData, ProjectsCategoriesTag } from '../../../types/Api/dataTypes';
 import ProjectPreviewDescription from './utilityComponents/ProjectPreviewDescription';
 import FilterTagsSelector from '../../utility/FilterTagsSelector';
 import { useTranslation } from 'next-i18next';
@@ -11,9 +10,9 @@ interface IProps {
   hover?: boolean;
   project: Project | null;
   bffParams?: {
-    bffServices: BffFilterParam[]
-    bffPurposes: BffFilterParam[]
-    bffBuildYears: BffFilterParam[]
+    bffServices: BffTag[]
+    bffPurposes: BffTag[]
+    bffBuildYears: BffTag[]
   };
   selectedFilter: BffTag | null;
   setSelectedFilter?: (val: string) => void;

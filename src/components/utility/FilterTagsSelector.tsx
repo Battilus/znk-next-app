@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 import Button from '../shared/Button/Button';
-import { BffFilterParam } from '../../types/Api/dataTypes';
 import { BffTag } from '../../api/entities/bffTags/types/client';
 
 interface IProps {
   title: string;
-  bffParams?: BffFilterParam[];
+  bffParams?: BffTag[];
   selectedFilter: BffTag | null;
   setSelectedFilter?: (val: string) => void;
 }

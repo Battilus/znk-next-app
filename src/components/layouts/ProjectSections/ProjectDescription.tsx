@@ -1,15 +1,9 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import ProjectStatusRow from './utilityComponents/ProjectStatusRow';
 import ProjectSections from './ProjectSections';
-import { ProjectDescriptionData } from '../../../types/Api/dataTypes';
 import LogoLink from '../../shared/Logo/LogoLink';
 import { useTranslation } from 'next-i18next';
 import { Project } from '../../../api/entities/project/types/client';
-
-export type ProjectDescriptionType = ProjectDescriptionData & {
-  text: ReactNode | string
-  assignment: string
-}
 
 interface IProjectDescriptionProps {
   project: Partial<Project> | null;
