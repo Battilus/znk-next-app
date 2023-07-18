@@ -1,9 +1,8 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import { TFunction } from 'i18next';
 import Button from '../../../shared/Button/Button';
 import BurroPreview from '../../../shared/SliderPreview/BurroPreview';
 import { VACANCIES_LINK } from '../../../../assets/constants';
-import { Popover, Transition } from '@headlessui/react';
 import Hint from '../../../shared/Hint';
 
 interface IProps {
