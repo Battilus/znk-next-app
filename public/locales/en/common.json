@@ -78,6 +78,18 @@
         "mobile": {
           "p1": "Основатель АБ «Знак: проект», дизайн-студии «Знак: пресс». Имеет большой опыт работы в сфере архитектуры, градостроительства и дизайна в качестве руководителя проектной группы: мастер-планов развития территорий (в том числе объектов ЮНЕСКО), архитектурно-градостроительных концепций, проектов планировки территории, проектов зон охраны объектов культурного наследия.\n\nВедёт научно-исследовательскую и образовательную деятельность в области архитектуры в вузах Санкт-Петербурга.",
           "p2": "Основатель АБ «Знак: проект», дизайн-студии «Знак: пресс». Имеет большой опыт работы в сфере архитектуры, градостроительства и дизайна в качестве руководителя проектной группы: мастер-планов развития территорий (в том числе объектов ЮНЕСКО), архитектурно-градостроительных концепций, проектов планировки территории, проектов зон охраны объектов культурного наследия.\n\nВедёт научно-исследовательскую и образовательную деятельность в области архитектуры в вузах Санкт-Петербурга."
+        },
+        "employees": {
+          "e1": {
+            "title": "Ilya Kolesnikov",
+            "p1": "An experienced architect working with contemporary design and historical environments, applying extensive knowledge of structures, technologies and materials. He has extensive experience in revitalization, including industrial areas and cultural heritage sites.",
+            "p2": "In the field of architecture he worked with most of the iconic objects in St. Petersburg, Russia and the CIS countries."
+          },
+          "e2": {
+            "title": "Ekaterina Kholuyanova",
+            "p1": "Has more than 10 years of experience in architecture and urban planning as a team leader and manager of large-scale projects: general plans, master plans (including for UNESCO sites), territory planning projects.",
+            "p2": "Educated at St. Petersburg State University of Civil Engineering (postgraduate studies), actively involved in research and teaching at universities in St. Petersburg."
+          }
         }
       },
       "partners": {

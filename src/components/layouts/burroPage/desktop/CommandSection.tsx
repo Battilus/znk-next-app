@@ -26,16 +26,20 @@ const CommandSection: FC<IProps> = ({ hover, setHover, t }) => {
         <div className="w-full h-full flex flex-col items-center justify-center">
           <div className="relative w-full h-full">
 
-            <Hint positionClassName="absolute bottom-[16.875rem] 2xl:bottom-[35.89%] left-[220px] 2xl:left-[26.86%]">
-              <p>Основатель АБ «Знак: проект», дизайн-студии «Знак: пресс». Имеет большой опыт работы в сфере архитектуры, градостроительства и дизайна в качестве руководителя проектной группы: мастер-планов развития территорий (в том числе объектов ЮНЕСКО), архитектурно-градостроительных концепций, проектов планировки территории, проектов зон охраны объектов культурного наследия.</p>
-
-              <p>Ведёт научно-исследовательскую и образовательную деятельность в области архитектуры в вузах Санкт-Петербурга.</p>
+            <Hint positionClassName="absolute bottom-[35.89%] left-[26.86%]">
+              <p className="text-sm 2xl:text-[0.97vw] 2xl:leading-[1.39vw] font-medium">
+                {t('pages.burro.command.employees.e2.title')}
+              </p>
+              <p>{t('pages.burro.command.employees.e2.p1')}</p>
+              <p>{t('pages.burro.command.employees.e2.p2')}</p>
             </Hint>
 
-            <Hint positionClassName="absolute top-[23.125rem] 2xl:top-[47.07%] right-[220px] 2xl:right-[28.86%]" placement="LB">
-              <p>Основатель АБ «Знак: проект», дизайн-студии «Знак: пресс». Имеет большой опыт работы в сфере архитектуры, градостроительства и дизайна в качестве руководителя проектной группы: мастер-планов развития территорий (в том числе объектов ЮНЕСКО), архитектурно-градостроительных концепций, проектов планировки территории, проектов зон охраны объектов культурного наследия.</p>
-
-              <p>Ведёт научно-исследовательскую и образовательную деятельность в области архитектуры в вузах Санкт-Петербурга.</p>
+            <Hint positionClassName="absolute top-[47.07%] right-[28.86%]" placement="LB">
+              <p className="text-sm 2xl:text-[0.97vw] 2xl:leading-[1.39vw] font-medium">
+                {t('pages.burro.command.employees.e1.title')}
+              </p>
+              <p>{t('pages.burro.command.employees.e1.p1')}</p>
+              <p>{t('pages.burro.command.employees.e1.p2')}</p>
             </Hint>
 
           </div>

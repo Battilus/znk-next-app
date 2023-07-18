@@ -10,17 +10,20 @@ type Props = {
 }
 
 const Hint: FC<Props> = ({ children, positionClassName, placement='RB' }) => {
-  const triggerRef = useRef();
-  const timeOutRef = useRef();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const timeOutRef = useRef<NodeJS.Timeout>(null);
 
   const handleEnter = (isOpen: boolean) => {
-    clearTimeout(timeOutRef.current);
+    if (timeOutRef.current) {
+      clearTimeout(timeOutRef.current);
+    }
     if (!isOpen) {
       triggerRef.current?.click();
     }
   };
 
   const handleLeave = (isOpen: boolean) => {
+    // @ts-ignore
     timeOutRef.current = setTimeout(() => {
       if (isOpen) {
         triggerRef.current?.click();
