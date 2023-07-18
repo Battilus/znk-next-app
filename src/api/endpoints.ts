@@ -1,5 +1,5 @@
 const api = (endpoint: string) => {
-  return `${process.env.ZNAK_API_URL}${endpoint}`;
+  return `${process.env.ZNAK_API_URL}/${endpoint}`;
 }
 
 export const projects = () => 'projects';

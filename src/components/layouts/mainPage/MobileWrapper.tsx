@@ -9,6 +9,7 @@ import LogoLink from '../../shared/Logo/LogoLink';
 import Button from '../../shared/Button/Button';
 import DownloadIcon from '../../../../public/svg/download-arrow.svg';
 import { Project } from '../../../api/entities/project/types/client';
+import { PRESENTATION_LINK } from '../../../assets/constants';
 
 interface IProps {
   previewProjects: Project[];
@@ -128,7 +129,8 @@ const MobileWrapper: FC<IProps> = ({ previewProjects, t, alignLogo, isPhone }) =
                   </div>
                   <div className="w-full flex flex-col items-center gap-[15px]">
                     <Button.Link
-                      href="/"
+                      href={PRESENTATION_LINK}
+                      isBlank={true}
                       styleType="rounded"
                       className="w-full border border-matterhorn"
                       childrenClassName="w-full flex items-center justify-center gap-2"

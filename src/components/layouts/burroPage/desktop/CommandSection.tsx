@@ -1,7 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { TFunction } from 'i18next';
 import Button from '../../../shared/Button/Button';
 import BurroPreview from '../../../shared/SliderPreview/BurroPreview';
+import { VACANCIES_LINK } from '../../../../assets/constants';
+import { Popover, Transition } from '@headlessui/react';
+import Hint from '../../../shared/Hint';
 
 interface IProps {
   hover: boolean,
@@ -13,33 +16,36 @@ const CommandSection: FC<IProps> = ({ hover, setHover, t }) => {
   return (
     <BurroPreview
       title={t('pages.burro.command.title')}
-      titleTextColor="text-matterhorn"
+      titleTextColor="text-gray-800"
       hoverTitleTextColor="text-white"
-      bgImage="bg-burro_command_hover_2"
+      bgImage="bg-burro_command_hover"
       hover={hover}
       setHover={setHover}
-      hoverClassName="brightness-75"
+      hoverClassName="brightness-125"
     >
       <>
         <div className="w-full h-full flex flex-col items-center justify-center">
-          <div className="relative w-full h-full transition-colors duration-300">
-            <div className="w-6 2xl:w-1.67v h-6 2xl:h-1.67v bg-whiteSmoke rounded-full hover:bg-yellow-200
-                            absolute top-[20rem] 2xl:top-[39.07%] left-[14.3rem] 2xl:left-[27.94%]"/>
+          <div className="relative w-full h-full">
 
-            <div className="w-6 2xl:w-1.67v h-6 2xl:h-1.67v bg-whiteSmoke rounded-full hover:bg-yellow-200
-                            absolute top-[30.5rem] 2xl:top-[59.58%] left-[9rem] 2xl:left-[17.58%]"/>
+            <Hint positionClassName="absolute bottom-[16.875rem] 2xl:bottom-[35.89%] left-[220px] 2xl:left-[26.86%]">
+              <p>Основатель АБ «Знак: проект», дизайн-студии «Знак: пресс». Имеет большой опыт работы в сфере архитектуры, градостроительства и дизайна в качестве руководителя проектной группы: мастер-планов развития территорий (в том числе объектов ЮНЕСКО), архитектурно-градостроительных концепций, проектов планировки территории, проектов зон охраны объектов культурного наследия.</p>
 
-            <div className="w-6 2xl:w-1.67v h-6 2xl:h-1.67v bg-whiteSmoke rounded-full hover:bg-yellow-200
-                            absolute top-[17rem] 2xl:top-[33.21%] right-[16.6rem] 2xl:right-[32.43%]"/>
+              <p>Ведёт научно-исследовательскую и образовательную деятельность в области архитектуры в вузах Санкт-Петербурга.</p>
+            </Hint>
 
-            <div className="w-6 2xl:w-1.67v h-6 2xl:h-1.67v bg-whiteSmoke rounded-full hover:bg-yellow-200
-                            absolute bottom-[11.5rem] 2xl:bottom-[22.47%] right-[4.4rem] 2xl:right-[8.6%]"/>
+            <Hint positionClassName="absolute top-[23.125rem] 2xl:top-[47.07%] right-[220px] 2xl:right-[28.86%]" placement="LB">
+              <p>Основатель АБ «Знак: проект», дизайн-студии «Знак: пресс». Имеет большой опыт работы в сфере архитектуры, градостроительства и дизайна в качестве руководителя проектной группы: мастер-планов развития территорий (в том числе объектов ЮНЕСКО), архитектурно-градостроительных концепций, проектов планировки территории, проектов зон охраны объектов культурного наследия.</p>
+
+              <p>Ведёт научно-исследовательскую и образовательную деятельность в области архитектуры в вузах Санкт-Петербурга.</p>
+            </Hint>
+
           </div>
         </div>
         <Button.Link
           styleType="rounded"
           className="absolute bottom-5 2xl:bottom-1.39v left-5 2xl:left-1.39v font-medium"
-          href="/"
+          href={VACANCIES_LINK}
+          isBlank={true}
         >
           {t('pages.burro.command.buttonLink.title')}
         </Button.Link>

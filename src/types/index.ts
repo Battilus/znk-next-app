@@ -5,7 +5,7 @@ export type PageMeta = {
 
 export type CertificateCardType = {
     id: string | number,
-    title: string,
+    title?: string,
     logo: {
         img: string,
         width?: number | string,
@@ -13,5 +13,5 @@ export type CertificateCardType = {
         scaleWidth?: number | string,
         scaleHeight?: number | string,
     },
-    certificateHref: string,
+    certificateHref?: string,
 }

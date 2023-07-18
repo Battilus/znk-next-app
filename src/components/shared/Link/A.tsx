@@ -5,11 +5,12 @@ interface IAProps {
   children: ReactNode | string;
   href: string;
   className?: string;
+  isBlank?: boolean;
   onMouseEnter?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>;
   onMouseLeave?: MouseEventHandler<HTMLAnchorElement | HTMLDivElement>;
 }
 
-const A: FC<IAProps> = ({ children, href, className, onMouseEnter, onMouseLeave }) => {
+const A: FC<IAProps> = ({ children, href, className, isBlank, onMouseEnter, onMouseLeave }) => {
   return (
     <Link
       href={href}
@@ -17,7 +18,12 @@ const A: FC<IAProps> = ({ children, href, className, onMouseEnter, onMouseLeave 
       onMouseLeave={onMouseLeave}
     >
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a className={`decoration-0 ${className}`}>{children}</a>
+      <a
+        className={`decoration-0 ${className}`}
+        target={isBlank ? '_blank' : undefined}
+      >
+        {children}
+      </a>
     </Link>
   );
 };

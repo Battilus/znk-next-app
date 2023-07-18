@@ -5,14 +5,14 @@ import ProjectSections from '../components/layouts/ProjectSections/ProjectSectio
 import ProjectPreview from '../components/shared/SliderPreview/ProjectPreview';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { chunkArray } from '../features/utils';
-import { Pagination } from 'swiper';
+import { Keyboard, Pagination } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageMeta } from '../types';
 import { ApiLocale, Locale } from '../api/types/locales';
 import * as apiRoutes from '../api/endpoints';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { BffTagsQueryKey } from '../api/constants';
-import { useGetProjectsListByFilterQuery } from '../api/entities/project/queries';
+import { BffTagsQueryKey, ProjectQueryKey } from '../api/constants';
+import { getProjectsListByFilter, useGetProjectsListByFilterQuery } from '../api/entities/project/queries';
 import {
   getBffPurposesList,
   getBffServicesList,
@@ -22,8 +22,8 @@ import {
 import { Project } from '../api/entities/project/types/client';
 import { BffTag } from '../api/entities/bffTags/types/client';
 import { useRouter } from 'next/router';
-import LoadingScreen from '../components/shared/Loader/LoadingScreen';
 import ThereIsNoProjects from '../components/shared/Logo/ThereIsNoProjects';
+import LoadingSpinner from '../components/shared/Loader/LoadingSpinner';
 
 export type SelectedFilterParam = {
   type: BffTagsQueryKey | null;
@@ -62,7 +62,20 @@ const Projects: NextPage<Props> = ({ meta }) => {
   }, [ purposesTagsQuery.isSuccess, purposesTagsQuery.data ]);
 
   const buildYearsTags = useMemo<BffTag[]>(() => {
-    return buildYearsTagsQuery.isSuccess ? buildYearsTagsQuery.data : [];
+    if (buildYearsTagsQuery.isSuccess) {
+      const tag = buildYearsTagsQuery.data.length ? buildYearsTagsQuery.data[buildYearsTagsQuery.data.length - 1] : null;
+
+      if (tag) {
+        setSelectedFilter({
+          type: BffTagsQueryKey.BuildYears,
+          tag,
+        });
+      }
+
+      return buildYearsTagsQuery.data;
+    }
+
+    return [];
   }, [ buildYearsTagsQuery.isSuccess, buildYearsTagsQuery.data ]);
 
   const isProjectsQueryEnabled = Boolean(localization) && Boolean(selectedFilter.tag) && Boolean(selectedFilter.type);
@@ -104,7 +117,7 @@ const Projects: NextPage<Props> = ({ meta }) => {
       buildYearsTagsQuery.isLoading ||
       (isProjectsQueryEnabled && projectsQuery.isLoading)
     ) {
-      return <LoadingScreen/>;
+      return <LoadingSpinner/>;
     }
 
     if (!isProjectsQueryEnabled) {
@@ -120,7 +133,8 @@ const Projects: NextPage<Props> = ({ meta }) => {
             dynamicMainBullets: 3,
             dynamicBullets: true,
           }}
-          modules={[ Pagination ]}
+          keyboard={true}
+          modules={[ Pagination, Keyboard ]}
         >
           {projects?.map((projectsChunk, chunkIndex) =>
             <SwiperSlide key={chunkIndex}>
@@ -173,10 +187,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
   const localization = locale?.toUpperCase() as ApiLocale;
 
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery([ BffTagsQueryKey.Services, { localization } ], getBffServicesList);
-  await queryClient.prefetchQuery([ BffTagsQueryKey.Purposes, { localization } ], getBffPurposesList);
-  await queryClient.prefetchQuery([ BffTagsQueryKey.BuildYears, { localization } ], getBffBuildYearsList);
-  // await queryClient.prefetchQuery([ ProjectQueryKey.List, { localization, [BffTagsQueryKey.BuildYears]: '2023' } ], getProjectsListByFilter);
+  await queryClient.fetchQuery([ BffTagsQueryKey.Services, { localization } ], getBffServicesList);
+  await queryClient.fetchQuery([ BffTagsQueryKey.Purposes, { localization } ], getBffPurposesList);
+  const buildYearsQueryData = await queryClient.fetchQuery([ BffTagsQueryKey.BuildYears, { localization } ], getBffBuildYearsList);
+
+  if (buildYearsQueryData && buildYearsQueryData.length) {
+    const tag = buildYearsQueryData[buildYearsQueryData.length - 1];
+
+    if (tag) {
+      await queryClient.fetchQuery([
+          ProjectQueryKey.List,
+          {
+            localization,
+            [BffTagsQueryKey.BuildYears]: tag,
+          } ],
+        getProjectsListByFilter);
+    }
+  }
 
   return {
     props: {

@@ -4,7 +4,7 @@ import { TFunction } from 'i18next';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import DoubleSlashIcon from '../../../../../public/svg/double-slash.svg';
-import CertificateCard from '../../../utility/CertificateCard';
+import CertificateCard from '../../../utility/PartnersCard';
 import BurroPreviewTablet from '../../../shared/SliderPreview/BurroPreviewTablet';
 import ArrowLeftStrokeIcon from '../../../../../public/svg/arrow-left-stroke.svg';
 import { useRouter } from 'next/router';
@@ -135,7 +135,7 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
         <SwiperSlide>
           <BurroPreviewTablet
             title={t('pages.burro.achievements.title')}
-            bgImage="bg-burro_achievements_mobile"
+            bgImage="bg-burro_partners_mobile"
           >
             <div className="w-full max-w-[38.56rem] h-full max-h-[26rem] grid grid-cols-2 gap-8 text-white">
               {certificates.map(certificate =>

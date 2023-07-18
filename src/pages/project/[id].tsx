@@ -4,7 +4,7 @@ import PageWrapper from '../../components/PageWrapper';
 import ProjectSections from '../../components/layouts/ProjectSections/ProjectSections';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination } from 'swiper';
+import { Autoplay, Navigation, Pagination, Keyboard } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageMeta } from '../../types';
 import { ApiLocale } from '../../api/types/locales';
@@ -46,6 +46,7 @@ const Project: NextPage<Props> = ({ meta, projectId }) => {
               horizontalClass: 'top-5',
               dynamicBullets: true,
             }}
+            keyboard={true}
             navigation={{
               prevEl: navigationPrevRef.current,
               nextEl: navigationNextRef.current,
@@ -69,7 +70,7 @@ const Project: NextPage<Props> = ({ meta, projectId }) => {
                 swiper?.navigation?.update();
               });
             }}
-            modules={[ Autoplay, Pagination, Navigation ]}
+            modules={[ Autoplay, Pagination, Navigation, Keyboard ]}
             loop={true}
             autoplay={{
               delay: 5000,

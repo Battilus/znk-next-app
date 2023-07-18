@@ -8,6 +8,7 @@ interface ILinkButtonProps {
   className?: string;
   childrenClassName?: string;
   href?: string;
+  isBlank?: boolean;
   childrenStyle?: { [key: string]: string | number };
   roundedPadding?: string;
 }
@@ -19,6 +20,7 @@ const LinkButton: FC<ILinkButtonProps> = (
     className = '',
     childrenClassName,
     href,
+    isBlank,
     childrenStyle,
     roundedPadding,
   }) => {
@@ -28,6 +30,7 @@ const LinkButton: FC<ILinkButtonProps> = (
                   ${styleType === 'rounded' ? roundedPadding || 'pt-2.5 2xl:pt-0.69v pb-2 2xl:pb-0.56v px-8 2xl:px-[2.22vw]' : ''}
                   ${className || 'border'} ${ButtonStyleType[styleType]}`}
       href={href || ''}
+      isBlank={isBlank}
     >
       <div
         style={childrenStyle}

@@ -5,6 +5,7 @@ import { useDebounce } from '../../../features/hooks/useDebounce';
 import Button from '../../shared/Button/Button';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { PRESENTATION_LINK } from '../../../assets/constants';
 
 interface DescriptionProps {
   children?: ReactNode | string;
@@ -56,7 +57,8 @@ const BurroDescription: FC<DescriptionProps> = ({ children, descriptionText, hid
                        ${!hide && debouncedDescription ? 'opacity-100' : 'opacity-0'}`}>
         {!hide &&
           <Button.Link
-            href="/"
+            href={PRESENTATION_LINK}
+            isBlank={true}
             styleType="rounded"
             className="w-full border border-matterhorn"
             childrenClassName="w-full flex items-center justify-center gap-2 2xl:gap-0.42v"

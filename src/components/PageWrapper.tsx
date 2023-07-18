@@ -30,12 +30,6 @@ const PageWrapper: FC<IPageWrapperProps> = (
   const { breakpoints, screens } = useScreen({});
 
   const renderMain = () => {
-    if (isLoading) {
-      return (
-        <LoadingScreen/>
-      )
-    }
-
     return (
       <>
         <MainMenu hideHomeButton={hideHomeButton} isHomeLocation={isHomeLocation} menuButtonColor={menuButtonColor}/>
@@ -44,6 +38,7 @@ const PageWrapper: FC<IPageWrapperProps> = (
           {/* @ts-ignore */}
           {screenBreakpoints ? children({ breakpoints, screens }) : children}
         </div>
+        {isLoading && <LoadingScreen/>}
       </>
     )
   }

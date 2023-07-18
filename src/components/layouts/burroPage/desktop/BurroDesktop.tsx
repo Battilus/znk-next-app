@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import ProjectSections from '../../ProjectSections/ProjectSections';
 import PhilosophySection from './PhilosophySection';
 import CommandSection from './CommandSection';
-import AchievementsSection from './AchievementsSection';
+import PartnersSection from './PartnersSection';
 import { TFunction } from 'i18next';
 import { CertificateCardType } from '../../../../types';
 
@@ -33,7 +33,7 @@ const BurroDesktop: FC<IProps> = ({ certificates, hover, setHover, t }) => {
           t={t}
         />
 
-        <AchievementsSection
+        <PartnersSection
           certificates={certificates}
           hover={hover}
           setHover={setHover}

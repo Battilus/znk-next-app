@@ -3,7 +3,7 @@ import BurgerIcon from '../../../../../public/svg/burger-menu.svg';
 import CrossIcon from '../../../../../public/svg/cross-menu.svg';
 import ArrowLeftIcon from '../../../../../public/svg/arrow-left.svg';
 import { Transition } from '@headlessui/react';
-import { CONTACTS, SIDEBAR_LINKS } from '../../../../assets/staticParams';
+import { CONTACTS, SIDEBAR_LINKS } from '../../../../assets/constants';
 import Contacts from '../Contacts';
 import Button from '../../Button/Button';
 import { NextRouter } from 'next/router';
@@ -74,7 +74,7 @@ const MainMenuDesktop: FC<IProps> = (
   };
 
   return (
-    <div className="fixed left-0 top-0 z-999">
+    <div className="fixed left-0 top-0 z-99">
       <Transition
         show={!hide}
         enter="transform transition-opacity duration-200"

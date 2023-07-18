@@ -18,7 +18,7 @@ const PhilosophySection: FC<IProps> = ({ hover, setHover, t }) => {
       bgImage="bg-burro_philosophy_hover"
       hover={hover}
       setHover={setHover}
-      hoverClassName="brightness-200"
+      hoverClassName="brightness-125"
     >
       <div className="w-full h-full flex flex-col items-center justify-center gap-5 2xl:gap-1.39v">
         <DoubleSlashIcon className="w-[27px] 2xl:w-[1.88vw] h-[33px] 2xl:h-[2.29vw]"/>

@@ -73,7 +73,7 @@ const MainMenu: FC<IProps> = ({ isHomeLocation, hideHomeButton, menuButtonColor 
           menuButtonColor={menuButtonColor}
         />}
 
-      <div className="fixed top-0 left-0 z-99">
+      <div className="fixed top-0 left-0 z-50">
         <Transition
           show={isOpen}
           enter="transform transition-opacity duration-500"

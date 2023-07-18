@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../components/PageWrapper';
-import { CERTIFICATES } from '../assets/staticParams';
+import { CERTIFICATES } from '../assets/constants';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { CertificateCardType, PageMeta } from '../types';

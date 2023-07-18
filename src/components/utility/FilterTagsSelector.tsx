@@ -17,7 +17,7 @@ const FilterTagsSelector: FC<IProps> = ({ title, type, bffParams, selectedFilter
   const selectHandler = (filterParam: BffTag) => {
     setSelectedFilter?.({
       type,
-      tag: selectedFilter.tag !== filterParam ? filterParam : null,
+      tag: filterParam,
     });
   };
 

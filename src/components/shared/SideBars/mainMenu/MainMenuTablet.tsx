@@ -3,7 +3,7 @@ import { Transition } from '@headlessui/react';
 import Button from '../../Button/Button';
 import CrossIcon from '../../../../../public/svg/cross-menu.svg';
 import BurgerIcon from '../../../../../public/svg/burger-menu.svg';
-import { CONTACTS, SIDEBAR_LINKS_MOBILE } from '../../../../assets/staticParams';
+import { CONTACTS, SIDEBAR_LINKS_MOBILE } from '../../../../assets/constants';
 import { TFunction } from 'i18next';
 import Contacts from '../Contacts';
 
@@ -30,7 +30,7 @@ const MainMenuTablet: FC<IProps> = (
     menuButtonColor,
   }) => {
   return (
-    <div className="fixed right-0 top-0 z-999">
+    <div className="fixed right-0 top-0 z-99">
       <Transition
         show={!hide}
         enter="transform transition-opacity duration-200"
