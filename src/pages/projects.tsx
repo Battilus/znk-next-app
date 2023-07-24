@@ -92,6 +92,8 @@ const Projects: NextPage<Props> = ({ meta }) => {
     return projectsQuery.isSuccess ? chunkArray(projectsQuery.data, 6) : null;
   }, [ projectsQuery.isSuccess, projectsQuery.data ]);
 
+  const isLoading = servicesTagsQuery.isLoading || purposesTagsQuery.isLoading || buildYearsTagsQuery.isLoading || projectsQuery.isLoading;
+
   const getFilteredProjects = () => {
     return projects && selectedProjectIndex !== null && selectedProjectsChunkIndex !== null ?
       projects[selectedProjectsChunkIndex][selectedProjectIndex]
@@ -162,7 +164,7 @@ const Projects: NextPage<Props> = ({ meta }) => {
   };
 
   return (
-    <PageWrapper meta={meta}>
+    <PageWrapper meta={meta} isLoading={isLoading}>
       <div className="flex flex-row">
         <div className="flex">
           <ProjectSections.ProjectsFilter

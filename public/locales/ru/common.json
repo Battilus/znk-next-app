@@ -10,7 +10,7 @@
     "year": "год"
   },
   "sideBarLinks": {
-    "burro": "Бюро",
+    "burro": "О нас",
     "allProjects": "Все проекты",
     "contacts": "Контакты",
     "philosophy": "философия",
@@ -93,7 +93,49 @@
         }
       },
       "partners": {
-        "title": "партнеры"
+        "title": "партнеры",
+        "list": {
+          "gazprom": {
+            "title": "ГАЗПРОМ",
+            "description": "проектирование"
+          },
+          "korus": {
+            "title": "КОРУС",
+            "description": "консалтинг"
+          },
+          "boxing_fed": {
+            "title": "ФЕДЕРАЦИЯ БОКСА",
+            "description": "Росссийской Федерации"
+          },
+          "izmeron": {
+            "title": "НПФ Завод ИЗМЕРОН",
+            "description": "нефтегазовое оборудование"
+          },
+          "electroprof": {
+            "title": "ЭЛЕКТРОПРОФ",
+            "description": "электромонтажное бюро"
+          },
+          "ig_s3": {
+            "title": "ИГ СЕВЕРО-ЗАПАД",
+            "description": "инжиниринговая группа"
+          },
+          "rus_tech": {
+            "title": "РУС ТЕХНОЛОДЖИ",
+            "description": "инжиниринговая компания"
+          },
+          "niipg": {
+            "title": "НИИ ПГ",
+            "description": "градостроительство"
+          },
+          "g_dynamic": {
+            "title": "Джи динамика",
+            "description": "инженерно-технический центр"
+          },
+          "atenastudio": {
+            "title": "ATENASTUDIO",
+            "description": "architecture | landscape | urbanism"
+          }
+        }
       }
     },
     "404": {

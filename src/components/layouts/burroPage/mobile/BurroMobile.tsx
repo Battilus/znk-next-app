@@ -1,16 +1,16 @@
 import React, { FC, useEffect, useRef } from 'react';
-import { CertificateCardType } from '../../../../types';
+import { PartnerCardType } from '../../../../types';
 import { TFunction } from 'i18next';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import DoubleSlashIcon from '../../../../../public/svg/double-slash.svg';
-import CertificateCard from '../../../utility/PartnersCard';
+import PartnersCard from '../../../utility/PartnersCard';
 import BurroPreviewTablet from '../../../shared/SliderPreview/BurroPreviewTablet';
 import ArrowLeftStrokeIcon from '../../../../../public/svg/arrow-left-stroke.svg';
 import { useRouter } from 'next/router';
 
 interface IProps {
-  certificates: CertificateCardType[];
+  certificates: PartnerCardType[];
   t: TFunction<'translation', undefined, 'translation'>;
   isMobileScreen: boolean;
 }
@@ -139,9 +139,10 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
           >
             <div className="w-full max-w-[38.56rem] h-full max-h-[26rem] grid grid-cols-2 gap-8 text-white">
               {certificates.map(certificate =>
-                <CertificateCard
+                <PartnersCard
                   {...certificate}
                   key={certificate.id}
+                  t={t}
                 />)}
             </div>
 

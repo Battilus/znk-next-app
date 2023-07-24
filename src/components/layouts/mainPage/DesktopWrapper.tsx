@@ -5,17 +5,15 @@ import MainProjectPreview from './MainProjectPreview';
 import ShowProjectSlider from '../ProjectSections/utilityComponents/ShowProjectSlider';
 import { TFunction } from 'i18next';
 import { Project } from '../../../api/entities/project/types/client';
-import LoadingScreen from '../../shared/Loader/LoadingScreen';
 
 interface IProps {
   previewProjects: Project[];
   t: TFunction<'translation', undefined, 'translation'>;
   hover: boolean;
   setHover: (val: boolean) => void;
-  isLoading?: boolean;
 }
 
-const DesktopWrapper: FC<IProps> = ({ previewProjects, t, hover, setHover, isLoading }) => {
+const DesktopWrapper: FC<IProps> = ({ previewProjects, t, hover, setHover }) => {
   const [ selectedProjectIndex, setSelectedProjectIndex ] = useState<number | null>(null);
 
   const hoverHandler = useCallback((val: boolean, index: number | null) => {
@@ -30,12 +28,6 @@ const DesktopWrapper: FC<IProps> = ({ previewProjects, t, hover, setHover, isLoa
   }, [ hover ]);
 
   const renderProjects = () => {
-    if (isLoading) {
-      return (
-        <LoadingScreen/>
-      )
-    }
-
     return (
       <MainProjectPreview
         previewProjects={previewProjects}

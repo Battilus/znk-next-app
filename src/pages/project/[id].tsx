@@ -33,7 +33,7 @@ const Project: NextPage<Props> = ({ meta, projectId }) => {
   const navigationNextRef = useRef<HTMLDivElement>(null);
 
   return (
-    <PageWrapper meta={meta}>
+    <PageWrapper meta={meta} isLoading={projectQuery.isLoading}>
       <div className="w-full h-full flex">
         <ProjectSections.ProjectDescription
           project={project}

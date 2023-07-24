@@ -1,11 +1,13 @@
+import { ReactNode } from 'react';
+
 export type PageMeta = {
     title: string
     description: string
 }
 
-export type CertificateCardType = {
+export type PartnerCardType = {
     id: string | number,
-    title?: string,
+    // logoNode?: ReactNode | JSX.Element;
     logo: {
         img: string,
         width?: number | string,
@@ -13,5 +15,7 @@ export type CertificateCardType = {
         scaleWidth?: number | string,
         scaleHeight?: number | string,
     },
-    certificateHref?: string,
+    href?: string,
+    descriptionKey: string,
+
 }

@@ -10,7 +10,7 @@
     "year": "year"
   },
   "sideBarLinks": {
-    "burro": "Burro",
+    "burro": "About us",
     "allProjects": "All projects",
     "contacts": "Contacts",
     "philosophy": "philosophy",
@@ -93,7 +93,49 @@
         }
       },
       "partners": {
-        "title": "partners"
+        "title": "partners",
+        "list": {
+          "gazprom": {
+            "title": "GAZPROM",
+            "description": "engineering | design"
+          },
+          "korus": {
+            "title": "KORUS",
+            "description": "consulting"
+          },
+          "boxing_fed": {
+            "title": "BOXING FEDERATION",
+            "description": "of Russia"
+          },
+          "izmeron": {
+            "title": "NPF ZAVOD IZMERON",
+            "description": "oil and gas equipment"
+          },
+          "electroprof": {
+            "title": "ELECTROPROF",
+            "description": "electrical installation bureau"
+          },
+          "ig_s3": {
+            "title": "IG SEVERO-ZAPAD",
+            "description": "engineering group"
+          },
+          "rus_tech": {
+            "title": "RUS TECHNOLOGY",
+            "description": "engineering company"
+          },
+          "niipg": {
+            "title": "NII PG",
+            "description": "urban plannig and architecture"
+          },
+          "g_dynamic": {
+            "title": "G DYNAMYC",
+            "description": "engineering and technical center"
+          },
+          "atenastudio": {
+            "title": "ATENASTUDIO",
+            "description": "architecture | landscape | urbanism"
+          }
+        }
       }
     },
     "404": {

@@ -4,7 +4,7 @@ import PageWrapper from '../components/PageWrapper';
 import { CERTIFICATES } from '../assets/constants';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { CertificateCardType, PageMeta } from '../types';
+import { PartnerCardType, PageMeta } from '../types';
 import BurroDesktop from '../components/layouts/burroPage/desktop/BurroDesktop';
 import BurroMobile from '../components/layouts/burroPage/mobile/BurroMobile';
 import { Locale } from '../api/types/locales';
@@ -12,10 +12,10 @@ import { Locale } from '../api/types/locales';
 
 type Props = {
   meta: PageMeta;
-  certificates: CertificateCardType[];
+  certificates: PartnerCardType[];
 }
 
-const Burro: NextPage<Props> = ({ meta, certificates }) => {
+const AboutUs: NextPage<Props> = ({ meta, certificates }) => {
 
   const [ hover, setHover ] = useState<boolean>(false);
 
@@ -49,4 +49,4 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
     },
   };
 };
-export default memo(Burro);
+export default memo(AboutUs);

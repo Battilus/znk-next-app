@@ -68,6 +68,7 @@ const Home: NextPage<Props> = ({ meta }) => {
       isHomeLocation={true}
       hideHomeButton={hover}
       screenBreakpoints={true}
+      isLoading={previewProjectsQuery.isLoading}
     >
       {({ breakpoints: { mobileSm: iPhone }, screens: { tablet } }) =>
         renderWrapper({ previewProjects: projectsList, tablet, iPhone })

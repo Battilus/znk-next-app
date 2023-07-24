@@ -38,7 +38,6 @@ const PageWrapper: FC<IPageWrapperProps> = (
           {/* @ts-ignore */}
           {screenBreakpoints ? children({ breakpoints, screens }) : children}
         </div>
-        {isLoading && <LoadingScreen/>}
       </>
     )
   }
@@ -52,6 +51,7 @@ const PageWrapper: FC<IPageWrapperProps> = (
       />
       <main className="h-screen w-screen bg-whiteSmoke">
         {renderMain()}
+        <LoadingScreen disablePageFallback={isLoading}/>
       </main>
     </>
   );

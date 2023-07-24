@@ -29,11 +29,13 @@ const BurroPreview: FC<IProps> = (
   const [ showContent, setShowContent ] = useState<boolean>(false);
 
   const onHover = () => {
-    debounce.bounce(() => setShowContent(true));
-    if (enHover) {
-      setHover(true);
-      setCurrentHover(true);
-      setEnHover(false);
+    if (!hover) {
+      debounce.bounce(() => setShowContent(true));
+      if (enHover) {
+        setHover(true);
+        setCurrentHover(true);
+        setEnHover(false);
+      }
     }
   };
 
@@ -73,6 +75,7 @@ const BurroPreview: FC<IProps> = (
       <div
         className="w-full h-full overflow-x-hidden"
         onMouseEnter={onHover}
+        onMouseMove={onHover}
         onMouseLeave={onLeave}
       >
         <div

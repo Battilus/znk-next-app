@@ -1,13 +1,13 @@
 import {Contact} from "../components/shared/SideBars/Contacts";
 import {LinkButtonType} from "../components/shared/Button/Button";
-import {CertificateCardType} from "../types";
+import {PartnerCardType} from "../types";
 
 export const SIDEBAR_LINKS: LinkButtonType[] = [
     {
         className: 'outline-0 w-full uppercase text-sm font-medium 2xl:text-0.97v 2xl:leading-1.39v',
         description: 'sideBarLinks.burro',
         type: 'link',
-        href: '/burro',
+        href: '/about-us',
         styleType: 'inverse',
         childrenClassName: 'pt-1.7 2xl:pt-0.49v pb-1.3 2xl:pb-0.35v',
     },
@@ -41,7 +41,7 @@ export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
                 className: 'outline-0 w-full',
                 description: 'sideBarLinks.philosophy',
                 type: 'link',
-                href: '/burro/#philosophy',
+                href: '/about-us/#philosophy',
                 styleType: 'transparent',
                 childrenClassName: 'pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light',
             },
@@ -49,7 +49,7 @@ export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
                 className: 'outline-0 w-full',
                 description: 'sideBarLinks.command',
                 type: 'link',
-                href: '/burro/#command',
+                href: '/about-us/#command',
                 styleType: 'transparent',
                 childrenClassName: 'pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light',
             },
@@ -57,7 +57,7 @@ export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
                 className: 'outline-0 w-full',
                 description: 'sideBarLinks.achievements',
                 type: 'link',
-                href: '/burro/#achievements',
+                href: '/about-us/#achievements',
                 styleType: 'transparent',
                 childrenClassName: 'pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light',
             }
@@ -99,76 +99,116 @@ export const CONTACTS: Contact[] = [
     }
 ]
 
-export const CERTIFICATES: CertificateCardType[] = [
+export const CERTIFICATES: PartnerCardType[] = [
     {
         id: 1,
         logo: {
-            img: '/png/achievements/gazprom.png',
-            width: 152,
-            height: 86,
-            scaleWidth: '10.56vw',
-            scaleHeight: '5.97vw',
+            img: '/svg/partners/gazprom.svg',
+            width: 44,
+            height: 73,
+            scaleWidth: '3.06vw',
+            scaleHeight: '5.07vw',
         },
+        descriptionKey: 'gazprom',
     },
     {
         id: 2,
         logo: {
-            img: '/png/achievements/korus.png',
-            width: 255,
-            height: 112,
-            scaleWidth: '17.71vw',
-            scaleHeight: '7.78vw',
+            img: '/svg/partners/korus.svg',
+            width: 56,
+            height: 56,
+            scaleWidth: '3.89vw',
+            scaleHeight: '3.89vw',
         },
+        descriptionKey: 'korus',
     },
     {
         id: 3,
         logo: {
-            img: '/png/achievements/izmeron.png',
-            width: 131,
-            height: 113,
-            scaleWidth: '9.1vw',
-            scaleHeight: '7.85vw',
+            img: '/svg/partners/boxing_fed.svg',
+            width: 66,
+            height: 68,
+            scaleWidth: '4.58vw',
+            scaleHeight: '4.72vw',
         },
+        descriptionKey: 'boxing_fed',
     },
     {
         id: 4,
         logo: {
-            img: '/png/achievements/fed_box_ru.png',
-            width: 128,
-            height: 148,
-            scaleWidth: '8.89vw',
-            scaleHeight: '10.28vw',
+            img: '/svg/partners/izmeron.svg',
+            width: 74,
+            height: 64,
+            scaleWidth: '5.14vw',
+            scaleHeight: '4.44vw',
         },
+        descriptionKey: 'izmeron',
     },
     {
         id: 5,
         logo: {
-            img: '/png/achievements/rus_tech.png',
-            width: 194,
-            height: 59,
-            scaleWidth: '13.47vw',
-            scaleHeight: '3.89vw',
+            img: '/svg/partners/electroprof.svg',
+            width: 62,
+            height: 62,
+            scaleWidth: '4.31vw',
+            scaleHeight: '4.31vw',
         },
+        descriptionKey: 'electroprof',
     },
     {
         id: 6,
         logo: {
-            img: '/png/achievements/g_dynamic.png',
-            width: 175,
-            height: 68,
-            scaleWidth: '12.15vw',
-            scaleHeight: '4.72vw',
+            img: '/svg/partners/ig_s3.svg',
+            width: 66,
+            height: 76,
+            scaleWidth: '4.58vw',
+            scaleHeight: '5.28vw',
         },
+        descriptionKey: 'ig_s3',
     },
     {
         id: 7,
         logo: {
-            img: '/png/achievements/niipg.png',
-            width: 182,
-            height: 39,
-            scaleWidth: '12.64vw',
-            scaleHeight: '2.71vw',
+            img: '/svg/partners/rus_tech.svg',
+            width: 74,
+            height: 70,
+            scaleWidth: '5.14vw',
+            scaleHeight: '4.86vw',
         },
+        descriptionKey: 'rus_tech',
+    },
+    {
+        id: 8,
+        logo: {
+            img: '/svg/partners/niipg.svg',
+            width: 66,
+            height: 36,
+            scaleWidth: '4.58vw',
+            scaleHeight: '2.5vw',
+        },
+        descriptionKey: 'niipg',
+    },
+    {
+        id: 9,
+        logo: {
+            img: '/svg/partners/g_dynamic.svg',
+            width: 100,
+            height: 96,
+            scaleWidth: '6.94vw',
+            scaleHeight: '6.67vw',
+        },
+        descriptionKey: 'g_dynamic',
+    },
+    {
+        id: 10,
+        logo: {
+            img: '/svg/partners/atenastudio.svg',
+            width: 54,
+            height: 52,
+            scaleWidth: '3.75vw',
+            scaleHeight: '3.61vw',
+        },
+        descriptionKey: 'atenastudio',
     },
 ]
 

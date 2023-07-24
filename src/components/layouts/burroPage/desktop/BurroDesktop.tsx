@@ -4,10 +4,10 @@ import PhilosophySection from './PhilosophySection';
 import CommandSection from './CommandSection';
 import PartnersSection from './PartnersSection';
 import { TFunction } from 'i18next';
-import { CertificateCardType } from '../../../../types';
+import { PartnerCardType } from '../../../../types';
 
 interface IProps {
-  certificates: CertificateCardType[];
+  certificates: PartnerCardType[];
   t: TFunction<'translation', undefined, 'translation'>;
   hover: boolean;
   setHover: (val: boolean) => void;
