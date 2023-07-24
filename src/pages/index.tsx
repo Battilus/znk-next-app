@@ -57,7 +57,6 @@ const Home: NextPage<Props> = ({ meta }) => {
         t={t}
         hover={hover}
         setHover={setHover}
-        isLoading={previewProjectsQuery.isLoading}
       />
     );
   };
