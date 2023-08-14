@@ -19,3 +19,23 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #575757;
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+//::-webkit-scrollbar-thumb:hover {
+//  background: #1e1e1e;
+//}
