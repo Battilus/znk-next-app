@@ -27,6 +27,33 @@ const DesktopWrapper: FC<IProps> = ({ previewProjects, t, hover, setHover }) => 
     }
   }, [ hover ]);
 
+  const renderDescriptionText = () => {
+    const extraDirection = t('pages.main.burroDescription.desktop.mainDirections.d7');
+
+    return (
+      <div>
+        <div className="flex flex-col gap-4">
+          <div>{t('pages.main.burroDescription.desktop.text_p1')}</div>
+          <div>{t('pages.main.burroDescription.desktop.text_p2')}</div>
+          <div>{t('pages.main.burroDescription.desktop.text_p3')}</div>
+        </div>
+
+        <div className="mt-8">
+          <div>{t('pages.main.burroDescription.desktop.mainDirections.title')}</div>
+          <ul className="font-medium mt-3">
+            <li>- {t('pages.main.burroDescription.desktop.mainDirections.d1')}</li>
+            <li>- {t('pages.main.burroDescription.desktop.mainDirections.d2')}</li>
+            <li>- {t('pages.main.burroDescription.desktop.mainDirections.d3')}</li>
+            <li>- {t('pages.main.burroDescription.desktop.mainDirections.d4')}</li>
+            <li>- {t('pages.main.burroDescription.desktop.mainDirections.d5')}</li>
+            <li>- {t('pages.main.burroDescription.desktop.mainDirections.d6')}</li>
+            {extraDirection && <li>- {extraDirection}</li>}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+
   const renderProjects = () => {
     return (
       <MainProjectPreview
@@ -46,12 +73,7 @@ const DesktopWrapper: FC<IProps> = ({ previewProjects, t, hover, setHover }) => 
         </ProjectSections.LogoInf>
         <ProjectSections.BurroDescription
           hide={hover}
-          descriptionText={
-            <>
-              <p>{t('pages.main.burroDescription.desktop.text_p1')}</p>
-              <p>{t('pages.main.burroDescription.desktop.text_p2')}</p>
-            </>
-          }
+          descriptionText={renderDescriptionText()}
         />
       </div>
       {renderProjects()}

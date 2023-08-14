@@ -52,8 +52,19 @@
           "text_p2": "in russian znak means «sign» and signify the interplay between artistic en-deavors and techni-cal skills, which results in architec-ture of outstanding quality and value"
         },
         "desktop": {
-          "text_p1": "Znak is an architecture office currently based IN saint-petersburg, russia",
-          "text_p2": "in russian znak means «sign» and signify the interplay between artistic endeavors and technical skills, which results in architecture of outstan-ding quality and value"
+          "text_p1": "THE ZNAK PROJECT IS AN ARCHITECTURAL BUREAU FROM ST. PETERSBURGFOUNDED BY EKATERINA KHOLUYANOVA AND ILYA KOLESNIKOV.",
+          "text_p2": "WE ARE SURE THAT AN INTEGRATED APPROACH IS THE BASIS OF SUSTAINABLE ENVIRONMENTAL DEVELOPMENT AND WE CONTRIBUTE TO THE DEVELOPMENT OF TERRITORIES AND INCREASING THEIR ARCHITECTURAL VALUE.",
+          "text_p3": "WE PERFORM A FULL COMPLEX OF WORKS IN URBAN PLANNING AND ARCHITECTURAL FIELDS — FROM PRE-DESIGN STUDIES TO PREPARATION OF PROJECT DOCUMENTATION.",
+          "mainDirections": {
+            "title": "Main directions:",
+            "d1": "urban and regional planning",
+            "d2": "master plans, concepts",
+            "d3": "architecture",
+            "d4": "interior design projects",
+            "d5": "visualization",
+            "d6": "lighting projects",
+            "d7": ""
+          }
         }
       }
     },

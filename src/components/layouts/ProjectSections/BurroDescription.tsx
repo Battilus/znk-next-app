@@ -39,10 +39,8 @@ const BurroDescription: FC<DescriptionProps> = ({ children, descriptionText, hid
         className={`px-4 2xl:px-[1.11vw] h-full w-full min-w-48 2xl:min-w-13.33v transition-opacity duration-300 
                     ${!hide && debouncedDescription ? 'opacity-100' : 'opacity-0'} 
                     items-center text-matterhorn uppercase 
-                    font-semibold leading-18p 2xl:leading-1.25v text-justify
-                    ${locale === 'en' ?
-                        'text-sm 2xl:text-0.97v'
-                        : 'text-[0.76rem] 2xl:text-[0.84vw]'} 
+                    font-medium leading-18p 2xl:leading-1.25v text-justify
+                    text-[0.76rem] 2xl:text-[0.84vw]
                     space-y-6`}
       >
         {debouncedDescription}
@@ -75,3 +73,8 @@ const BurroDescription: FC<DescriptionProps> = ({ children, descriptionText, hid
 };
 
 export default BurroDescription;
+
+
+// ${locale === 'en' ?
+//   'text-sm 2xl:text-0.97v'
+//   : 'text-[0.76rem] 2xl:text-[0.84vw]'}
