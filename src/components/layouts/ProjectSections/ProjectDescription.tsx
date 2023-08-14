@@ -34,7 +34,7 @@ const ProjectDescription: FC<IProjectDescriptionProps> = ({ project }) => {
 
             <div
               className="h-full overflow-y-scroll my-9 2xl:my-[2.5vw] text-matterhorn text-xs 2xl:text-0.83v leading-13p 2xl:leading-0.9v
-                         font-normal text-justify space-y-0.5">
+                         font-normal text-justify flex flex-col items-center space-y-1">
                 {project?.description ? splitIndents(project?.description) : null}
             </div>
 
