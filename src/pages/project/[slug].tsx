@@ -11,20 +11,23 @@ import { ApiLocale, Locale } from '../../api/types/locales';
 import { Project } from '../../api/entities/project/types/client';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { ProjectQueryKey } from '../../api/constants';
-import { getOneProjectById, useGetOneProjectByIdQuery } from '../../api/entities/project/queries';
+import {
+  getOneProjectBySlug,
+  useGetOneProjectBySlugQuery,
+} from '../../api/entities/project/queries';
 import { useRouter } from 'next/router';
 import ThereIsNoProjects from '../../components/shared/Logo/ThereIsNoProjects';
 import { PAGE_TITLE_META } from '../../assets/constants';
 
 type Props = {
   meta: PageMeta;
-  projectId: string;
+  urlSlug: string;
 }
 
-const Project: NextPage<Props> = ({ meta, projectId }) => {
+const Project: NextPage<Props> = ({ meta, urlSlug }) => {
   const { locale } = useRouter();
 
-  const projectQuery = useGetOneProjectByIdQuery(projectId, { localization: locale?.toUpperCase() as ApiLocale });
+  const projectQuery = useGetOneProjectBySlugQuery(urlSlug, { localization: locale?.toUpperCase() as ApiLocale });
 
   const project = useMemo<Partial<Project> | null>(() => {
     return projectQuery.isSuccess ? projectQuery.data : null;
@@ -107,9 +110,9 @@ const Project: NextPage<Props> = ({ meta, projectId }) => {
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params, locale }) => {
   const localization = locale?.toUpperCase() as ApiLocale;
 
-  const projectId = `${params?.id}`;
+  const urlSlug = `${params?.slug}`;
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery([ ProjectQueryKey.One, projectId, { localization } ], getOneProjectById);
+  await queryClient.prefetchQuery([ ProjectQueryKey.One, urlSlug, { localization } ], getOneProjectBySlug);
 
   return {
     props: {
@@ -117,7 +120,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, lo
       meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Описание проекта' : 'Project description' },
       ...(await serverSideTranslations(localization, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
-      projectId,
+      urlSlug,
     },
   };
 };

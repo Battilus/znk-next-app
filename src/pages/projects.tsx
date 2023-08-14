@@ -138,7 +138,7 @@ const Projects: NextPage<Props> = ({ meta }) => {
                   return (
                     <ProjectPreview
                       key={project.id}
-                      href={`/${apiRoutes.project()}/${project.id}`}
+                      href={`/${apiRoutes.project()}/${project.slug}`}
                       name={project.title}
                       imgSrc={imagePreview?.src}
                       hover={hover}

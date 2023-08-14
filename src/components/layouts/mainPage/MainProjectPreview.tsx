@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import ProjectPreview from '../../shared/SliderPreview/ProjectPreview';
 import { Project } from '../../../api/entities/project/types/client';
+import * as apiRoutes from '../../../api/endpoints';
 
 interface IProps {
   previewProjects: Project[];
@@ -17,7 +18,7 @@ const MainProjectPreview: FC<IProps> = ({ previewProjects, hover, hoverHandler }
           return (
             <ProjectPreview
               key={project.id}
-              href={`/project/${project.id}`}
+              href={`/${apiRoutes.project()}/${project.slug}`}
               name={project.title}
               imgSrc={imagePreview?.src || ''}
               hover={hover}

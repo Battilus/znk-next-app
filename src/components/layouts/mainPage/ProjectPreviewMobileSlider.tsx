@@ -2,6 +2,7 @@ import React, { FC, TouchEventHandler } from 'react';
 import MobileProjectPreview from '../../shared/SliderPreview/MobileProjectPreview';
 import { TFunction } from 'i18next';
 import { Project } from '../../../api/entities/project/types/client';
+import * as apiRoutes from '../../../api/endpoints';
 
 interface IProps {
   previewProject: Project;
@@ -36,7 +37,7 @@ const ProjectPreviewMobileSlider: FC<IProps> = (
       // draggable={!openSlide}
     >
       <MobileProjectPreview
-        href={`/project/${previewProject.id}`}
+        href={`/${apiRoutes.project()}/${previewProject.slug}`}
         name={previewProject.title}
         imgSrc={previewProject.images[0].src}
         openSlide={openSlide}

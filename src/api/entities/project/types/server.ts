@@ -8,6 +8,7 @@ export type ServerTag = {
 export type ServerProject = {
   id: string;
   title: string;
+  url_slug: string;
   location: string;
   yearOfBuild: string;
   status: string;

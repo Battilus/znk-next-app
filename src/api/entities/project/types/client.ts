@@ -8,6 +8,7 @@ type ProjectTag = {
 export type Project = {
   id: string;
   title: string;
+  slug: string;
   location: string;
   yearOfBuild: string;
   status: string;

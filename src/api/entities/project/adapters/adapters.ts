@@ -9,6 +9,7 @@ export const projectAdapter = {
       {
         id: data.id,
         title: data.title,
+        slug: data.url_slug,
         location: data.location,
         yearOfBuild: String(data.yearOfBuild),
         status: data.status,

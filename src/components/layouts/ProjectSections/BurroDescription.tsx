@@ -4,7 +4,6 @@ import ProjectSections from './ProjectSections';
 import { useDebounce } from '../../../features/hooks/useDebounce';
 import Button from '../../shared/Button/Button';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
 import { PRESENTATION_LINK } from '../../../assets/constants';
 
 interface DescriptionProps {
@@ -18,7 +17,6 @@ const BurroDescription: FC<DescriptionProps> = ({ children, descriptionText, hid
   const [ debouncedDescription, setDebouncedDescription ] = useState<string | ReactNode>('');
   const descriptionUpdate = useDebounce((description: string | ReactNode) => setDebouncedDescription(description), 200);
 
-  const { locale } = useRouter();
   const { t } = useTranslation();
 
   useEffect(() => {
