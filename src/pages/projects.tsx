@@ -23,7 +23,7 @@ import { Project } from '../api/entities/project/types/client';
 import { BffTag } from '../api/entities/bffTags/types/client';
 import { useRouter } from 'next/router';
 import ThereIsNoProjects from '../components/shared/Logo/ThereIsNoProjects';
-import LoadingSpinner from '../components/shared/Loader/LoadingSpinner';
+import { PAGE_TITLE_META } from '../assets/constants';
 
 export type SelectedFilterParam = {
   type: BffTagsQueryKey | null;
@@ -113,16 +113,7 @@ const Projects: NextPage<Props> = ({ meta }) => {
   }, [ hover ]);
 
   const renderProjectsSlider = () => {
-    if (
-      servicesTagsQuery.isLoading ||
-      purposesTagsQuery.isLoading ||
-      buildYearsTagsQuery.isLoading ||
-      (isProjectsQueryEnabled && projectsQuery.isLoading)
-    ) {
-      return <LoadingSpinner/>;
-    }
-
-    if (!isProjectsQueryEnabled) {
+    if (!isProjectsQueryEnabled || !projects) {
       return <ThereIsNoProjects noFilters={true}/>;
     }
 
@@ -209,7 +200,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
 
   return {
     props: {
-      meta: { title: 'ZNK Project Burro', description: 'Projects page' },
+      // @ts-ignore
+      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Все проекты' : 'All projects' },
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
     },

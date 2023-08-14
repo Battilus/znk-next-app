@@ -6,7 +6,7 @@ type Props = {
 
 const LoadingScreen: FC<Props> = ({ disablePageFallback }) => {
   return (
-    <div id="loadingScreen" className={disablePageFallback ? '!flex' : 'hidden'}>
+    <div id="loadingScreenWithSpinner" className={disablePageFallback ? '!flex' : 'hidden'}>
       <div className="fixed left-0 top-0 w-screen h-screen bg-matterhorn opacity-40 flex flex-col gap-y-3.5 items-center justify-center z-[49]">
         <div role="status">
           <svg aria-hidden="true"

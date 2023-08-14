@@ -3,7 +3,7 @@ import Meta, { MetaTag } from './utility/Meta';
 import MainMenu from './shared/SideBars/mainMenu';
 import { CommonScreenBreakpoints, ScreenBreakpoints, useScreen } from '../features/hooks/useScreen';
 import { PageMeta } from '../types';
-import LoadingScreen from './shared/Loader/LoadingScreen';
+import ZnakLoadingScreen from './shared/Loader/ZnakLoadingScreen';
 
 interface IPageWrapperProps {
   children: FC<{ breakpoints: ScreenBreakpoints, screens: CommonScreenBreakpoints }> | ReactNode;
@@ -51,7 +51,7 @@ const PageWrapper: FC<IPageWrapperProps> = (
       />
       <main className="h-screen w-screen bg-whiteSmoke">
         {renderMain()}
-        <LoadingScreen disablePageFallback={isLoading}/>
+        <ZnakLoadingScreen disablePageFallback={isLoading}/>
       </main>
     </>
   );

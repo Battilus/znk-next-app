@@ -10,6 +10,7 @@ export const projectsByTag = ({ tag }: { tag: string }) => api(`${projects()}/${
 export const project = () => 'project';
 export const projectById = ({ projectId }: { projectId: string }) => api(`${project()}/${projectId}`);
 export const projectByTitle = ({ projectTitle }: { projectTitle: string }) => api(`${project()}/title/${projectTitle}`);
+export const projectBySlug = ({ urlSlug }: { urlSlug: string }) => api(`${project()}/url_slug/${urlSlug}`);
 export const projectImage = () => 'project_image';
 export const imagesByProjectId = ({ projectId }: { projectId: string }) => api(`${projectImage()}/project_id/${projectId}`);
 export const previewImagesByProjectId = ({ projectId }: { projectId: string }) => api(`${projectImage()}/preview/${projectId}`);

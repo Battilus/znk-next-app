@@ -7,13 +7,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, Keyboard } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageMeta } from '../../types';
-import { ApiLocale } from '../../api/types/locales';
+import { ApiLocale, Locale } from '../../api/types/locales';
 import { Project } from '../../api/entities/project/types/client';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { ProjectQueryKey } from '../../api/constants';
 import { getOneProjectById, useGetOneProjectByIdQuery } from '../../api/entities/project/queries';
 import { useRouter } from 'next/router';
 import ThereIsNoProjects from '../../components/shared/Logo/ThereIsNoProjects';
+import { PAGE_TITLE_META } from '../../assets/constants';
 
 type Props = {
   meta: PageMeta;
@@ -112,7 +113,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, lo
 
   return {
     props: {
-      meta: { title: 'ZNK Project Burro', description: 'Project description' },
+      // @ts-ignore
+      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Описание проекта' : 'Project description' },
       ...(await serverSideTranslations(localization, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
       projectId,

@@ -22,31 +22,26 @@
     "mainPage": "Main page"
   },
   "projectStatusRow": {
-    "destination": "destination",
+    "purpose": "destination",
     "place": "place",
     "year": "year",
     "status": "status"
   },
   "contacts": {
     "ekaterina": {
-      "name": "екатерина холуянова"
+      "name": "Ekaterina Kholuyanova"
     },
     "ilya": {
-      "name": "илья колесников"
-    }
-  },
-  "certificates": {
-    "pega": {
-      "title": "сертификат pega"
+      "name": "Ilya Kolesnikov"
     },
-    "lifecycle": {
-      "title": "сертификат Lifecycle"
-    },
-    "build": {
-      "title": "премия build architecture"
-    },
-    "architecture": {
-      "title": "премия architecture"
+    "addressAndDetails": {
+      "titles": {
+        "inn": "Taxpayer Id Number (INN)",
+        "ogrn": "PRIMARY State Reg. Number (OGRN)",
+        "address": "address"
+      },
+      "companyName": "Limited Liability Company \n(OOO) \"ZNAK PROJECT\"",
+      "companyAddress": "Saint-petersburg, 2nd Murinsky prospect, 36 of. 1221"
     }
   },
   "pages": {
@@ -71,7 +66,7 @@
         }
       },
       "command": {
-        "title": "command",
+        "title": "team",
         "buttonLink": {
           "title": "vacancies"
         },

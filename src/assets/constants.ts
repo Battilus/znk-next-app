@@ -1,6 +1,7 @@
 import {Contact} from "../components/shared/SideBars/Contacts";
 import {LinkButtonType} from "../components/shared/Button/Button";
 import {PartnerCardType} from "../types";
+import { Locale } from '../api/types/locales';
 
 export const SIDEBAR_LINKS: LinkButtonType[] = [
     {
@@ -95,9 +96,27 @@ export const CONTACTS: Contact[] = [
     },
     {
         id: '3',
-        email: 'mail@znakproject.com'
+        email: 'info@znakproject.com'
     }
-]
+];
+
+export const SOCIAL_NETS = [
+    { id: '1', name: 'vk', contact: '@znak.project', href: 'https://vk.com/znak.project' },
+    { id: '2', name: 'instagram', contact: '@znak.project', href: 'https://www.instagram.com/znak.project/' },
+    { id: '3', name: 'youtube', contact: '@znak.project', href: '/' },
+];
+
+export const ADDRESS_AND_DETAILS = {
+    companyName: 'contacts.addressAndDetails.companyName',
+    inn: '7802929417',
+    ogrn: '1227800113122',
+    companyAddress: 'contacts.addressAndDetails.companyAddress',
+}
+
+export const PAGE_TITLE_META = {
+    [Locale.RU]: 'ЗНАК ПРОЕКТ | Архитектурное бюро',
+    [Locale.EN]: 'ZNAK PROJECT | Architectural firm',
+}
 
 export const CERTIFICATES: PartnerCardType[] = [
     {

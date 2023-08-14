@@ -20,7 +20,7 @@ const Meta: FC<IMetaProps> = ({ title, description, tagsList }) => {
         tagsList.map((metaTag, index) =>
           <meta key={`meta_${metaTag.name}_${index}`} name={metaTag.name} content={metaTag.content}/>)
         : null}
-      <link rel="icon" href="../../public/favicon.ico"/>
+      <link rel="icon" href="/public/favicon.ico"/>
       <title>{title}</title>
     </Head>
   );

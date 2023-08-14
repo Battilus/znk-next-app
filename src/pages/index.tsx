@@ -6,12 +6,13 @@ import { useTranslation } from 'next-i18next';
 import MobileWrapper from '../components/layouts/mainPage/MobileWrapper';
 import DesktopWrapper from '../components/layouts/mainPage/DesktopWrapper';
 import { PageMeta } from '../types';
-import { ApiLocale } from '../api/types/locales';
+import { ApiLocale, Locale } from '../api/types/locales';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { getPreviewProjectsList, useGetPreviewProjectsListQuery } from '../api/entities/project/queries';
 import { ProjectQueryKey } from '../api/constants';
 import { Project } from '../api/entities/project/types/client';
 import { useRouter } from 'next/router';
+import { PAGE_TITLE_META } from '../assets/constants';
 
 type Props = {
   meta: PageMeta;
@@ -84,7 +85,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
 
   return {
     props: {
-      meta: { title: 'ZNK Project Burro', description: 'Main page' },
+      // @ts-ignore
+      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Главная' : 'Main' },
       ...(await serverSideTranslations(localization, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
     },

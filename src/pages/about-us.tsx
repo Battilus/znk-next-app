@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../components/PageWrapper';
-import { CERTIFICATES } from '../assets/constants';
+import { CERTIFICATES, PAGE_TITLE_META } from '../assets/constants';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { PartnerCardType, PageMeta } from '../types';
@@ -43,7 +43,8 @@ const AboutUs: NextPage<Props> = ({ meta, certificates }) => {
 export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => {
   return {
     props: {
-      meta: { title: 'ZNK Project Burro', description: 'Burro page' },
+      // @ts-ignore
+      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'О нас' : 'About us' },
       certificates: CERTIFICATES,
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
     },

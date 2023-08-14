@@ -33,20 +33,15 @@
     },
     "ilya": {
       "name": "илья колесников"
-    }
-  },
-  "certificates": {
-    "pega": {
-      "title": "сертификат pega"
     },
-    "lifecycle": {
-      "title": "сертификат Lifecycle"
-    },
-    "build": {
-      "title": "премия build architecture"
-    },
-    "architecture": {
-      "title": "премия architecture"
+    "addressAndDetails": {
+      "titles": {
+        "inn": "ИНН",
+        "ogrn": "ОГРН",
+        "address": "адрес"
+      },
+      "companyName": "ООО \"ЗНАК ПРОЕКТ\"",
+      "companyAddress": "Санкт-Петербург, 2-ой Муринский проспект, 36 оф. 1221"
     }
   },
   "pages": {

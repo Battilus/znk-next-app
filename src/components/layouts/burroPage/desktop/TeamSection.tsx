@@ -11,7 +11,7 @@ interface IProps {
   t: TFunction<'translation', undefined, 'translation'>,
 }
 
-const CommandSection: FC<IProps> = ({ hover, setHover, t }) => {
+const TeamSection: FC<IProps> = ({ hover, setHover, t }) => {
   return (
     <BurroPreview
       title={t('pages.burro.command.title')}
@@ -57,4 +57,4 @@ const CommandSection: FC<IProps> = ({ hover, setHover, t }) => {
   );
 };
 
-export default CommandSection;
+export default TeamSection;
