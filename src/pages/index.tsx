@@ -87,7 +87,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
     props: {
       // @ts-ignore
       meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Главная' : 'Main' },
-      ...(await serverSideTranslations(localization, [ 'common' ])),
+      ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
     },
   };
