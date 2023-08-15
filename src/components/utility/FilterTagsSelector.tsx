@@ -30,19 +30,25 @@ const FilterTagsSelector: FC<IProps> = ({ title, type, bffParams, selectedFilter
       <div
         className="text-matterhorn uppercase font-medium text-sm leading-18p 2xl:text-0.97v 2xl:leading-1.25v">{title}</div>
       <div className="flex flex-wrap gap-[0.3125rem] 2xl:gap-[0.35vw]">
-        {bffParams.map(filterTag =>
-          <Button
-            key={filterTag}
-            styleType="rounded"
-            onClick={() => selectHandler(filterTag)}
-            isActive={filterTag === selectedFilter.tag}
-            activeClassName="bg-matterhorn text-whiteSmoke"
-            roundedPadding="px-[0.4375rem] 2xl:px-[0.49vw] pt-[0.1875rem] 2xl:pt-[0.21vw] pb-[0.125rem] 2xl:pb-[0.14vw]"
-          >
-            <div className="text-[0.625rem] 2xl:text-[0.69vw] leading-[0.8125rem] 2xl:leading-0.9v">
-              {filterTag}
-            </div>
-          </Button>)}
+        {bffParams.map(filterTag => {
+          const isActive = filterTag === selectedFilter.tag;
+
+          return (
+            <Button
+              key={filterTag}
+              styleType="rounded"
+              onClick={() => selectHandler(filterTag)}
+              isActive={isActive}
+              className={!isActive ? 'border border-matterhorn text-matterhorn' : ''}
+              activeClassName="!bg-matterhorn !text-whiteSmoke"
+              roundedPadding="px-[0.4375rem] 2xl:px-[0.49vw] pt-[0.1875rem] 2xl:pt-[0.21vw] pb-[0.125rem] 2xl:pb-[0.14vw]"
+            >
+              <div className="text-[0.625rem] 2xl:text-[0.69vw] leading-[0.8125rem] 2xl:leading-0.9v">
+                {filterTag}
+              </div>
+            </Button>
+          )
+        })}
       </div>
     </div>
   );

@@ -122,7 +122,7 @@ export const CERTIFICATES: PartnerCardType[] = [
     {
         id: 1,
         logo: {
-            img: '/svg/partners/gazprom.svg',
+            img: '/svg/partners/Gazprom.svg',
             width: 44,
             height: 73,
             scaleWidth: '3.06vw',
