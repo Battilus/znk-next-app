@@ -15,6 +15,7 @@ type QueryParams = {
   [BffTagsQueryKey.Services]?: BffTag;
   [BffTagsQueryKey.Purposes]?: BffTag;
   [BffTagsQueryKey.BuildYears]?: BffTag;
+  get_preview_images?: string;
 }
 
 const getPreviewProjectsListUrl = () => apiRoutes.projectsPreview();

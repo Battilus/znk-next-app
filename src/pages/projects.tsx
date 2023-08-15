@@ -84,6 +84,7 @@ const Projects: NextPage<Props> = ({ meta }) => {
     {
       localization,
       [selectedFilter.type as BffTagsQueryKey]: selectedFilter.tag,
+      get_preview_images: 'True',
     },
     { enabled: isProjectsQueryEnabled },
   );
@@ -114,7 +115,7 @@ const Projects: NextPage<Props> = ({ meta }) => {
 
   const renderProjectsSlider = () => {
     if (!isProjectsQueryEnabled || !projects) {
-      return <ThereIsNoProjects noFilters={true}/>;
+      return <ThereIsNoProjects noFilters={true} withoutLogo={true}/>;
     }
 
     return (
@@ -193,6 +194,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
           {
             localization,
             [BffTagsQueryKey.BuildYears]: tag,
+            get_preview_images: 'True',
           } ],
         getProjectsListByFilter);
     }

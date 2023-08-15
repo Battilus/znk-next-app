@@ -3,7 +3,9 @@
   "show": "открыть",
   "learn_more": "Узнать больше",
   "empty_projects": "Проекты отсутствуют",
-  "thereIsNoFilter": "Фильтр не выбран",
+  "thereIsNoFilter": "Фильтры отсутствуют",
+  "znak": "знак",
+  "project": "проект",
   "projects_filters": {
     "services": "услуги",
     "assignment": "назначение",
