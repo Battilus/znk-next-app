@@ -48,17 +48,17 @@ export const SIDEBAR_LINKS_MOBILE: LinkButtonType[] = [
             },
             {
                 className: 'outline-0 w-full',
-                description: 'sideBarLinks.command',
+                description: 'sideBarLinks.team',
                 type: 'link',
-                href: '/about-us/#command',
+                href: '/about-us/#team',
                 styleType: 'transparent',
                 childrenClassName: 'pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light',
             },
             {
                 className: 'outline-0 w-full',
-                description: 'sideBarLinks.achievements',
+                description: 'sideBarLinks.partners',
                 type: 'link',
-                href: '/about-us/#achievements',
+                href: '/about-us/#partners',
                 styleType: 'transparent',
                 childrenClassName: 'pt-1.7 pb-1.3 uppercase text-sl leading-24.4p font-light',
             }

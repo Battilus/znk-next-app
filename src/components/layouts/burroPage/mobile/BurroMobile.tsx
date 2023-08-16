@@ -15,12 +15,12 @@ interface IProps {
   isMobileScreen: boolean;
 }
 
-type SlidesPath = 'philosophy' | 'command' | 'achievements'
+type SlidesPath = 'philosophy' | 'team' | 'partners'
 
 enum SlideIndex {
   philosophy = 1,
-  command = 2,
-  achievements = 3
+  team = 2,
+  partners = 3
 }
 
 const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
@@ -73,7 +73,7 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
 
             <div
               className="fixed right-9 bottom-8 text-white font-medium uppercase text-xsm s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
-              onClick={() => slideTo(SlideIndex.command)}
+              onClick={() => slideTo(SlideIndex.team)}
             >
               <div>{t('pages.burro.command.title')}</div>
               <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1"/>
@@ -124,9 +124,9 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
 
             <div
               className="fixed right-9 bottom-8 text-white font-medium uppercase text-s s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
-              onClick={() => slideTo(SlideIndex.achievements)}
+              onClick={() => slideTo(SlideIndex.partners)}
             >
-              <div>{t('pages.burro.achievements.title')}</div>
+              <div>{t('pages.burro.partners.title')}</div>
               <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1"/>
             </div>
           </BurroPreviewTablet>
@@ -134,7 +134,7 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
 
         <SwiperSlide>
           <BurroPreviewTablet
-            title={t('pages.burro.achievements.title')}
+            title={t('pages.burro.partners.title')}
             bgImage="bg-burro_partners_mobile"
           >
             <div className="w-full max-w-[38.56rem] h-full max-h-[26rem] grid grid-cols-2 gap-8 text-white">
@@ -148,7 +148,7 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
 
             <div
               className="fixed left-9 bottom-8 text-white font-medium uppercase text-xsm s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
-              onClick={() => slideTo(SlideIndex.command)}
+              onClick={() => slideTo(SlideIndex.team)}
             >
               <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1 rotate-180"/>
               <div>{t('pages.burro.command.title')}</div>

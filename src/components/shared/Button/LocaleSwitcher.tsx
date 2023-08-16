@@ -17,14 +17,14 @@ const LocaleSwitcher: FC = () => {
                         <span>
                             <Link href={{ pathname, query }} as={asPath} locale={localeItem}>
                               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                              <a className={`text-center uppercase text-sm 2xl:text-0.97v 2xl:leading-1.39v 
+                              <a className={`text-center uppercase text-sl s:text-sm 2xl:text-0.97v 2xl:leading-1.39v 
                                             ${localeItem === activeLocale ? 'font-medium' : 'font-normal'}`}>
                                     {localeItem}
                                 </a>
                             </Link>
                         </span>
             {locales && locales.length - 1 !== index &&
-              <span className="font-medium text-sm 2xl:text-0.97v 2xl:leading-1.39v">/</span>}
+              <span className="font-medium text-sl s:text-sm 2xl:text-0.97v 2xl:leading-1.39v">/</span>}
           </React.Fragment>
         );
       })}

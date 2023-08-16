@@ -25,7 +25,7 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
   const translateWayStyle = useMemo(() => ({
       ltr: 'top-0 left-0 h-screen w-64 border-r duration-500',
       rtl: 'top-0 -right-64 h-screen w-64 border-r duration-500',
-      utd: '-top-[23.84rem] left-0 w-full border-b duration-500 pt-4 pb-[2.73rem]',
+      utd: '-top-[41rem] left-0 w-full border-b duration-500 pt-4 pb-[2.73rem]',
     }[translateWay]) || '',
     [ translateWay ]);
 
@@ -69,7 +69,7 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
 
           <Button.Link
             styleType="rounded"
-            className="mt-3 2xl:mt-[0.28vw] border border-matterhorn font-medium w-full text-center"
+            className="s:mt-3 2xl:mt-[0.28vw] border border-matterhorn font-medium w-full text-center"
             href={VACANCIES_LINK}
             isBlank={true}
           >
@@ -77,7 +77,7 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
           </Button.Link>
         </div>
 
-        <div className="flex flex-col items-center justify-between text-matterhorn font-medium uppercase">
+        <div className="mt-10 flex flex-col items-center justify-between text-matterhorn font-medium uppercase">
           <div className="flex flex-col items-center gap-1 2xl:gap-0.28v text-sm 2xl:text-0.97v 2xl:leading-1.39v">
             {SOCIAL_NETS.map(socialNet => {
               return (
@@ -96,7 +96,7 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
             })}
           </div>
 
-          <div className="flex flex-col items-center mt-[4.75rem] 2xl:mt-[5.28vw] text-s leading-4 2xl:text-0.97v 2xl:leading-1.39v text-center px-4 2xl:px-[1.11vw]">
+          <div className="flex flex-col items-center mt-10 s:mt-[4.75rem] 2xl:mt-[5.28vw] text-s leading-4 2xl:text-0.97v 2xl:leading-1.39v text-center px-4 2xl:px-[1.11vw]">
             <div className="px-2 2xl:px-[0.42vw]">
               <div className="font-semibold">{t(ADDRESS_AND_DETAILS.companyName)}</div>
               <div><span>{t('contacts.addressAndDetails.titles.inn')} </span>{ADDRESS_AND_DETAILS.inn}</div>
