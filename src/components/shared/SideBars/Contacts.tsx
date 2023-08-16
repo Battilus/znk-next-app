@@ -77,7 +77,7 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
           </Button.Link>
         </div>
 
-        <div className="h-full flex flex-col items-center justify-between text-matterhorn font-medium uppercase">
+        <div className="flex flex-col items-center justify-between text-matterhorn font-medium uppercase">
           <div className="flex flex-col items-center gap-1 2xl:gap-0.28v text-sm 2xl:text-0.97v 2xl:leading-1.39v">
             {SOCIAL_NETS.map(socialNet => {
               return (
