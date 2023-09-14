@@ -28,7 +28,6 @@ const PhilosophySection: FC<IProps> = ({ hover, setHover, t }) => {
                      text-sm 2xl:text-0.97v leading-18p 2xl:leading-1.25v text-justify">
           <div>{t('pages.burro.philosophy.description.p1')}</div>
           <div>{t('pages.burro.philosophy.description.p2')}</div>
-          <div>{t('pages.burro.philosophy.description.p3')}</div>
         </div>
 
         <DoubleSlashIcon className="w-[27px] 2xl:w-[1.88vw] h-[33px] 2xl:h-[2.29vw]"/>

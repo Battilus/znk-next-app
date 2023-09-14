@@ -20,6 +20,7 @@ const Meta: FC<IMetaProps> = ({ title, description, tagsList }) => {
         tagsList.map((metaTag, index) =>
           <meta key={`meta_${metaTag.name}_${index}`} name={metaTag.name} content={metaTag.content}/>)
         : null}
+      <meta name="yandex-verification" content="467c91251b33331f" />
       <link rel="icon" href="/public/favicon.ico"/>
       <title>{title}</title>
     </Head>
