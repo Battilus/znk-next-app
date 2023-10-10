@@ -16,6 +16,7 @@ const A: FC<IAProps> = ({ children, href, className, isBlank, onMouseEnter, onMo
       href={href}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      passHref={true}
       legacyBehavior={true}
     >
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
