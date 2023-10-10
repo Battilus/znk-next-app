@@ -15,7 +15,7 @@ const LocaleSwitcher: FC = () => {
         return (
           <React.Fragment key={`locale-${localeItem}`}>
                         <span>
-                            <Link href={{ pathname, query }} as={asPath} locale={localeItem}>
+                            <Link href={{ pathname, query }} as={asPath} locale={localeItem} legacyBehavior={true}>
                               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                               <a className={`text-center uppercase text-sl s:text-sm 2xl:text-0.97v 2xl:leading-1.39v 
                                             ${localeItem === activeLocale ? 'font-medium' : 'font-normal'}`}>

@@ -27,7 +27,15 @@ type Props = {
 const Project: NextPage<Props> = ({ meta, urlSlug }) => {
   const { locale } = useRouter();
 
-  const projectQuery = useGetOneProjectBySlugQuery(urlSlug, { localization: locale?.toUpperCase() as ApiLocale });
+  const queryParams = useMemo(() => {
+    if (!locale) {
+      return null;
+    }
+
+    return { localization: locale?.toUpperCase() as ApiLocale };
+  }, [ locale ]);
+
+  const projectQuery = useGetOneProjectBySlugQuery(urlSlug, queryParams!, { enabled: Boolean(locale) });
 
   const project = useMemo<Partial<Project> | null>(() => {
     return projectQuery.isSuccess ? projectQuery.data : null;

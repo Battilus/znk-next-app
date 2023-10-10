@@ -24,13 +24,19 @@ const Home: NextPage<Props> = ({ meta }) => {
   const {locale} = useRouter();
   const { t } = useTranslation();
 
-  const previewProjectsQuery = useGetPreviewProjectsListQuery(
-    { localization: locale?.toUpperCase() as ApiLocale },
-  );
+  const localization = useMemo(() => {
+    if (!locale) {
+      return null;
+    }
+
+    return { localization: locale.toUpperCase() as ApiLocale };
+  }, [locale]);
+
+  const previewProjectsQuery = useGetPreviewProjectsListQuery(localization!, {enabled: Boolean(localization)});
 
   const projectsList = useMemo<Project[] | null>(() => {
     return previewProjectsQuery.isSuccess ? previewProjectsQuery.data : null;
-  }, [ previewProjectsQuery.isSuccess ]);
+  }, [ previewProjectsQuery.isSuccess, previewProjectsQuery.data ]);
 
   const renderWrapper = ({ previewProjects, tablet, iPhone }: {
     previewProjects: Project[] | null,
