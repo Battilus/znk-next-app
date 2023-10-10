@@ -45,13 +45,17 @@ const Projects: NextPage<Props> = ({ meta }) => {
 
   const { locale } = useRouter();
 
-  const localization = useMemo(() => {
-    return locale?.toUpperCase() as ApiLocale;
+  const queryParams = useMemo(() => {
+    if (!locale) {
+      return null;
+    }
+
+    return { localization: locale?.toUpperCase() as ApiLocale };
   }, [ locale ]);
 
-  const servicesTagsQuery = useGetBffServicesListQuery({ localization });
-  const purposesTagsQuery = useGetBffPurposesListQuery({ localization });
-  const buildYearsTagsQuery = useGetBffBuildYearsListQuery({ localization });
+  const servicesTagsQuery = useGetBffServicesListQuery(queryParams!, { enabled: Boolean(queryParams) });
+  const purposesTagsQuery = useGetBffPurposesListQuery(queryParams!, { enabled: Boolean(queryParams) });
+  const buildYearsTagsQuery = useGetBffBuildYearsListQuery(queryParams!, { enabled: Boolean(queryParams) });
 
   const servicesTags = useMemo<BffTag[]>(() => {
     return servicesTagsQuery.isSuccess ? servicesTagsQuery.data : [];
@@ -78,11 +82,11 @@ const Projects: NextPage<Props> = ({ meta }) => {
     return [];
   }, [ buildYearsTagsQuery.isSuccess, buildYearsTagsQuery.data ]);
 
-  const isProjectsQueryEnabled = Boolean(localization) && Boolean(selectedFilter.tag) && Boolean(selectedFilter.type);
+  const isProjectsQueryEnabled = Boolean(queryParams) && Boolean(selectedFilter.tag) && Boolean(selectedFilter.type);
 
   const projectsQuery = useGetProjectsListByFilterQuery(
     {
-      localization,
+      localization: queryParams?.localization as ApiLocale,
       [selectedFilter.type as BffTagsQueryKey]: selectedFilter.tag,
       get_preview_images: 'True',
     },
