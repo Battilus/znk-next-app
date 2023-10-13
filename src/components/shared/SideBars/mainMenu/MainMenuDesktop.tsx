@@ -16,7 +16,7 @@ interface IProps {
   isContactsOpen: boolean
   setIsContactsOpen: (val: boolean) => void
   router: NextRouter
-  t: TFunction<'translation', undefined, 'translation'>
+  t: TFunction<'translation', undefined>
   menuButtonHandler: () => void
 }
 

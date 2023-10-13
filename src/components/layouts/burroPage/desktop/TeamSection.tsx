@@ -8,7 +8,7 @@ import Hint from '../../../shared/Hint';
 interface IProps {
   hover: boolean,
   setHover: (v: boolean) => void,
-  t: TFunction<'translation', undefined, 'translation'>,
+  t: TFunction<'translation', undefined>,
 }
 
 const TeamSection: FC<IProps> = ({ hover, setHover, t }) => {

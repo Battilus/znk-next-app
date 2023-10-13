@@ -5,7 +5,7 @@ import { TFunction } from 'i18next';
 
 interface IProps {
   isPhone?: boolean;
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', undefined>;
 }
 
 const NoProjectsWrapper: FC<IProps> = ({ isPhone, t }) => {

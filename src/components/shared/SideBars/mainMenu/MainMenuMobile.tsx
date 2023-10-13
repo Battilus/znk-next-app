@@ -13,7 +13,7 @@ interface IProps {
   isOpen: boolean;
   isContactsOpen: boolean;
   openContacts: () => void;
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', undefined>;
   menuButtonHandler: () => void;
   menuButtonColor?: string;
 }

@@ -8,7 +8,7 @@ import { PartnerCardType } from '../../../../types';
 
 interface IProps {
   certificates: PartnerCardType[];
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', undefined>;
   hover: boolean;
   setHover: (val: boolean) => void;
 }
