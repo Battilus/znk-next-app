@@ -8,13 +8,8 @@ FROM base AS deps
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+COPY package.json ./
+RUN npm install
 
 
 # Rebuild the source code only when needed
@@ -28,11 +23,6 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-#RUN yarn build
-
-#RUN ls -la
-
-# If using npm comment out above and use below instead
 RUN npm run build
 
 # Production image, copy all the files and run next
@@ -51,15 +41,17 @@ COPY --from=builder /app/public ./public
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-#COPY --from=builder --chown=nextjs:nodejs /app/build/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY next*  ./
+COPY ./.env.production ./
+COPY ./certs ./certs
+
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 8443
 
-ENV PORT 3000
+# ENV PORT 8443
 
-CMD ["npm", "start"]
+CMD npm start & npx local-ssl-proxy --key /app/certs/www_znakproject_com_2024_01_18.key --cert /app/certs/bundle.crt --source 8443 --target 3000
