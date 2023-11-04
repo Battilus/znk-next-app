@@ -31,7 +31,7 @@ const FilterTagsSelector: FC<IProps> = ({ title, type, bffParams, selectedFilter
         className="text-matterhorn uppercase font-medium text-sm leading-18p 2xl:text-0.97v 2xl:leading-1.25v">{title}</div>
       <div className="flex flex-wrap gap-[0.3125rem] 2xl:gap-[0.35vw]">
         {bffParams.map(filterTag => {
-          const isActive = filterTag === selectedFilter.tag;
+          const isActive = filterTag === selectedFilter.tag && type == selectedFilter.type;
 
           return (
             <Button
