@@ -12,6 +12,17 @@ const nextConfig = {
     return config;
   },
   i18n,
+  images: {
+    domains: ['znakproject.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'znakproject.com',
+        port: '8443',
+        pathname: '/project-image/**',
+      },
+    ],
+  },
   env: {
     ZNAK_API_URL: process.env.ZNAK_API_URL,
     ZNAK_BASE_URL: process.env.ZNAK_BASE_URL
