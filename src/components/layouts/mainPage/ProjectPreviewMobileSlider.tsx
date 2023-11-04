@@ -12,7 +12,7 @@ interface IProps {
   onTouchStart?: TouchEventHandler<HTMLDivElement>;
   onTouchEnd?: TouchEventHandler<HTMLDivElement>;
   openSlide?: boolean;
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', undefined>;
   isPhone?: boolean;
 }
 

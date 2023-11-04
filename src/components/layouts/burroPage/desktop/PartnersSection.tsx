@@ -8,7 +8,7 @@ interface IProps {
   certificates: PartnerCardType[],
   hover: boolean,
   setHover: (v: boolean) => void,
-  t: TFunction<'translation', undefined, 'translation'>,
+  t: TFunction<'translation', undefined>,
 }
 
 const PartnersSection: FC<IProps> = ({ certificates, hover, setHover, t }) => {

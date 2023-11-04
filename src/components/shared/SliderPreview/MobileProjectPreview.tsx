@@ -9,7 +9,7 @@ interface IProps {
   imgSrc?: string;
   href: string;
   openSlide?: boolean;
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', 'string'>;
   isPhone?: boolean;
 }
 
@@ -21,7 +21,7 @@ const MobileProjectPreview: FC<IProps> = ({ name, imgSrc, href, openSlide, t, is
           <Image
             className="object-cover"
             src={imgSrc}
-            alt={name}
+            alt="test"
             layout="fill"
             quality={100}
             priority={true}

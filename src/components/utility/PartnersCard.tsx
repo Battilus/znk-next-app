@@ -7,7 +7,7 @@ import { TFunction } from 'i18next';
 const HIGH_SCREEN_MIN_SIZE = 1536;
 
 type Props = PartnerCardType & {
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', undefined>;
 }
 
 const PartnersCard: FC<Props> = ({ logo, descriptionKey, t }) => {
@@ -30,6 +30,7 @@ const PartnersCard: FC<Props> = ({ logo, descriptionKey, t }) => {
           <div className="relative w-full h-full">
             <Image
               className="w-full h-full object-contain"
+              alt="test"
               src={logo.img}
               layout="fill"
               priority={true}

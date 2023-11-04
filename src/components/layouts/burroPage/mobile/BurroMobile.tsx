@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 interface IProps {
   certificates: PartnerCardType[];
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', undefined>;
   isMobileScreen: boolean;
 }
 

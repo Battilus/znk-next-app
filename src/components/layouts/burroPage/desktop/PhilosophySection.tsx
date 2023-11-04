@@ -6,7 +6,7 @@ import BurroPreview from '../../../shared/SliderPreview/BurroPreview';
 interface IProps {
   hover: boolean,
   setHover: (v: boolean) => void,
-  t: TFunction<'translation', undefined, 'translation'>,
+  t: TFunction<'translation', undefined>,
 }
 
 const PhilosophySection: FC<IProps> = ({ hover, setHover, t }) => {

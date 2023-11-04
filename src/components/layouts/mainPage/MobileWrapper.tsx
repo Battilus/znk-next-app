@@ -13,7 +13,7 @@ import { PRESENTATION_LINK } from '../../../assets/constants';
 
 interface IProps {
   previewProjects: Project[];
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', 'string'>;
   alignLogo?: 'start' | 'center';
   isPhone?: boolean;
 }

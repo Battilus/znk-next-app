@@ -8,7 +8,7 @@ import { Project } from '../../../api/entities/project/types/client';
 
 interface IProps {
   previewProjects: Project[];
-  t: TFunction<'translation', undefined, 'translation'>;
+  t: TFunction<'translation', undefined>;
   hover: boolean;
   setHover: (val: boolean) => void;
 }

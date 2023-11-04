@@ -1,13 +1,26 @@
 version: '3.8'
 services:
   web:
+    image: znk-next-app_web:latest
+    restart: always
     build:
       context: ./
       target: runner
-    volumes:
-      - .:/app
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: "3g"
+#    volumes:
+#      - .:/app
 #    command: npm run dev
     ports:
-      - "3000:3000"
-    environment:
-      NODE_ENV: development
+      - "443:8443"
+#    environment:
+#      NODE_ENV: production
+
+#
+#networks:
+#  default:
+#    external:
+#      name: backend_znak_network
