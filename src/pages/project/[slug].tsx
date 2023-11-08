@@ -17,15 +17,16 @@ import {
 } from '../../api/entities/project/queries';
 import { useRouter } from 'next/router';
 import ThereIsNoProjects from '../../components/shared/Logo/ThereIsNoProjects';
-import { PAGE_TITLE_META } from '../../assets/constants';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
-  meta: PageMeta;
   urlSlug: string;
 }
 
-const Project: NextPage<Props> = ({ meta, urlSlug }) => {
+const Project: NextPage<Props> = ({ urlSlug }) => {
   const { locale } = useRouter();
+
+  const { t } = useTranslation();
 
   const queryParams = useMemo(() => {
     if (!locale) {
@@ -43,6 +44,11 @@ const Project: NextPage<Props> = ({ meta, urlSlug }) => {
 
   const navigationPrevRef = useRef<HTMLDivElement>(null);
   const navigationNextRef = useRef<HTMLDivElement>(null);
+
+  const meta: PageMeta = {
+    title: t('meta.title'),
+    description: project?.description || project?.title || '',
+  };
 
   return (
     <PageWrapper meta={meta} isLoading={projectQuery.isLoading}>
@@ -124,8 +130,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, lo
 
   return {
     props: {
-      // @ts-ignore
-      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Описание проекта' : 'Project description' },
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
       urlSlug,

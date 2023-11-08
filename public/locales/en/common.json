@@ -6,6 +6,11 @@
   "thereIsNoFilter": "There is no filter",
   "znak": "znak",
   "project": "project",
+  "meta": {
+    "title": "ZNAK PROJECT | Bureau of Architecture",
+    "notFound": "404 Not Found",
+    "allProjects": "All projects"
+  },
   "projects_filters": {
     "services": "services",
     "assignment": "assignment",

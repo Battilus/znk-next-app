@@ -25,7 +25,7 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
   const translateWayStyle = useMemo(() => ({
       ltr: 'top-0 left-0 h-screen w-64 border-r duration-500',
       rtl: 'top-0 -right-64 h-screen w-64 border-r duration-500',
-      utd: '-top-[41rem] left-0 w-full border-b duration-500 pt-4 pb-[2.73rem]',
+      utd: '-top-full left-0 w-full border-b duration-500 pt-4 pb-[2.73rem]',
     }[translateWay]) || '',
     [ translateWay ]);
 
@@ -38,10 +38,10 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
       case 'utd':
         if (show) {
           if (isHomeMobileLocation) {
-            return dropdownMobile ? 'translate-y-[51.1rem]' : 'translate-y-[42.9rem]';
+            return dropdownMobile ? 'translate-y-[104vh]' : 'translate-y-[99vh]';
           }
 
-          return dropdownMobile ? 'translate-y-[54.87rem]' : 'translate-y-[46.7rem]';
+          return dropdownMobile ? 'translate-y-[105vh]' : 'translate-y-[105vh]';
         }
 
         return '';

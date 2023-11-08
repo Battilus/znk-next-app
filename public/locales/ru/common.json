@@ -6,6 +6,11 @@
   "thereIsNoFilter": "Фильтры отсутствуют",
   "znak": "знак",
   "project": "проект",
+  "meta": {
+    "title": "ЗНАК ПРОЕКТ | Архитектурное бюро",
+    "notFound": "404 Не найдено",
+    "allProjects": "Все проекты"
+  },
   "projects_filters": {
     "services": "услуги",
     "assignment": "назначение",

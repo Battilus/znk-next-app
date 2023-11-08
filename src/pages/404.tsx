@@ -5,15 +5,16 @@ import Button from '../components/shared/Button/Button';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { Locale } from '../api/types/locales';
-import { PAGE_TITLE_META } from '../assets/constants';
 import { PageMeta } from '../types';
 
-type Props = {
-  meta: PageMeta;
-}
 
-const NotFound: NextPage<Props> = ({meta}) => {
+const NotFound: NextPage = () => {
   const { t } = useTranslation();
+
+  const meta: PageMeta = {
+    title: t('meta.title'),
+    description: t('meta.notFound'),
+  };
 
   return (
     <PageWrapper meta={meta}>
@@ -35,12 +36,8 @@ const NotFound: NextPage<Props> = ({meta}) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const notFound = locale === Locale.RU ? '404 Не найдено' : '404 Not Found';
-
   return {
     props: {
-      // @ts-ignore
-      meta: { title: `${PAGE_TITLE_META[locale]} - ${notFound}`, description: notFound },
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
     },
   };

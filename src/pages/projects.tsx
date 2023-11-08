@@ -23,18 +23,14 @@ import { Project } from '../api/entities/project/types/client';
 import { BffTag } from '../api/entities/bffTags/types/client';
 import { useRouter } from 'next/router';
 import ThereIsNoProjects from '../components/shared/Logo/ThereIsNoProjects';
-import { PAGE_TITLE_META } from '../assets/constants';
+import { useTranslation } from 'next-i18next';
 
 export type SelectedFilterParam = {
   type: BffTagsQueryKey | null;
   tag: BffTag | null
 };
 
-type Props = {
-  meta: PageMeta;
-}
-
-const Projects: NextPage<Props> = ({ meta }) => {
+const Projects: NextPage = () => {
   const [ hover, setHover ] = useState<boolean>(false);
   const [ selectedProjectIndex, setSelectedProjectIndex ] = useState<number | null>(null);
   const [ selectedProjectsChunkIndex, setSelectedProjectsChunkIndex ] = useState<number | null>(null);
@@ -44,6 +40,13 @@ const Projects: NextPage<Props> = ({ meta }) => {
   });
 
   const { locale } = useRouter();
+
+  const { t } = useTranslation();
+
+  const meta: PageMeta = {
+    title: t('meta.title'),
+    description: t('meta.allProjects'),
+  };
 
   const queryParams = useMemo(() => {
     if (!locale) {
@@ -181,7 +184,7 @@ const Projects: NextPage<Props> = ({ meta }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const localization = locale?.toUpperCase() as ApiLocale;
 
   const queryClient = new QueryClient();
@@ -206,8 +209,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
 
   return {
     props: {
-      // @ts-ignore
-      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Все проекты' : 'All projects' },
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
     },

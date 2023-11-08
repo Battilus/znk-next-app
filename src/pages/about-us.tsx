@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../components/PageWrapper';
-import { CERTIFICATES, PAGE_TITLE_META } from '../assets/constants';
+import { CERTIFICATES } from '../assets/constants';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { PartnerCardType, PageMeta } from '../types';
@@ -11,15 +11,19 @@ import { Locale } from '../api/types/locales';
 
 
 type Props = {
-  meta: PageMeta;
   certificates: PartnerCardType[];
 }
 
-const AboutUs: NextPage<Props> = ({ meta, certificates }) => {
+const AboutUs: NextPage<Props> = ({ certificates }) => {
 
   const [ hover, setHover ] = useState<boolean>(false);
 
   const { t } = useTranslation();
+
+  const meta: PageMeta = {
+    title: t('meta.title'),
+    description: `${t('pages.burro.philosophy.description.p1')} ${t('pages.burro.philosophy.description.p2')}`,
+  };
 
   return (
     <PageWrapper meta={meta} screenBreakpoints={true} menuButtonColor="text-white">
@@ -43,8 +47,6 @@ const AboutUs: NextPage<Props> = ({ meta, certificates }) => {
 export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => {
   return {
     props: {
-      // @ts-ignore
-      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'О нас' : 'About us' },
       certificates: CERTIFICATES,
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
     },

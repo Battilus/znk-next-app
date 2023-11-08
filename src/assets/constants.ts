@@ -1,7 +1,6 @@
 import {Contact} from "../components/shared/SideBars/Contacts";
 import {LinkButtonType} from "../components/shared/Button/Button";
 import {PartnerCardType} from "../types";
-import { Locale } from '../api/types/locales';
 
 export const SIDEBAR_LINKS: LinkButtonType[] = [
     {
@@ -111,11 +110,6 @@ export const ADDRESS_AND_DETAILS = {
     inn: '7802929417',
     ogrn: '1227800113122',
     companyAddress: 'contacts.addressAndDetails.companyAddress',
-}
-
-export const PAGE_TITLE_META = {
-    [Locale.RU]: 'ЗНАК ПРОЕКТ | Архитектурное бюро',
-    [Locale.EN]: 'ZNAK PROJECT | Architectural firm',
 }
 
 export const CERTIFICATES: PartnerCardType[] = [

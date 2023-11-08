@@ -12,13 +12,9 @@ import { getPreviewProjectsList, useGetPreviewProjectsListQuery } from '../api/e
 import { ProjectQueryKey } from '../api/constants';
 import { Project } from '../api/entities/project/types/client';
 import { useRouter } from 'next/router';
-import { PAGE_TITLE_META } from '../assets/constants';
 
-type Props = {
-  meta: PageMeta;
-}
 
-const Home: NextPage<Props> = ({ meta }) => {
+const Home: NextPage = () => {
   const [ hover, setHover ] = useState<boolean>(false);
 
   const {locale} = useRouter();
@@ -31,6 +27,12 @@ const Home: NextPage<Props> = ({ meta }) => {
 
     return { localization: locale.toUpperCase() as ApiLocale };
   }, [locale]);
+
+  const meta: PageMeta = {
+    title: t('meta.title'),
+    description: `${t('pages.main.burroDescription.desktop.text_p1')} ${t('pages.main.burroDescription.desktop.text_p2')} 
+    ${t('pages.main.burroDescription.desktop.text_p3')}`,
+  };
 
   const previewProjectsQuery = useGetPreviewProjectsListQuery(localization!, {enabled: Boolean(localization)});
 
@@ -83,7 +85,7 @@ const Home: NextPage<Props> = ({ meta }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const localization = locale?.toUpperCase() as ApiLocale;
 
   const queryClient = new QueryClient();
@@ -91,8 +93,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) 
 
   return {
     props: {
-      // @ts-ignore
-      meta: { title: PAGE_TITLE_META[locale], description: locale === Locale.RU ? 'Главная' : 'Main' },
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
       dehydratedState: dehydrate(queryClient),
     },
