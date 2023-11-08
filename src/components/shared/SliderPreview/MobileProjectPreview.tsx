@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import Button from '../Button/Button';
 import { Transition } from '@headlessui/react';
 import { TFunction } from 'i18next';
@@ -22,10 +22,10 @@ const MobileProjectPreview: FC<IProps> = ({ name, imgSrc, href, openSlide, t, is
             className="object-cover"
             src={imgSrc}
             alt="test"
-            layout="fill"
             quality={100}
             priority={true}
-          />}
+            fill={true}
+            sizes="100vw" />}
         <Transition
           show={openSlide}
           enter="transform transition-opacity duration-500"

@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import { PartnerCardType } from '../../types';
 import { useWindowSize } from '../../features/hooks/useWindowSize';
 import { TFunction } from 'i18next';
@@ -32,9 +32,9 @@ const PartnersCard: FC<Props> = ({ logo, descriptionKey, t }) => {
               className="w-full h-full object-contain"
               alt="test"
               src={logo.img}
-              layout="fill"
               priority={true}
-            />
+              fill={true}
+              sizes="100vw" />
           </div>
         </div>
       </div>

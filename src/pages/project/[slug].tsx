@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../../components/PageWrapper';
 import ProjectSections from '../../components/layouts/ProjectSections/ProjectSections';
-import Image from 'next/image';
+import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, Keyboard } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -104,10 +104,10 @@ const Project: NextPage<Props> = ({ urlSlug }) => {
                       className="object-cover object-center"
                       src={image.src}
                       alt={`Project preview ${image.alt || image.showOrder}`}
-                      layout="fill"
                       quality={100}
                       priority={true}
-                    />
+                      fill={true}
+                      sizes="100vw" />
                   </div>
                 </SwiperSlide>)
               || <ThereIsNoProjects onlyLogo={true}/>}

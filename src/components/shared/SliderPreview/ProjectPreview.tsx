@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useDebounce } from '../../../features/hooks/useDebounce';
-import Image from 'next/image';
+import Image from "next/image";
 import A from '../Link/A';
 
 interface IProps {
@@ -62,10 +62,10 @@ const ProjectPreview: FC<IProps> = ({ name, imgSrc, href, hover, setHover, disab
             className="object-cover"
             src={imgSrc}
             alt="test"
-            layout="fill"
             quality={100}
             priority={true}
-          />}
+            fill={true}
+            sizes="100vw" />}
       </div>
     </A>
   );
