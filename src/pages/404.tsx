@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetStaticProps, NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../components/PageWrapper';
 import Button from '../components/shared/Button/Button';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -35,7 +35,7 @@ const NotFound: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale || Locale.RU, [ 'common' ])),
