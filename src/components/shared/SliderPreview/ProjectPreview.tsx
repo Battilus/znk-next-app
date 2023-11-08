@@ -12,7 +12,7 @@ interface IProps {
   disableBorder?: boolean;
 }
 
-const ProjectPreview: FC<IProps> = ({ name, imgSrc, href, hover, setHover, disableBorder }) => {
+const ProjectPreview: FC<IProps> = ({ imgSrc, href, hover, setHover, disableBorder }) => {
   const debounce = useDebounce((callback) => callback(), 200);
   const [ currentHover, setCurrentHover ] = useState<boolean>(false);
   const [ enHover, setEnHover ] = useState<boolean>(true);
