@@ -18,7 +18,7 @@ const NotFound: NextPage = () => {
 
   return (
     <PageWrapper meta={meta}>
-      <div className="h-screen bg-whiteSmoke flex flex-col items-center justify-center">
+      <div className="h-dvh bg-whiteSmoke flex flex-col items-center justify-center">
         <div className="text-matterhorn uppercase text-xs 2xl:text-0.83v leading-4 2xl:leading-1.11v mb-8 2xl:mb-2.22v">
           {t('pages.404.description')}
         </div>

@@ -62,7 +62,7 @@ const MobileWrapper: FC<IProps> = ({ previewProjects, t, alignLogo, isPhone }) =
       noSwiping={!touchMenu}
       noSwipingClass="swiper-slide"
       modules={[ Pagination ]}
-      className="absolute top-0 left-0 w-full h-screen z-10"
+      className="absolute top-0 left-0 w-full h-dvh z-10"
     >
       <SwiperSlide>
         <div className="flex">
@@ -123,7 +123,7 @@ const MobileWrapper: FC<IProps> = ({ previewProjects, t, alignLogo, isPhone }) =
               />
               <div className="flex">
                 <div
-                  className="w-[17.375rem] h-screen px-8 py-11 bg-white border-l border-matterhorn flex flex-col items-center justify-end">
+                  className="w-[17.375rem] h-dvh px-8 py-11 bg-white border-l border-matterhorn flex flex-col items-center justify-end">
                   <div className="w-full h-full flex flex-col items-center justify-center">
                     <LogoLink href="/" align="center"/>
                   </div>

@@ -1,7 +1,7 @@
 const merge = require('deepmerge');
 
 const sharedConfig = {
-  extends: ['airbnb', 'plugin:jest/recommended', 'plugin:react-hooks/recommended', 'prettier'],
+  extends: ['plugin:jest/recommended', 'plugin:react-hooks/recommended', 'prettier'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',

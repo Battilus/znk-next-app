@@ -12,7 +12,7 @@ const ThereIsNoProjects = ({ noFilters, onlyLogo, withoutLogo }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-dvh flex items-center justify-center">
       <div className="mx-2.5 flex flex-col items-center gap-5">
         {!withoutLogo && <LogoMainIcon className="w-24 md:w-[161px] 2xl:w-[11.18vw] h-24 md:h-[161px] 2xl:h-[11.18vw]"/>}
         {!onlyLogo &&

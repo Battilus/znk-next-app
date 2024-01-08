@@ -15,7 +15,7 @@ interface IProps {
 
 const MobileProjectPreview: FC<IProps> = ({ name, imgSrc, href, openSlide, t, isPhone }) => {
   return (
-    <div className="h-screen w-full">
+    <div className="h-dvh w-full">
       <div className="relative w-full h-full overflow-x-hidden object-center">
         {imgSrc &&
           <Image

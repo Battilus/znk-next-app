@@ -7,7 +7,7 @@ type Props = {
 const LoadingScreen: FC<Props> = ({ disablePageFallback }) => {
   return (
     <div id="loadingScreenWithSpinner" className={disablePageFallback ? '!flex' : 'hidden'}>
-      <div className="fixed left-0 top-0 w-screen h-screen bg-matterhorn opacity-40 flex flex-col gap-y-3.5 items-center justify-center z-[49]">
+      <div className="fixed left-0 top-0 w-screen h-dvh bg-matterhorn opacity-40 flex flex-col gap-y-3.5 items-center justify-center z-[49]">
         <div role="status">
           <svg aria-hidden="true"
                className="inline w-12 h-12 2xl:w-[3.33vw] 2xl:h-[3.33vw] text-gray-200 animate-spin fill-matterhorn"

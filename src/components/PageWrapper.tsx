@@ -49,7 +49,7 @@ const PageWrapper: FC<IPageWrapperProps> = (
         description={meta.description}
         tagsList={metaTagsList}
       />
-      <main className="h-screen w-screen bg-whiteSmoke">
+      <main className="h-dvh w-screen bg-whiteSmoke">
         {renderMain()}
         <ZnakLoadingScreen disablePageFallback={isLoading}/>
       </main>

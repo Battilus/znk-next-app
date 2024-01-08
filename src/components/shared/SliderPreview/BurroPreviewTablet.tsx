@@ -15,7 +15,7 @@ enum AlignContent {
 
 const BurroPreviewTablet: FC<IProps> = ({ children, title, bgImage, contentAlign = 'center' }) => {
   return (
-    <div className={`w-full h-screen ${bgImage} bg-no-repeat bg-center bg-cover basis-auto`}>
+    <div className={`w-full h-dvh ${bgImage} bg-no-repeat bg-center bg-cover basis-auto`}>
       <div className="h-full px-9 pt-[2.625rem] pb-20 flex flex-col">
         <div className="text-white font-medium uppercase text-sl leading-21.5">
           {title}

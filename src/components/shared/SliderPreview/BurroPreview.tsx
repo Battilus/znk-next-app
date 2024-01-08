@@ -68,7 +68,7 @@ const BurroPreview: FC<IProps> = (
 
   return (
     <div
-      className={`h-screen ${!disableBorder ? 'border-r border-matterhorn' : ''} 
+      className={`h-dvh ${!disableBorder ? 'border-r border-matterhorn' : ''} 
                   transition-width duration-200 min-w-13.75v
                   ${selectWidthOnHover()}`}
     >

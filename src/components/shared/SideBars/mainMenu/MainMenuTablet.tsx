@@ -54,7 +54,7 @@ const MainMenuTablet: FC<IProps> = (
       </Transition>
 
       <div
-        className={`flex flex-col h-screen w-56 fixed right-0 
+        className={`flex flex-col h-dvh w-56 fixed right-0 
                     transform transition-all duration-700 ${isOpen ? '' : 'translate-x-60'} 
                     border-l border-matterhorn bg-whiteSmoke z-40`}
       >

@@ -139,7 +139,7 @@ const Projects: NextPage = () => {
         >
           {projects?.map((projectsChunk, chunkIndex) =>
             <SwiperSlide key={chunkIndex}>
-              <div className="w-full h-screen flex flex-row overflow-x-auto">
+              <div className="w-full h-dvh flex flex-row overflow-x-auto">
                 {projectsChunk.map((project, index) => {
                   const imagePreview = project.images.find(image => image?.projectPreview && image.projectPreview);
 

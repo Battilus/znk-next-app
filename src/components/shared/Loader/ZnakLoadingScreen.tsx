@@ -9,8 +9,8 @@ type Props = {
 const ZnakLoadingScreen: FC<Props> = ({disablePageFallback}) => {
   return (
     <div id="loadingScreen" className={disablePageFallback ? '!flex' : 'hidden'}>
-      <div className="fixed left-0 top-0 w-screen h-screen bg-matterhorn opacity-30 z-[49]"/>
-      <div className="fixed left-0 top-0 w-screen h-screen flex flex-col items-center justify-center z-[60]">
+      <div className="fixed left-0 top-0 w-screen h-dvh bg-matterhorn opacity-30 z-[49]"/>
+      <div className="fixed left-0 top-0 w-screen h-dvh flex flex-col items-center justify-center z-[60]">
         <Lottie
           loop={true}
           animationData={znakLoadBlack}

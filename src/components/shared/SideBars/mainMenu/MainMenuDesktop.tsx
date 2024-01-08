@@ -116,7 +116,7 @@ const MainMenuDesktop: FC<IProps> = (
       </Transition>
 
       <div
-        className={`flex flex-col h-screen w-42 2xl:w-11.67v fixed left-0 
+        className={`flex flex-col h-dvh w-42 2xl:w-11.67v fixed left-0 
                             transform transition-all duration-700 ${isOpen ? '' : '-translate-x-38 2xl:-translate-x-9.44v'} 
                             border-r border-matterhorn bg-whiteSmoke z-40`}
       >

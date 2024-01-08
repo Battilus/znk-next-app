@@ -23,8 +23,8 @@ const Contacts: FC<IContactProps> = ({ show, contacts, translateWay, dropdownMob
   const { t } = useTranslation();
 
   const translateWayStyle = useMemo(() => ({
-      ltr: 'top-0 left-0 h-screen w-64 border-r duration-500',
-      rtl: 'top-0 -right-64 h-screen w-64 border-r duration-500',
+      ltr: 'top-0 left-0 h-dvh w-64 border-r duration-500',
+      rtl: 'top-0 -right-64 h-dvh w-64 border-r duration-500',
       utd: '-top-full left-0 w-full border-b duration-500 pt-4 pb-[2.73rem]',
     }[translateWay]) || '',
     [ translateWay ]);

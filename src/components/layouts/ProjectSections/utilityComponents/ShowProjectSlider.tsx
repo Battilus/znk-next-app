@@ -7,7 +7,7 @@ const ShowProjectSlider: FC = () => {
 
   return (
     <div
-      className="fixed top-0 right-0 h-screen w-8 2xl:w-2.22v bg-whiteSmoke uppercase flex items-center justify-center -rotate-180">
+      className="fixed top-0 right-0 h-dvh w-8 2xl:w-2.22v bg-whiteSmoke uppercase flex items-center justify-center -rotate-180">
       <Button.Link
         styleType="inverse"
         className="h-full w-8 2xl:w-2.22v border-r border-matterhorn"

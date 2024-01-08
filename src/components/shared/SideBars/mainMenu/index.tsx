@@ -84,7 +84,7 @@ const MainMenu: FC<IProps> = ({ isHomeLocation, hideHomeButton, menuButtonColor 
           leaveTo="opacity-0"
         >
           <div
-            className="w-screen h-screen bg-matterhorn"
+            className="w-screen h-dvh bg-matterhorn"
             onClick={closeMenu}
           />
         </Transition>
