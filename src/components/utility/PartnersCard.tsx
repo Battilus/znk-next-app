@@ -8,22 +8,23 @@ const HIGH_SCREEN_MIN_SIZE = 1536;
 
 type Props = PartnerCardType & {
   t: TFunction<'translation', undefined>;
+  isMobileScreen?: boolean;
 }
 
-const PartnersCard: FC<Props> = ({ logo, descriptionKey, t }) => {
+const PartnersCard: FC<Props> = ({ logo, descriptionKey, t, isMobileScreen }) => {
 
-  const { width: screenWidth } = useWindowSize();
+  const { width: screenWidth = 0 } = useWindowSize();
 
   return (
-    <div className="h-full w-full flex items-center grayscale hover:grayscale-0 transition delay-100 ease-linear cursor-pointer">
+    <div className={`h-full w-full flex items-center ${isMobileScreen ? 'grayscale-0' : 'grayscale hover:grayscale-0'} transition delay-100 ease-linear cursor-pointer`}>
       <div
         className="w-[6.25rem] 2xl:w-[6.94vw] h-[6rem] 2xl:h-[6.67vw] flex items-center justify-center"
       >
         <div
           style={
           {
-            width: screenWidth && screenWidth >= HIGH_SCREEN_MIN_SIZE ? logo.scaleWidth : logo.width,
-            height: screenWidth && screenWidth >= HIGH_SCREEN_MIN_SIZE ? logo.scaleHeight : logo.height,
+            width: screenWidth >= HIGH_SCREEN_MIN_SIZE ? logo.scaleWidth : logo.width,
+            height: screenWidth >= HIGH_SCREEN_MIN_SIZE ? logo.scaleHeight : logo.height,
           }}
           className=""
         >
@@ -39,7 +40,7 @@ const PartnersCard: FC<Props> = ({ logo, descriptionKey, t }) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5 2xl:gap-[0.42vw] text-matterhorn">
+      <div className={`flex flex-col gap-1.5 2xl:gap-[0.42vw] ${isMobileScreen ? 'text-white' : 'text-matterhorn'}`}>
         <div className="text-justify text-sm 2xl:text-0.97v font-medium uppercase leading-18p 2xl:leading-1.25v">
           {t(`pages.burro.partners.list.${descriptionKey}.title`)}
         </div>

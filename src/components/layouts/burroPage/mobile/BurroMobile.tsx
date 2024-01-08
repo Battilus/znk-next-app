@@ -4,10 +4,12 @@ import { TFunction } from 'i18next';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import DoubleSlashIcon from '../../../../../public/svg/double-slash.svg';
-import PartnersCard from '../../../utility/PartnersCard';
 import BurroPreviewTablet from '../../../shared/SliderPreview/BurroPreviewTablet';
-import ArrowLeftStrokeIcon from '../../../../../public/svg/arrow-left-stroke.svg';
 import { useRouter } from 'next/router';
+import PartnersCard from '../../../utility/PartnersCard';
+import { useWindowSize } from '../../../../features/hooks/useWindowSize';
+
+const TABLET_MIN_WIDTH = 764;
 
 interface IProps {
   certificates: PartnerCardType[];
@@ -28,6 +30,8 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
   const swiperExtRef = useRef<SwiperRef>(null);
   const router = useRouter();
 
+  const { width: screenWidth = 0 } = useWindowSize();
+
   const slideTo = (index: number) => {
     swiperExtRef?.current?.swiper.slideTo(index - 1, 300);
   };
@@ -41,6 +45,27 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
 
   }, [ router ]);
 
+  const renderPartnersSection = () => {
+    return (
+      <SwiperSlide>
+        <BurroPreviewTablet
+          title={t('pages.burro.partners.title')}
+          bgImage="bg-burro_partners_mobile"
+        >
+          <div className={`w-full max-w-[38.56rem] h-full max-h-[76vh] grid gap-4 ${ screenWidth >= TABLET_MIN_WIDTH ? 'grid-cols-2' : 'grid-cols-1 overflow-y-scroll'} text-white`}>
+            {certificates.map(certificate =>
+              <PartnersCard
+                {...certificate}
+                key={certificate.id}
+                t={t}
+                isMobileScreen={true}
+              />)}
+          </div>
+        </BurroPreviewTablet>
+      </SwiperSlide>
+    )
+  }
+
   return (
     <div className="w-full">
       <Swiper
@@ -49,11 +74,11 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
         pagination={{
           clickable: true,
           dynamicMainBullets: 3,
-          horizontalClass: '!bottom-10',
+          horizontalClass: '!bottom-[2.1rem] !left-[3.5rem]',
           dynamicBullets: true,
         }}
         modules={[ Pagination ]}
-        className="h-[100vh]"
+        className="h-dvh"
       >
         <SwiperSlide>
           <BurroPreviewTablet
@@ -69,14 +94,6 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
                 <div>{t('pages.burro.philosophy.description.p2')}</div>
               </div>
               <DoubleSlashIcon className="w-[27px] h-[33px]"/>
-            </div>
-
-            <div
-              className="fixed right-9 bottom-8 text-white font-medium uppercase text-xsm s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
-              onClick={() => slideTo(SlideIndex.team)}
-            >
-              <div>{t('pages.burro.command.title')}</div>
-              <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1"/>
             </div>
           </BurroPreviewTablet>
         </SwiperSlide>
@@ -113,48 +130,10 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
                 </>
               }
             </div>
-
-            <div
-              className="fixed left-9 bottom-8 text-white font-medium uppercase text-s s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
-              onClick={() => slideTo(SlideIndex.philosophy)}
-            >
-              <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1 rotate-180"/>
-              <div>{t('pages.burro.philosophy.title')}</div>
-            </div>
-
-            <div
-              className="fixed right-9 bottom-8 text-white font-medium uppercase text-s s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
-              onClick={() => slideTo(SlideIndex.partners)}
-            >
-              <div>{t('pages.burro.partners.title')}</div>
-              <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1"/>
-            </div>
           </BurroPreviewTablet>
         </SwiperSlide>
 
-        <SwiperSlide>
-          <BurroPreviewTablet
-            title={t('pages.burro.partners.title')}
-            bgImage="bg-burro_partners_mobile"
-          >
-            <div className="w-full max-w-[38.56rem] h-full max-h-[26rem] grid grid-cols-2 gap-8 text-white">
-              {certificates.map(certificate =>
-                <PartnersCard
-                  {...certificate}
-                  key={certificate.id}
-                  t={t}
-                />)}
-            </div>
-
-            <div
-              className="fixed left-9 bottom-8 text-white font-medium uppercase text-xsm s:!text-sl leading-21.5 flex items-center gap-[0.718rem]"
-              onClick={() => slideTo(SlideIndex.team)}
-            >
-              <ArrowLeftStrokeIcon className="w-[0.562rem] h-3.5 text-white -mt-1 rotate-180"/>
-              <div>{t('pages.burro.command.title')}</div>
-            </div>
-          </BurroPreviewTablet>
-        </SwiperSlide>
+        {renderPartnersSection()}
       </Swiper>
     </div>
   );
