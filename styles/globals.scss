@@ -31,8 +31,12 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #575757;
+  background: #F4F4F4;
   border-radius: 3px;
+
+  @media (min-width: 1024px) {
+    background: #575757;
+  }
 }
 
 /* Handle on hover */

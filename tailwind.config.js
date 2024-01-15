@@ -316,6 +316,7 @@ module.exports = {
         },
         screens: {
             's': '385px',
+            'iPadPro': '1020',
         },
         backgroundImage: {
             'burro_philosophy': "url('/png/burro_philosophy.png')",

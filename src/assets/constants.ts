@@ -228,3 +228,5 @@ export const CERTIFICATES: PartnerCardType[] = [
 export const VACANCIES_LINK = 'https://hh.ru/employer/9324937';
 
 export const PRESENTATION_LINK = '/presentation.pdf';
+
+export const MIN_MOBILE_SCREEN_HEIGHT = 760;

@@ -6,8 +6,7 @@ import LogoLink from '../../shared/Logo/LogoLink';
 import { Project } from '../../../api/entities/project/types/client';
 import { useWindowSize } from '../../../features/hooks/useWindowSize';
 import MobileProjectPreview from '../../shared/SliderPreview/MobileProjectPreview';
-
-const MIN_SCREEN_HEIGHT = 760;
+import { MIN_MOBILE_SCREEN_HEIGHT } from '../../../assets/constants';
 
 interface IProps {
   previewProjects: Project[];
@@ -39,7 +38,7 @@ const MobileWrapper: FC<IProps> = ({ previewProjects, t }) => {
             <div>{t('pages.main.burroDescription.desktop.text_p3')}</div>
           </div>
 
-          {screenHeight >= MIN_SCREEN_HEIGHT && (
+          {screenHeight >= MIN_MOBILE_SCREEN_HEIGHT && (
             <div className="mt-8">
               <div>{t('pages.main.burroDescription.desktop.mainDirections.title')}</div>
               <ul className="font-medium mt-3">

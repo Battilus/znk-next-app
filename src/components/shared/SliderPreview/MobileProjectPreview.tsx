@@ -28,7 +28,7 @@ const MobileProjectPreview: FC<IProps> = ({ previewProject }) => {
 
         {imgSrc &&
           <Image
-            className="object-cover brightness-75"
+            className="object-cover brightness-[80%]"
             src={imgSrc}
             alt="test"
             quality={100}
