@@ -59,12 +59,13 @@ const ProjectPreview: FC<IProps> = ({ imgSrc, href, hover, setHover, disableBord
       >
         {imgSrc &&
           <Image
-            className="object-cover"
+            className="object-cover h-dvh w-full"
             src={imgSrc}
             alt="test"
             quality={100}
             priority={true}
-            fill={true}
+            width="0"
+            height="0"
             sizes="100vw" />}
       </div>
     </A>

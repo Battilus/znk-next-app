@@ -60,16 +60,17 @@ const DesktopWrapper: FC<Props> = ({ project }) => {
         >
 
           {project?.images?.length &&
-            project.images.map(image =>
-              <SwiperSlide key={image.showOrder}>
-                <div className="w-full h-screen">
+            project.images.map((image, index) =>
+              <SwiperSlide key={index}>
+                <div className="w-full h-dvh">
                   <Image
-                    className="object-cover object-center"
+                    className="object-cover object-center h-dvh w-full"
                     src={image.src}
                     alt={`Project preview ${image.alt || image.showOrder}`}
                     quality={100}
                     priority={true}
-                    fill={true}
+                    width="0"
+                    height="0"
                     sizes="100vw"/>
                 </div>
               </SwiperSlide>)

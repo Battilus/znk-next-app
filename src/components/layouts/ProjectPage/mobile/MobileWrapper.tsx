@@ -24,7 +24,7 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
   const descriptionAreaRef = useRef<HTMLDivElement>(null);
 
   const splitIndents = (text: string) => {
-    return text.split('\n').map(str => <p key={str}>{str}</p>);
+    return text.split('\n').map((str, index) => <p key={index}>{str}</p>);
   };
 
   const projectDescriptionNode = useMemo(() => {
@@ -68,12 +68,13 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
 
     return (
       <Image
-        className="object-cover brightness-[80%]"
+        className="object-cover brightness-[80%] h-dvh w-full"
         src={preview.src}
         alt="test"
         quality={100}
         priority={true}
-        fill={true}
+        width="0"
+        height="0"
         sizes="100vw"/>
     )
   }
@@ -164,17 +165,18 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
               disableOnInteraction: false,
             }}
           >
-            {project?.images?.map((image) => {
+            {project?.images?.map((image, index) => {
               return (
-                <SwiperSlide key={image.showOrder}>
-                  <div className="w-full h-screen">
+                <SwiperSlide key={index}>
+                  <div className="w-full h-dvh">
                     <Image
-                      className="object-cover object-center"
+                      className="object-cover object-center h-dvh w-full"
                       src={image.src}
                       alt={`Project preview ${image.alt || image.showOrder}`}
                       quality={100}
                       priority={true}
-                      fill={true}
+                      width="0"
+                      height="0"
                       sizes="100vw"/>
                   </div>
                 </SwiperSlide>
