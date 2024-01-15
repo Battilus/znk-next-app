@@ -33,7 +33,7 @@ const PageWrapper: FC<IPageWrapperProps> = (
     return (
       <>
         <MainMenu hideHomeButton={hideHomeButton} isHomeLocation={isHomeLocation} menuButtonColor={menuButtonColor}/>
-        <div className="ml-0 lg:ml-8 2xl:ml-2.22v overflow-x-hidden">
+        <div className="ml-0 xl:ml-8 2xl:ml-2.22v overflow-x-hidden">
           {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
           {/* @ts-ignore */}
           {screenBreakpoints ? children({ breakpoints, screens }) : children}
