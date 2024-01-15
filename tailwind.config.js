@@ -320,6 +320,8 @@ module.exports = {
             'burro_philosophy': "url('/png/burro_philosophy.png')",
             'burro_philosophy_hover': "url('/png/burro_philosophy_hover.png')",
             'burro_philosophy_mobile': "url('/png/burro_philosophy_mobile.png')",
+            'burro_team_mobile_ekaterina': "url('/png/burro_team_mobile_ekaterina.png')",
+            'burro_team_mobile_ilya': "url('/png/burro_team_mobile_ilya.png')",
             'burro_command': "url('/png/burro_command.png')",
             'burro_command_hover': "url('/png/burro_command_hover.png')",
             'burro_partners': "url('/png/burro_partners.png')",

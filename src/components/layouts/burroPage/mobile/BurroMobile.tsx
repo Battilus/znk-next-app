@@ -7,9 +7,6 @@ import DoubleSlashIcon from '../../../../../public/svg/double-slash.svg';
 import BurroPreviewTablet from '../../../shared/SliderPreview/BurroPreviewTablet';
 import { useRouter } from 'next/router';
 import PartnersCard from '../../../utility/PartnersCard';
-import { useWindowSize } from '../../../../features/hooks/useWindowSize';
-
-const TABLET_MIN_WIDTH = 764;
 
 interface IProps {
   certificates: PartnerCardType[];
@@ -22,15 +19,13 @@ type SlidesPath = 'philosophy' | 'team' | 'partners'
 enum SlideIndex {
   philosophy = 1,
   team = 2,
-  partners = 3
+  partners = 4
 }
 
 const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
 
   const swiperExtRef = useRef<SwiperRef>(null);
   const router = useRouter();
-
-  const { width: screenWidth = 0 } = useWindowSize();
 
   const slideTo = (index: number) => {
     swiperExtRef?.current?.swiper.slideTo(index - 1, 300);
@@ -45,20 +40,87 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
 
   }, [ router ]);
 
+  const renderPhilosophySection = () => {
+    return (
+      <SwiperSlide>
+        <BurroPreviewTablet
+          title={t('pages.burro.philosophy.title')}
+          bgImage="bg-burro_philosophy_mobile"
+        >
+          <div className="w-full flex flex-col items-center justify-center gap-5">
+            <DoubleSlashIcon className="w-[27px] h-[33px]"/>
+            <div
+              className="w-full sm:w-3/4 md:w-2/4 flex flex-col items-center gap-10 font-medium uppercase text-white
+                           text-sm leading-18p text-justify">
+              <div>{t('pages.burro.philosophy.description.p1')}</div>
+              <div>{t('pages.burro.philosophy.description.p2')}</div>
+            </div>
+            <DoubleSlashIcon className="w-[27px] h-[33px]"/>
+          </div>
+        </BurroPreviewTablet>
+      </SwiperSlide>
+    );
+  }
+
+  const renderTeamSection = () => {
+    return (
+      <>
+        <SwiperSlide>
+          <BurroPreviewTablet
+            title={t('pages.burro.command.title')}
+            bgImage="bg-burro_team_mobile_ekaterina"
+            contentAlign="end"
+            isDarkenedBg={true}
+          >
+            <div
+              className="flex flex-col gap-1.5 font-medium uppercase text-white
+                         text-sm leading-18p text-justify w-full sm:w-3/4 md:w-2/4">
+              <p className="text-sl">
+                {t('pages.burro.command.employees.e2.title')}
+              </p>
+              <p>{t('pages.burro.command.employees.e2.p1')}</p>
+              <p>{t('pages.burro.command.employees.e2.p2')}</p>
+            </div>
+          </BurroPreviewTablet>
+        </SwiperSlide>
+
+        <SwiperSlide>
+        <BurroPreviewTablet
+            title={t('pages.burro.command.title')}
+            bgImage="bg-burro_team_mobile_ilya"
+            contentAlign="end"
+            isDarkenedBg={true}
+          >
+          <div
+            className="flex flex-col gap-1.5 font-medium uppercase text-white
+                         text-sm leading-18p text-justify w-full sm:w-3/4 md:w-2/4">
+            <p className="text-sl">
+              {t('pages.burro.command.employees.e1.title')}
+            </p>
+            <p>{t('pages.burro.command.employees.e1.p1')}</p>
+            <p>{t('pages.burro.command.employees.e1.p2')}</p>
+          </div>
+        </BurroPreviewTablet>
+        </SwiperSlide>
+      </>
+    );
+  }
+
   const renderPartnersSection = () => {
     return (
       <SwiperSlide>
         <BurroPreviewTablet
           title={t('pages.burro.partners.title')}
-          bgImage="bg-burro_partners_mobile"
+          bgImage={!isMobileScreen ? 'bg-burro_partners_mobile' : undefined}
+          isDarkenedBg={isMobileScreen}
         >
-          <div className={`w-full max-w-[38.56rem] h-full max-h-[76vh] grid gap-4 ${ screenWidth >= TABLET_MIN_WIDTH ? 'grid-cols-2' : 'grid-cols-1 overflow-y-scroll'} text-white`}>
+          <div className={`w-full max-w-[38.56rem] h-full max-h-[76vh] grid grid-cols-2 gap-4 text-white`}>
             {certificates.map(certificate =>
               <PartnersCard
                 {...certificate}
                 key={certificate.id}
                 t={t}
-                isMobileScreen={true}
+                isMobileScreen={isMobileScreen}
               />)}
           </div>
         </BurroPreviewTablet>
@@ -73,66 +135,14 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
         slidesPerView={1}
         pagination={{
           clickable: true,
-          dynamicMainBullets: 3,
-          horizontalClass: '!bottom-[2.1rem] !left-[3.5rem]',
-          dynamicBullets: true,
+          verticalClass: '!top-[94vh] !right-[1.5rem]',
         }}
         modules={[ Pagination ]}
         className="h-dvh"
+        direction="vertical"
       >
-        <SwiperSlide>
-          <BurroPreviewTablet
-            title={t('pages.burro.philosophy.title')}
-            bgImage="bg-burro_philosophy_mobile"
-          >
-            <div className="w-full flex flex-col items-center justify-center gap-5">
-              <DoubleSlashIcon className="w-[27px] h-[33px]"/>
-              <div
-                className="w-full sm:w-3/4 md:w-2/4 flex flex-col items-center gap-10 font-medium uppercase text-white
-                           text-sm leading-18p text-justify">
-                <div>{t('pages.burro.philosophy.description.p1')}</div>
-                <div>{t('pages.burro.philosophy.description.p2')}</div>
-              </div>
-              <DoubleSlashIcon className="w-[27px] h-[33px]"/>
-            </div>
-          </BurroPreviewTablet>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <BurroPreviewTablet
-            title={t('pages.burro.command.title')}
-            bgImage="bg-burro_philosophy_hover"
-            contentAlign="end"
-          >
-            <div
-              className="flex flex-row items-center gap-8 font-medium uppercase text-white
-                         text-sm leading-18p text-justify">
-              {isMobileScreen ?
-                <div className="w-full max-w-[318px] sm:max-w-[363px] h-full">
-                  <Swiper
-                    slidesPerView={1}
-                    spaceBetween={32}
-                  >
-                    <SwiperSlide>
-                      <div
-                        className="w-full max-w-[318px] s:!max-w-[363px] h-[252px]">{t('pages.burro.command.mobile.p1')}</div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                      <div
-                        className="w-full max-w-[318px] s:!max-w-[363px] h-[252px]">{t('pages.burro.command.mobile.p2')}</div>
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
-                : <>
-                  <div>{t('pages.burro.command.mobile.p1')}</div>
-                  <div>{t('pages.burro.command.mobile.p2')}</div>
-                </>
-              }
-            </div>
-          </BurroPreviewTablet>
-        </SwiperSlide>
-
+        {renderPhilosophySection()}
+        {renderTeamSection()}
         {renderPartnersSection()}
       </Swiper>
     </div>

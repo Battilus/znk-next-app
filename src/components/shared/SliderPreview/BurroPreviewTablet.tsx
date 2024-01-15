@@ -3,9 +3,10 @@ import React, { FC, ReactNode } from 'react';
 interface IProps {
   children: ReactNode | string;
   title: string;
-  bgImage: string;
+  bgImage?: string;
   contentAlign?: 'end' | 'center' | 'start';
   titleColor?: string;
+  isDarkenedBg?: boolean;
 }
 
 enum AlignContent {
@@ -14,10 +15,10 @@ enum AlignContent {
   end = 'justify-end'
 }
 
-const BurroPreviewTablet: FC<IProps> = ({ children, title, bgImage, contentAlign = 'center', titleColor = 'text-white' }) => {
+const BurroPreviewTablet: FC<IProps> = ({ children, title, bgImage, contentAlign = 'center', titleColor = 'text-white', isDarkenedBg }) => {
   return (
     <div className={`w-full h-dvh ${bgImage} bg-no-repeat bg-center bg-cover basis-auto`}>
-      <div className="h-full px-9 pt-[2.625rem] pb-20 flex flex-col">
+      <div className={`h-full px-9 pt-[2.625rem] pb-20 flex flex-col ${isDarkenedBg && 'backdrop-brightness-[70%]'}`}>
         <div className={`${titleColor} font-medium uppercase text-sl leading-21.5`}>
           {title}
         </div>
