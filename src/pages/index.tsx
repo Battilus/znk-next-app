@@ -54,8 +54,6 @@ const Home: NextPage = () => {
         <MobileWrapper
           previewProjects={previewProjects}
           t={t}
-          alignLogo={iPhone ? 'center' : 'start'}
-          isPhone={iPhone}
         />
       );
     }
@@ -77,6 +75,7 @@ const Home: NextPage = () => {
       hideHomeButton={hover}
       screenBreakpoints={true}
       isLoading={previewProjectsQuery.isLoading}
+      menuButtonColor="text-white"
     >
       {({ breakpoints: { mobileSm: iPhone }, screens: { tablet } }) =>
         renderWrapper({ previewProjects: projectsList, tablet, iPhone })

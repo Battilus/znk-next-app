@@ -1,165 +1,91 @@
-import React, { FC, TouchEventHandler, useState } from 'react';
-import ProjectSections from '../ProjectSections/ProjectSections';
-import ProjectPreviewMobileSlider from './ProjectPreviewMobileSlider';
+import React, { FC } from 'react';
 import { TFunction } from 'i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { mathPercent } from '../../../features/utils';
-import { Pagination } from 'swiper';
+import { Autoplay, Pagination } from 'swiper';
 import LogoLink from '../../shared/Logo/LogoLink';
-import Button from '../../shared/Button/Button';
-import DownloadIcon from '../../../../public/svg/download-arrow.svg';
 import { Project } from '../../../api/entities/project/types/client';
-import { PRESENTATION_LINK } from '../../../assets/constants';
+import { useWindowSize } from '../../../features/hooks/useWindowSize';
+import MobileProjectPreview from '../../shared/SliderPreview/MobileProjectPreview';
+
+const MIN_SCREEN_HEIGHT = 760;
 
 interface IProps {
   previewProjects: Project[];
   t: TFunction<'translation', 'string'>;
-  alignLogo?: 'start' | 'center';
-  isPhone?: boolean;
 }
 
-const MobileWrapper: FC<IProps> = ({ previewProjects, t, alignLogo, isPhone }) => {
-  const [ touchMenu, setTouchMenu ] = useState<boolean>(false);
-  const [ startPoint, setStartPoint ] = useState<number>(0);
+const MobileWrapper: FC<IProps> = ({ previewProjects, t }) => {
+  const { height: screenHeight = 0 } = useWindowSize();
 
-  const swipeLeftHandler: TouchEventHandler<HTMLDivElement> = (event) => {
-    if (mathPercent((startPoint - event.changedTouches[0].clientX), startPoint) > 15) {
-      setTouchMenu(true);
+  const renderPreviewProjects = () => {
+    return previewProjects.map((project) => {
+      return (
+        <SwiperSlide key={project.id}>
+          <MobileProjectPreview previewProject={project} />
+        </SwiperSlide>
+      )
+    })
+  }
+
+  const renderMainScreen = () => {
+    const renderDescriptionText = () => {
+      const extraDirection = t('pages.main.burroDescription.desktop.mainDirections.d7');
+
+      return (
+        <div className="w-full text-white">
+          <div className="flex flex-col gap-4">
+            <div>{t('pages.main.burroDescription.desktop.text_p1')}</div>
+            <div>{t('pages.main.burroDescription.desktop.text_p2')}</div>
+            <div>{t('pages.main.burroDescription.desktop.text_p3')}</div>
+          </div>
+
+          {screenHeight >= MIN_SCREEN_HEIGHT && (
+            <div className="mt-8">
+              <div>{t('pages.main.burroDescription.desktop.mainDirections.title')}</div>
+              <ul className="font-medium mt-3">
+                <li>- {t('pages.main.burroDescription.desktop.mainDirections.d1')}</li>
+                <li>- {t('pages.main.burroDescription.desktop.mainDirections.d2')}</li>
+                <li>- {t('pages.main.burroDescription.desktop.mainDirections.d3')}</li>
+                <li>- {t('pages.main.burroDescription.desktop.mainDirections.d4')}</li>
+                <li>- {t('pages.main.burroDescription.desktop.mainDirections.d5')}</li>
+                <li>- {t('pages.main.burroDescription.desktop.mainDirections.d6')}</li>
+                {extraDirection && <li>- {extraDirection}</li>}
+              </ul>
+            </div>
+          )}
+        </div>
+      )
     }
 
-    if (mathPercent((event.changedTouches[0].clientX - startPoint), startPoint) > 15) {
-      setTouchMenu(false);
-    }
-  };
+    return (
+      <SwiperSlide>
+        <div className="h-dvh px-[40px] pt-[4px] bg-neonGray">
+          <LogoLink href="/" align="start" isWhite={true}/>
 
-  const swipeRightHandler: TouchEventHandler<HTMLDivElement> = (event) => {
-    if (mathPercent((startPoint - event.changedTouches[0].clientX), startPoint) > 15) {
-      setTouchMenu(false);
-    }
-
-    if (mathPercent((event.changedTouches[0].clientX - startPoint), startPoint) > 15) {
-      setTouchMenu(true);
-    }
-  };
-
-  const touchStartHandler: TouchEventHandler<HTMLDivElement> = (event) => {
-    setStartPoint(event.changedTouches[0].clientX);
-  };
-
-  const touchEndHandler: TouchEventHandler<HTMLDivElement> = () => {
-    setStartPoint(0);
-  };
+          {renderDescriptionText()}
+        </div>
+      </SwiperSlide>
+    );
+  }
 
   return (
     <Swiper
-      pagination={
-        touchMenu && {
-          clickable: true,
-          dynamicMainBullets: 3,
-          horizontalClass: 'top-5',
-          dynamicBullets: true,
-        }}
-      noSwiping={!touchMenu}
-      noSwipingClass="swiper-slide"
-      modules={[ Pagination ]}
+      pagination={{
+        clickable: true,
+        dynamicMainBullets: 3,
+        dynamicBullets: true,
+        verticalClass: '!top-[92vh] !right-[1.5rem]',
+      }}
+      modules={[ Autoplay, Pagination ]}
       className="absolute top-0 left-0 w-full h-dvh z-10"
+      direction="vertical"
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
     >
-      <SwiperSlide>
-        <div className="flex">
-          <div className="flex">
-            <ProjectSections.LogoInf
-              staticWidth={true}
-              mobile={true}
-              alignLogo={alignLogo}
-              onLeaveChildren={
-                <ProjectSections.BurroDescriptionMobile
-                  descriptionText={
-                    <>
-                      <p>
-                        {isPhone ?
-                          t('pages.main.burroDescription.phone.text_p1') :
-                          t('pages.main.burroDescription.desktop.text_p1')}
-                      </p>
-                      <p>
-                        {isPhone ?
-                          t('pages.main.burroDescription.phone.text_p2') :
-                          t('pages.main.burroDescription.desktop.text_p2')}
-                      </p>
-                    </>
-                  }
-                />
-              }
-            />
-          </div>
-          <ProjectPreviewMobileSlider
-            className="transition-all duration-200 w-full"
-            widthClassName={touchMenu ? 'fixed top-0 left-0' : ''}
-            onTouchMove={swipeLeftHandler}
-            onTouchStart={touchStartHandler}
-            onTouchEnd={touchEndHandler}
-            previewProject={previewProjects[0]}
-            openSlide={touchMenu}
-            t={t}
-          />
-        </div>
-      </SwiperSlide>
-      {previewProjects.map((project, index) =>
-        index > 0 && index < previewProjects.length - 1 ?
-          <SwiperSlide key={project.id}>
-            <ProjectPreviewMobileSlider previewProject={project} openSlide={touchMenu} t={t}/>
-          </SwiperSlide> :
-          index === previewProjects.length - 1 &&
-          <SwiperSlide key={project.id}>
-            <div className="flex">
-              <ProjectPreviewMobileSlider
-                className="transition-all duration-200 w-full"
-                widthClassName={touchMenu ? 'fixed top-0 right-0' : ''}
-                onTouchMove={swipeRightHandler}
-                onTouchStart={touchStartHandler}
-                onTouchEnd={touchEndHandler}
-                previewProject={project}
-                openSlide={touchMenu}
-                t={t}
-              />
-              <div className="flex">
-                <div
-                  className="w-[17.375rem] h-dvh px-8 py-11 bg-white border-l border-matterhorn flex flex-col items-center justify-end">
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <LogoLink href="/" align="center"/>
-                  </div>
-                  <div className="w-full flex flex-col items-center gap-[15px]">
-                    <Button.Link
-                      href={PRESENTATION_LINK}
-                      isBlank={true}
-                      styleType="rounded"
-                      className="w-full border border-matterhorn"
-                      childrenClassName="w-full flex items-center justify-center gap-2"
-                    >
-                      <div
-                        className="text-sl font-semibold text-center leading-21.5"
-                      >
-                        {t('actionButtons.presentation')}
-                      </div>
-                      <DownloadIcon className="w-4 h-3 -mt-[0.25rem]"/>
-                    </Button.Link>
-                    <Button.Link
-                      href="/projects"
-                      styleType="rounded"
-                      className="w-full border border-matterhorn"
-                      childrenClassName="w-full flex items-center justify-center"
-                    >
-                      <div
-                        className="text-sl font-semibold text-center leading-21.5"
-                      >
-                        {t('all_projects')}
-                      </div>
-                    </Button.Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>)
-      }
+      {renderPreviewProjects()}
+      {renderMainScreen()}
     </Swiper>
   );
 };

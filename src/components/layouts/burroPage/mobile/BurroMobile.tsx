@@ -111,8 +111,7 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
       <SwiperSlide>
         <BurroPreviewTablet
           title={t('pages.burro.partners.title')}
-          bgImage={!isMobileScreen ? 'bg-burro_partners_mobile' : undefined}
-          isDarkenedBg={isMobileScreen}
+          bgImage={!isMobileScreen ? 'bg-burro_partners_mobile' : 'bg-neonGray'}
         >
           <div className={`w-full max-w-[38.56rem] h-full max-h-[76vh] grid grid-cols-2 gap-4 text-white`}>
             {certificates.map(certificate =>

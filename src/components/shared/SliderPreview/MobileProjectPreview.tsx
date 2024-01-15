@@ -1,58 +1,46 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import Image from "next/image";
-import Button from '../Button/Button';
-import { Transition } from '@headlessui/react';
-import { TFunction } from 'i18next';
+import LogoLink from '../Logo/LogoLink';
+import { useRouter } from 'next/router';
+import { Project } from '../../../api/entities/project/types/client';
+import * as apiRoutes from '../../../api/endpoints';
 
 interface IProps {
-  name?: string;
-  imgSrc?: string;
-  href: string;
-  openSlide?: boolean;
-  t: TFunction<'translation', 'string'>;
-  isPhone?: boolean;
+  previewProject: Project;
 }
 
-const MobileProjectPreview: FC<IProps> = ({ name, imgSrc, href, openSlide, t, isPhone }) => {
+const MobileProjectPreview: FC<IProps> = ({ previewProject }) => {
+  const router = useRouter();
+
+  const imgSrc = useMemo(() => previewProject.images[0].src, [previewProject]);
+  const name = useMemo(() => previewProject.title, [previewProject]);
+
+  const navigateTo = () => {
+    router.push(`/${apiRoutes.project()}/${previewProject.slug}`);
+  }
+
   return (
-    <div className="h-dvh w-full">
+    <div className="h-dvh w-full" onClick={navigateTo}>
       <div className="relative w-full h-full overflow-x-hidden object-center">
+        <div className="w-full z-10 fixed top-0 left-0 px-[40px] pt-[4px]">
+          <LogoLink href="/" align="start" isWhite={true}/>
+        </div>
+
         {imgSrc &&
           <Image
-            className="object-cover"
+            className="object-cover brightness-75"
             src={imgSrc}
             alt="test"
             quality={100}
             priority={true}
             fill={true}
-            sizes="100vw" />}
-        <Transition
-          show={openSlide}
-          enter="transform transition-opacity duration-500"
-          enterFrom="opacity-0 w-full h-full"
-          enterTo="opacity-100 w-full h-full"
-          leave="transform transition-opacity duration-10"
-          leaveFrom="opacity-100 w-full h-full"
-          leaveTo="opacity-0 w-full h-full"
-        >
-          <div className="absolute top-0 left-0 w-full h-full z-1 p-5 flex flex-col items-center justify-end">
-            <div className="w-full flex items-center justify-between
-                                    pb-5 pt-[21px] px-[26px] uppercase
-                                    rounded-[22px] border border-matterhorn bg-white">
-              <div className="max-w-[284px]">{name}</div>
-              <Button.Link
-                href={href}
-                styleType={isPhone ? 'transparent' : 'rounded'}
-                className="w-full border border-matterhorn max-w-[262px]"
-                childrenClassName="w-full flex items-center justify-center"
-              >
-                <div className="text-sl font-medium text-center leading-21.5">
-                  {t('learn_more')}
-                </div>
-              </Button.Link>
-            </div>
+            sizes="100vw"/>}
+
+        <div className="absolute top-0 left-0 w-full h-full z-1 px-[32px] pb-[42px] flex flex-col items-center justify-end">
+          <div className="w-full uppercase text-white text-lg font-medium">
+            {name}
           </div>
-        </Transition>
+        </div>
       </div>
     </div>
   );

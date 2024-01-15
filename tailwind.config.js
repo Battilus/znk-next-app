@@ -12,7 +12,8 @@ module.exports = {
         colors: {
             whiteSmoke: '#F4F4F4',
             silver: '#BCBCBC',
-            matterhorn: '#575757'
+            matterhorn: '#575757',
+            neonGray: '#828282'
         },
         fontFamily: {
             sans: ['Atyp Display', ...defaultTheme.fontFamily.sans],
