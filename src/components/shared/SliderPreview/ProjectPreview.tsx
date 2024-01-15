@@ -4,7 +4,7 @@ import Image from "next/image";
 import A from '../Link/A';
 
 interface IProps {
-  name?: string;
+  name: string;
   imgSrc?: string;
   href: string;
   hover?: boolean;
@@ -12,7 +12,7 @@ interface IProps {
   disableBorder?: boolean;
 }
 
-const ProjectPreview: FC<IProps> = ({ imgSrc, href, hover, setHover, disableBorder }) => {
+const ProjectPreview: FC<IProps> = ({ name, imgSrc, href, hover, setHover, disableBorder }) => {
   const debounce = useDebounce((callback) => callback(), 200);
   const [ currentHover, setCurrentHover ] = useState<boolean>(false);
   const [ enHover, setEnHover ] = useState<boolean>(true);
@@ -61,7 +61,7 @@ const ProjectPreview: FC<IProps> = ({ imgSrc, href, hover, setHover, disableBord
           <Image
             className="object-cover h-dvh w-full"
             src={imgSrc}
-            alt="test"
+            alt={name}
             quality={100}
             priority={true}
             width="0"
