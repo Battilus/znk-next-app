@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PartnerCardType } from '../../types';
 import { useWindowSize } from '../../features/hooks/useWindowSize';
 import { TFunction } from 'i18next';
+import { MIN_MOBILE_SCREEN_HEIGHT } from '../../assets/constants';
 
 const HIGH_SCREEN_MIN_SIZE = 1536;
 const TABLET_MIN_WIDTH = 1060;
@@ -14,13 +15,15 @@ type Props = PartnerCardType & {
 
 const PartnersCard: FC<Props> = ({ logo, descriptionKey, t, isMobileScreen }) => {
 
-  const { width: screenWidth = 0 } = useWindowSize();
+  const { width: screenWidth = 0, height: screenHeight = 0 } = useWindowSize();
+
+  const isSmallPhoneHeight = screenHeight <= MIN_MOBILE_SCREEN_HEIGHT;
 
   return (
     <div
-      className={`h-full w-full flex items-center ${isMobileScreen ? 'grayscale-0 justify-center' : 'grayscale hover:grayscale-0'} transition delay-100 ease-linear cursor-pointer`}>
+      className={`h-full w-full flex items-center ${isMobileScreen ? 'flex-col justify-center' : 'grayscale hover:grayscale-0'} transition delay-100 ease-linear cursor-pointer`}>
       <div
-        className="w-[6.25rem] 2xl:w-[6.94vw] h-[6rem] 2xl:h-[6.67vw] flex items-center justify-center"
+        className={`w-[6.25rem] 2xl:w-[6.94vw] ${isMobileScreen && !isSmallPhoneHeight ? 'h-[90px]' : 'h-[6rem] 2xl:h-[6.67vw]'} flex items-center justify-center`}
       >
         <div
           style={
@@ -41,9 +44,11 @@ const PartnersCard: FC<Props> = ({ logo, descriptionKey, t, isMobileScreen }) =>
         </div>
       </div>
 
-      {!isMobileScreen && (
+      {!isSmallPhoneHeight && (
         <div
-          className={`flex flex-col gap-1.5 2xl:gap-[0.42vw] ${screenWidth >= TABLET_MIN_WIDTH ? 'text-matterhorn' : 'text-white'}`}>
+          className={`flex flex-col ${isMobileScreen ? 'items-center gap-1' : 'gap-1.5 2xl:gap-[0.42vw]'}
+          ${screenWidth >= TABLET_MIN_WIDTH ? 'text-matterhorn' : 'text-white'}`}
+        >
           <div className="text-justify text-sm 2xl:text-0.97v font-medium uppercase leading-18p 2xl:leading-1.25v">
             {t(`pages.burro.partners.list.${descriptionKey}.title`)}
           </div>

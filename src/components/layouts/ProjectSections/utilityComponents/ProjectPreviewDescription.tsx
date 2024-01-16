@@ -7,6 +7,10 @@ interface IProps {
 }
 
 const ProjectPreviewDescription: FC<IProps> = ({ project }) => {
+  if (!project) {
+    return null;
+  }
+
   return (
     <div className="w-full h-full flex flex-col justify-between min-w-48 2xl:min-w-13.33v">
       <div>

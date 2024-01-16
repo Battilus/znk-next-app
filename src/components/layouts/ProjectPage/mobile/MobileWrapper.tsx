@@ -56,7 +56,7 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
   useEffect(() => {
     setTimeout(() => {
       setIsUsingScroll(checkIfUsingScroll());
-    }, 1000)
+    }, 800)
   }, [project, descriptionAreaRef])
 
   const renderProjectPreviewImage = () => {

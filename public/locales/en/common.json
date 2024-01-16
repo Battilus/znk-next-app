@@ -14,7 +14,8 @@
   "projects_filters": {
     "services": "services",
     "assignment": "assignment",
-    "year": "year"
+    "year": "year",
+    "foundProjects": "Found:"
   },
   "sideBarLinks": {
     "burro": "About us",

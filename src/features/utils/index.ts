@@ -15,3 +15,11 @@ export const chunkArray = <T>(arr: T[], size: number): T[][] => {
 export const mathPercent = (to: number, from: number): number => {
   return Math.floor((to / from) * 100);
 };
+
+export const declOfNum = (number: number, titles: string[]): string => {
+  const cases = [2, 0, 1, 1, 1, 2];
+
+  return titles[
+    number % 100 > 4 && number % 100 < 20 ? 2 : cases[number % 10 < 5 ? number % 10 : 5]
+  ];
+}

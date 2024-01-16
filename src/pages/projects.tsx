@@ -24,6 +24,8 @@ import { BffTag } from '../api/entities/bffTags/types/client';
 import { useRouter } from 'next/router';
 import ThereIsNoProjects from '../components/shared/Logo/ThereIsNoProjects';
 import { useTranslation } from 'next-i18next';
+import DesktopWrapper from '../components/layouts/ProjectsFilterPage/DesktopWrapper';
+import MobileWrapper from '../components/layouts/ProjectsFilterPage/MobileWrapper';
 
 export type SelectedFilterParam = {
   type: BffTagsQueryKey | null;
@@ -96,15 +98,19 @@ const Projects: NextPage = () => {
     { enabled: isProjectsQueryEnabled },
   );
 
-  const projects = useMemo<Project[][] | null>(() => {
-    return projectsQuery.isSuccess ? chunkArray(projectsQuery.data, 6) : null;
+  const foundProjects = useMemo<Project[] | null>(() => {
+    return projectsQuery.isSuccess ? projectsQuery.data : null;
   }, [ projectsQuery.isSuccess, projectsQuery.data ]);
+
+  const projectsByChunks = useMemo<Project[][] | null>(() => {
+    return foundProjects ? chunkArray(foundProjects, 6) : null;
+  }, [ foundProjects ]);
 
   const isLoading = servicesTagsQuery.isLoading || purposesTagsQuery.isLoading || buildYearsTagsQuery.isLoading || projectsQuery.isLoading;
 
   const getFilteredProjects = () => {
-    return projects && selectedProjectIndex !== null && selectedProjectsChunkIndex !== null ?
-      projects[selectedProjectsChunkIndex][selectedProjectIndex]
+    return projectsByChunks && selectedProjectIndex !== null && selectedProjectsChunkIndex !== null ?
+      projectsByChunks[selectedProjectsChunkIndex][selectedProjectIndex]
       : null;
   };
 
@@ -120,66 +126,43 @@ const Projects: NextPage = () => {
     }
   }, [ hover ]);
 
-  const renderProjectsSlider = () => {
-    if (!isProjectsQueryEnabled || !projects) {
-      return <ThereIsNoProjects noFilters={true} withoutLogo={true}/>;
+  const renderWrapper = ({ isTablet, isPhone }: { isTablet: boolean; isPhone: boolean; }) => {
+    if (isTablet || isPhone) {
+      return (
+        <MobileWrapper
+          foundProjects={foundProjects}
+          servicesTags={servicesTags}
+          purposesTags={purposesTags}
+          buildYearsTags={buildYearsTags}
+          selectedFilter={selectedFilter}
+          setSelectedFilter={setSelectedFilter}
+          t={t}
+          locale={locale}
+        />
+      );
     }
 
     return (
-      <div className="w-full h-full overflow-hidden">
-        <Swiper
-          slidesPerView={1}
-          pagination={{
-            clickable: true,
-            dynamicMainBullets: 3,
-            dynamicBullets: true,
-          }}
-          keyboard={true}
-          modules={[ Pagination, Keyboard ]}
-        >
-          {projects?.map((projectsChunk, chunkIndex) =>
-            <SwiperSlide key={chunkIndex}>
-              <div className="w-full h-dvh flex flex-row overflow-x-auto">
-                {projectsChunk.map((project, index) => {
-                  const imagePreview = project.images.find(image => image?.projectPreview && image.projectPreview);
-
-                  return (
-                    <ProjectPreview
-                      key={project.id}
-                      href={`/${apiRoutes.project()}/${project.slug}`}
-                      name={project.title}
-                      imgSrc={imagePreview?.src}
-                      hover={hover}
-                      setHover={(val) => hoverHandler(val, index, chunkIndex)}
-                    />
-                  );
-                })}
-              </div>
-            </SwiperSlide>,
-          )}
-        </Swiper>
-      </div>
+      <DesktopWrapper
+        projects={projectsByChunks}
+        servicesTags={servicesTags}
+        purposesTags={purposesTags}
+        buildYearsTags={buildYearsTags}
+        isProjectsQueryEnabled={isProjectsQueryEnabled}
+        hover={hover}
+        hoverHandler={hoverHandler}
+        selectedFilter={selectedFilter}
+        setSelectedFilter={setSelectedFilter}
+        getFilteredProjects={getFilteredProjects}
+      />
     );
-  };
+  }
 
   return (
-    <PageWrapper meta={meta} isLoading={isLoading}>
-      <div className="flex flex-row">
-        <div className="flex">
-          <ProjectSections.ProjectsFilter
-            hover={hover}
-            project={getFilteredProjects()}
-            bffParams={{
-              bffServices: servicesTags,
-              bffPurposes: purposesTags,
-              bffBuildYears: buildYearsTags,
-            }}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-          />
-        </div>
-        {renderProjectsSlider()}
-      </div>
+    <PageWrapper meta={meta} isLoading={isLoading} screenBreakpoints={true} menuButtonColor="text-white">
+      {({ breakpoints: { mobileSm: isPhone }, screens: { tablet: isTablet } }) =>
+        renderWrapper({ isTablet, isPhone })
+      }
     </PageWrapper>
   );
 };

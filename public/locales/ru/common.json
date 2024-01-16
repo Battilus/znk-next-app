@@ -14,7 +14,8 @@
   "projects_filters": {
     "services": "услуги",
     "assignment": "назначение",
-    "year": "год"
+    "year": "год",
+    "foundProjects": "Найдено:"
   },
   "sideBarLinks": {
     "burro": "О нас",
