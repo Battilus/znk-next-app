@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Project } from '../../../../api/entities/project/types/client';
 import { TFunction } from 'i18next';
 import Image from 'next/image';
@@ -6,7 +6,7 @@ import { Transition } from '@headlessui/react';
 import ProjectStatusRow from '../../ProjectSections/utilityComponents/ProjectStatusRow';
 import { useWindowSize } from '../../../../features/hooks/useWindowSize';
 import { MIN_MOBILE_SCREEN_HEIGHT } from '../../../../assets/constants';
-import { Autoplay, Pagination } from 'swiper';
+import { Autoplay, FreeMode, Mousewheel, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import LogoLink from '../../../shared/Logo/LogoLink';
 
@@ -17,11 +17,8 @@ type Props = {
 
 const MobileWrapper: FC<Props> = ({ project, t }) => {
   const [ isLoadedWithDelay, setIsLoadedWithDelay ] = useState<boolean>(false);
-  const [ isUsingScroll, setIsUsingScroll ] = useState<boolean>(false);
 
   const { height: screenHeight = 0 } = useWindowSize();
-
-  const descriptionAreaRef = useRef<HTMLDivElement>(null);
 
   const splitIndents = (text: string) => {
     return text.split('\n').map((str, index) => <p key={index}>{str}</p>);
@@ -39,25 +36,11 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
     return null;
   }, [project])
 
-  const checkIfUsingScroll = (): boolean => {
-    if (descriptionAreaRef.current) {
-      return descriptionAreaRef.current.scrollHeight > descriptionAreaRef.current.clientHeight;
-    }
-
-    return false;
-  }
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoadedWithDelay(true);
-    }, 800)
+    }, 600)
   }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsUsingScroll(checkIfUsingScroll());
-    }, 800)
-  }, [project, descriptionAreaRef])
 
   const renderProjectPreviewImage = () => {
     const preview = project?.images?.find(img => img.projectPreview )
@@ -80,20 +63,16 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
   }
 
   const renderDescriptionScreen = () => {
-    if (!isLoadedWithDelay) {
-      return renderProjectPreviewImage();
-    }
-
     return (
       <Transition
         appear={true}
         show={true}
-        enter="transform transition duration-1000"
-        enterFrom="blur-none w-full h-dvh brightness-100"
-        enterTo="blur w-full h-dvh brightness-[60%]"
-        leave="transform transition duration-1000"
-        leaveFrom="blur w-full h-dvh brightness-[60%]"
-        leaveTo="blur-none w-full h-dvh brightness-100"
+        enter="transform transition duration-1000 z-1"
+        enterFrom="blur-none w-full h-dvh brightness-100 z-1"
+        enterTo="blur w-full h-dvh brightness-[60%] z-1"
+        leave="transform transition duration-1000 z-1"
+        leaveFrom="blur w-full h-dvh brightness-[60%] z-1"
+        leaveTo="blur-none w-full h-dvh brightness-100 z-1"
       >
         {renderProjectPreviewImage()}
       </Transition>
@@ -111,9 +90,12 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
 
             <Transition
               show={isLoadedWithDelay}
-              enter="transform transition-opacity duration-500"
-              enterFrom="opacity-0"
-              enterTo="opacity-100 flex flex-col w-full text-white"
+              enter="transform transition-opacity duration-500 z-10"
+              enterFrom="opacity-0 z-10"
+              enterTo="opacity-100 flex flex-col w-full text-white z-10"
+              leave="transform transition-opacity duration-500 z-10"
+              leaveFrom="opacity-100 flex flex-col w-full text-white z-10"
+              leaveTo="opacity-0 z-10"
             >
               <div className="w-full flex flex-col space-y-3 mt-[38px]">
                 <ProjectStatusRow
@@ -131,12 +113,19 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
                                   status={project?.status} isWhite={true}/>
               </div>
 
-              <div
-                ref={descriptionAreaRef}
-                className={`${isUsingScroll && 'swiper-no-swiping'} h-[52vh] pr-1 overflow-y-scroll ${screenHeight >= MIN_MOBILE_SCREEN_HEIGHT ? 'mt-[16vh]' : 'mt-[5vh]'} text-base font-normal text-justify flex flex-col space-y-1`}
+              <Swiper
+                direction={'vertical'}
+                slidesPerView={'auto'}
+                freeMode={true}
+                scrollbar={true}
+                mousewheel={true}
+                modules={[FreeMode, Scrollbar, Mousewheel]}
+                className={`h-[48vh] ${screenHeight >= MIN_MOBILE_SCREEN_HEIGHT ? 'mt-[12vh]' : 'mt-[5vh]'}`}
               >
-                {projectDescriptionNode}
-              </div>
+                <SwiperSlide className={`pr-1 overflow-auto text-base font-normal text-justify text-white flex flex-col space-y-1`}>
+                  {projectDescriptionNode}
+                </SwiperSlide>
+              </Swiper>
             </Transition>
           </div>
         </div>
@@ -192,7 +181,7 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
     <Swiper
       pagination={{
         clickable: true,
-        verticalClass: '!top-[96vh] !right-[1.5rem]',
+        verticalClass: '!top-[90vh] !right-[1.5rem]',
       }}
       modules={[ Pagination ]}
       direction="vertical"

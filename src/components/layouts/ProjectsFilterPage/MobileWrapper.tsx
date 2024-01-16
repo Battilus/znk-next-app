@@ -89,7 +89,7 @@ const MobileWrapper: FC<Props> = (
         clickable: true,
         dynamicMainBullets: 3,
         dynamicBullets: true,
-        verticalClass: '!top-[92vh] !right-[1.5rem]',
+        verticalClass: '!top-[90vh] !right-[1.5rem]',
       }}
       modules={[ Pagination ]}
       className="absolute top-0 left-0 w-full h-dvh z-10"

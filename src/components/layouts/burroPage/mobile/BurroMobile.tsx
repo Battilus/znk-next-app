@@ -135,7 +135,7 @@ const BurroMobile: FC<IProps> = ({ certificates, t, isMobileScreen }) => {
         slidesPerView={1}
         pagination={{
           clickable: true,
-          verticalClass: '!top-[94vh] !right-[1.5rem]',
+          verticalClass: '!top-[90vh] !right-[1.5rem]',
         }}
         modules={[ Pagination ]}
         className="h-dvh"
