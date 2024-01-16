@@ -1,15 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import PageWrapper from '../components/PageWrapper';
-import ProjectSections from '../components/layouts/ProjectSections/ProjectSections';
-import ProjectPreview from '../components/shared/SliderPreview/ProjectPreview';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { chunkArray } from '../features/utils';
-import { Keyboard, Pagination } from 'swiper';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { PageMeta } from '../types';
 import { ApiLocale, Locale } from '../api/types/locales';
-import * as apiRoutes from '../api/endpoints';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { BffTagsQueryKey, ProjectQueryKey } from '../api/constants';
 import { getProjectsListByFilter, useGetProjectsListByFilterQuery } from '../api/entities/project/queries';
@@ -22,7 +17,6 @@ import {
 import { Project } from '../api/entities/project/types/client';
 import { BffTag } from '../api/entities/bffTags/types/client';
 import { useRouter } from 'next/router';
-import ThereIsNoProjects from '../components/shared/Logo/ThereIsNoProjects';
 import { useTranslation } from 'next-i18next';
 import DesktopWrapper from '../components/layouts/ProjectsFilterPage/DesktopWrapper';
 import MobileWrapper from '../components/layouts/ProjectsFilterPage/MobileWrapper';
