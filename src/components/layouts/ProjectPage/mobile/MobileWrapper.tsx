@@ -51,7 +51,7 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
 
     return (
       <Image
-        className="object-cover brightness-[80%] h-dvh w-full"
+        className="object-cover brightness-[20%] h-dvh w-full"
         src={preview.src}
         alt="test"
         quality={100}
@@ -72,12 +72,12 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
             <Transition
               appear={true}
               show={isLoadedWithDelay}
-              enter="transform transition duration-1000 z-10"
-              enterFrom="opacity-0 backdrop-brightness-100 z-10"
-              enterTo="opacity-100 backdrop-brightness-[40%] flex flex-col w-full text-white z-10"
-              leave="transform transition duration-1000 z-10"
-              leaveFrom="opacity-100 backdrop-brightness-[40%] flex flex-col w-full text-white z-10"
-              leaveTo="opacity-0 backdrop-brightness-100 z-10"
+              enter="transform transition duration-500 z-10"
+              enterFrom="opacity-0 z-10"
+              enterTo="opacity-100 flex flex-col w-full text-white z-10"
+              leave="transform transition duration-500 z-10"
+              leaveFrom="opacity-100 flex flex-col w-full text-white z-10"
+              leaveTo="opacity-0 z-10"
             >
               <div className="w-full h-dvh px-[36px] py-[32px]">
                 <div
