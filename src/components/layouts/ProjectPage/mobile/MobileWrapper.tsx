@@ -51,7 +51,7 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
 
     return (
       <Image
-        className="object-cover brightness-[20%] h-dvh w-full"
+        className="object-cover brightness-[40%] h-dvh w-full"
         src={preview.src}
         alt="test"
         quality={100}

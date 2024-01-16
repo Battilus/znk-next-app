@@ -12,28 +12,28 @@
     "allProjects": "All projects"
   },
   "projects_filters": {
-    "services": "services",
-    "assignment": "assignment",
-    "year": "year",
+    "services": "Services",
+    "assignment": "Assignment",
+    "year": "Year",
     "foundProjects": "Found:"
   },
   "sideBarLinks": {
     "burro": "About us",
     "allProjects": "All projects",
     "contacts": "Contacts",
-    "philosophy": "philosophy",
-    "team": "team",
-    "partners": "partners"
+    "philosophy": "Philosophy",
+    "team": "Team",
+    "partners": "Partners"
   },
   "actionButtons": {
-    "presentation": "presentation",
+    "presentation": "Presentation",
     "mainPage": "Main page"
   },
   "projectStatusRow": {
-    "purpose": "destination",
-    "place": "place",
-    "year": "year",
-    "status": "status"
+    "purpose": "Destination",
+    "place": "Place",
+    "year": "Year",
+    "status": "Status"
   },
   "contacts": {
     "ekaterina": {
@@ -46,7 +46,7 @@
       "titles": {
         "inn": "Taxpayer Id Number (INN)",
         "ogrn": "PRIMARY State Reg. Number (OGRN)",
-        "address": "address"
+        "address": "Address"
       },
       "companyName": "Limited Liability Company \n(OOO) \"ZNAK PROJECT\"",
       "companyAddress": "Saint-petersburg, 2nd Murinsky prospect, 36 of. 1221"
@@ -78,16 +78,16 @@
     },
     "burro": {
       "philosophy": {
-        "title": "philosophy",
+        "title": "Philosophy",
         "description": {
           "p1": "THE ZNAK PROJECT TEAM FOCUSES ON A THOUGHTFUL AND EFFECTIVE CREATIVE PROCESS TO CREATE THE PERFECT SPACES FOR OUR CLIENTS.",
           "p2": "WE ARE CAREFUL TO THE CONTEXT OF THE TERRITORY, CREATION OF AN AESTHETICALLY VALUABLE AND HUMANE ENVIRONMENT, FOLLOWING THE ST. PETERSBURG TRADITIONS OF URBAN PLANNING AND ARCHITECTURE."
         }
       },
       "command": {
-        "title": "team",
+        "title": "Team",
         "buttonLink": {
-          "title": "vacancies"
+          "title": "Vacancies"
         },
         "mobile": {
           "p1": "Основатель АБ «Знак: проект», дизайн-студии «Знак: пресс». Имеет большой опыт работы в сфере архитектуры, градостроительства и дизайна в качестве руководителя проектной группы: мастер-планов развития территорий (в том числе объектов ЮНЕСКО), архитектурно-градостроительных концепций, проектов планировки территории, проектов зон охраны объектов культурного наследия.\n\nВедёт научно-исследовательскую и образовательную деятельность в области архитектуры в вузах Санкт-Петербурга.",
@@ -107,7 +107,7 @@
         }
       },
       "partners": {
-        "title": "partners",
+        "title": "Partners",
         "list": {
           "gazprom": {
             "title": "GAZPROM",
@@ -155,7 +155,7 @@
     "404": {
       "description": "Something went wrong :(",
       "buttonLink": {
-        "title": "main page"
+        "title": "Main page"
       }
     }
   }
