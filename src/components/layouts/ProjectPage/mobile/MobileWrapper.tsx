@@ -21,7 +21,7 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
   const { height: screenHeight = 0 } = useWindowSize();
 
   const splitIndents = (text: string) => {
-    return text.split('\n').map((str, index) => <p key={index}>{str}</p>);
+    return text.split('\n').map((str, index) => <SwiperSlide className="!h-auto" key={index}>{str}</SwiperSlide>);
   };
 
   const projectDescriptionNode = useMemo(() => {
@@ -62,75 +62,60 @@ const MobileWrapper: FC<Props> = ({ project, t }) => {
     )
   }
 
-  const renderDescriptionScreen = () => {
-    return (
-      <Transition
-        appear={true}
-        show={true}
-        enter="transform transition duration-1000 z-1"
-        enterFrom="blur-none w-full h-dvh brightness-100 z-1"
-        enterTo="blur w-full h-dvh brightness-[60%] z-1"
-        leave="transform transition duration-1000 z-1"
-        leaveFrom="blur w-full h-dvh brightness-[60%] z-1"
-        leaveTo="blur-none w-full h-dvh brightness-100 z-1"
-      >
-        {renderProjectPreviewImage()}
-      </Transition>
-    )
-  }
-
   const renderDescriptionSlide = () => {
     return (
       <SwiperSlide>
         <div className="h-dvh w-full">
-          {renderDescriptionScreen()}
+          {renderProjectPreviewImage()}
 
-          <div className="fixed top-0 left-0 w-full h-dvh px-[36px] py-[32px]">
-            <div className="uppercase text-white text-lg max-w-[290px] lg:max-w-max font-medium">{project?.title}</div>
-
+          <div className="fixed top-0 left-0 w-full h-dvh">
             <Transition
+              appear={true}
               show={isLoadedWithDelay}
-              enter="transform transition-opacity duration-500 z-10"
-              enterFrom="opacity-0 z-10"
-              enterTo="opacity-100 flex flex-col w-full text-white z-10"
-              leave="transform transition-opacity duration-500 z-10"
-              leaveFrom="opacity-100 flex flex-col w-full text-white z-10"
-              leaveTo="opacity-0 z-10"
+              enter="transform transition duration-1000 z-10"
+              enterFrom="opacity-0 backdrop-brightness-100 z-10"
+              enterTo="opacity-100 backdrop-brightness-[40%] flex flex-col w-full text-white z-10"
+              leave="transform transition duration-1000 z-10"
+              leaveFrom="opacity-100 backdrop-brightness-[40%] flex flex-col w-full text-white z-10"
+              leaveTo="opacity-0 backdrop-brightness-100 z-10"
             >
-              <div className="w-full flex flex-col space-y-3 mt-[38px]">
-                <ProjectStatusRow
-                  withoutDivider={true}
-                  fontSizeClassName="text-base"
-                  title={t('projectStatusRow.purpose')}
-                  status={project?.purpose}
-                  isWhite={true}
-                />
-                <ProjectStatusRow fontSizeClassName="text-base" title={t('projectStatusRow.place')}
-                                  status={project?.location} isWhite={true}/>
-                <ProjectStatusRow fontSizeClassName="text-base" title={t('projectStatusRow.year')}
-                                  status={project?.yearOfBuild} isWhite={true}/>
-                <ProjectStatusRow fontSizeClassName="text-base" title={t('projectStatusRow.status')}
-                                  status={project?.status} isWhite={true}/>
-              </div>
+              <div className="w-full h-dvh px-[36px] py-[32px]">
+                <div
+                  className="uppercase text-white text-lg max-w-[290px] lg:max-w-max font-medium">{project?.title}</div>
+                <div className="w-full flex flex-col space-y-3 mt-[38px]">
+                  <ProjectStatusRow
+                    withoutDivider={true}
+                    fontSizeClassName="text-base"
+                    title={t('projectStatusRow.purpose')}
+                    status={project?.purpose}
+                    isWhite={true}
+                  />
+                  <ProjectStatusRow fontSizeClassName="text-base" title={t('projectStatusRow.place')}
+                                    status={project?.location} isWhite={true}/>
+                  <ProjectStatusRow fontSizeClassName="text-base" title={t('projectStatusRow.year')}
+                                    status={project?.yearOfBuild} isWhite={true}/>
+                  <ProjectStatusRow fontSizeClassName="text-base" title={t('projectStatusRow.status')}
+                                    status={project?.status} isWhite={true}/>
+                </div>
 
-              <Swiper
-                direction={'vertical'}
-                slidesPerView={'auto'}
-                freeMode={true}
-                scrollbar={true}
-                mousewheel={true}
-                modules={[FreeMode, Scrollbar, Mousewheel]}
-                className={`h-[48vh] ${screenHeight >= MIN_MOBILE_SCREEN_HEIGHT ? 'mt-[12vh]' : 'mt-[5vh]'}`}
-              >
-                <SwiperSlide className={`pr-1 overflow-auto text-base font-normal text-justify text-white flex flex-col space-y-1`}>
+                <Swiper
+                  direction={'vertical'}
+                  slidesPerView={'auto'}
+                  spaceBetween={8}
+                  freeMode={true}
+                  scrollbar={true}
+                  mousewheel={true}
+                  modules={[ FreeMode, Mousewheel, Scrollbar ]}
+                  className={`h-[48vh] pr-1 ${screenHeight >= MIN_MOBILE_SCREEN_HEIGHT ? 'mt-[12vh]' : 'mt-[5vh]'} text-base font-normal text-justify text-white`}
+                >
                   {projectDescriptionNode}
-                </SwiperSlide>
-              </Swiper>
+                </Swiper>
+              </div>
             </Transition>
           </div>
         </div>
       </SwiperSlide>
-    )
+  )
   }
 
   const renderImagesSlide = () => {
