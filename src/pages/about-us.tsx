@@ -25,21 +25,36 @@ const AboutUs: NextPage<Props> = ({ certificates }) => {
     description: `${t('pages.burro.philosophy.description.p1')} ${t('pages.burro.philosophy.description.p2')}`,
   };
 
+  const renderWrapper = ({ isTablet, isPhone, desktop }: { isTablet: boolean; isPhone: boolean; desktop: boolean; }) => {
+    if (!isPhone && !isTablet && !desktop) {
+      return null;
+    }
+
+    if (isTablet) {
+      return (
+        <BurroMobile
+          certificates={certificates}
+          t={t}
+          isMobileScreen={isPhone}
+        />
+      )
+    }
+
+    return (
+      <BurroDesktop
+        certificates={certificates}
+        t={t}
+        hover={hover}
+        setHover={setHover}
+      />
+    )
+  }
+
   return (
     <PageWrapper meta={meta} screenBreakpoints={true} menuButtonColor="text-white">
-      {({ breakpoints: { mobileSm }, screens: { tablet } }) =>
-        tablet ?
-          <BurroMobile
-            certificates={certificates}
-            t={t}
-            isMobileScreen={mobileSm}
-          /> :
-          <BurroDesktop
-            certificates={certificates}
-            t={t}
-            hover={hover}
-            setHover={setHover}
-          />}
+      {({ breakpoints: { mobileSm: isPhone }, screens: { tablet: isTablet, desktop } }) => {
+        return renderWrapper({ isPhone, isTablet, desktop})
+      }}
     </PageWrapper>
   );
 };

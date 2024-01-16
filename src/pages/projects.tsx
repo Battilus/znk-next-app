@@ -120,7 +120,11 @@ const Projects: NextPage = () => {
     }
   }, [ hover ]);
 
-  const renderWrapper = ({ isTablet, isPhone }: { isTablet: boolean; isPhone: boolean; }) => {
+  const renderWrapper = ({ isTablet, isPhone, desktop }: { isTablet: boolean; isPhone: boolean; desktop: boolean; }) => {
+    if (!isPhone && !isTablet && !desktop) {
+      return null;
+    }
+
     if (isTablet || isPhone) {
       return (
         <MobileWrapper
@@ -154,8 +158,8 @@ const Projects: NextPage = () => {
 
   return (
     <PageWrapper meta={meta} isLoading={isLoading} screenBreakpoints={true} menuButtonColor="text-white">
-      {({ breakpoints: { mobileSm: isPhone }, screens: { tablet: isTablet } }) =>
-        renderWrapper({ isTablet, isPhone })
+      {({ breakpoints: { mobileSm: isPhone }, screens: { tablet: isTablet, desktop } }) =>
+        renderWrapper({ isTablet, isPhone, desktop })
       }
     </PageWrapper>
   );

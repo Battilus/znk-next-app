@@ -40,12 +40,13 @@ const Home: NextPage = () => {
     return previewProjectsQuery.isSuccess ? previewProjectsQuery.data : null;
   }, [ previewProjectsQuery.isSuccess, previewProjectsQuery.data ]);
 
-  const renderWrapper = ({ previewProjects, tablet, iPhone }: {
+  const renderWrapper = ({ previewProjects, tablet, iPhone, desktop }: {
     previewProjects: Project[] | null,
     tablet: boolean,
-    iPhone: boolean
+    iPhone: boolean,
+    desktop: boolean,
   }) => {
-    if (!previewProjects || previewProjects.length === 0) {
+    if (!previewProjects || previewProjects.length === 0 || (!tablet && !desktop)) {
       return null;
     }
 
@@ -77,8 +78,8 @@ const Home: NextPage = () => {
       isLoading={previewProjectsQuery.isLoading}
       menuButtonColor="text-white"
     >
-      {({ breakpoints: { mobileSm: iPhone }, screens: { tablet } }) =>
-        renderWrapper({ previewProjects: projectsList, tablet, iPhone })
+      {({ breakpoints: { mobileSm: iPhone }, screens: { tablet, desktop } }) =>
+        renderWrapper({ previewProjects: projectsList, tablet, iPhone, desktop })
       }
     </PageWrapper>
   );

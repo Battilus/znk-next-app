@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { TFunction } from 'i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper';
+import { Pagination } from 'swiper';
 import LogoLink from '../../shared/Logo/LogoLink';
 import { Project } from '../../../api/entities/project/types/client';
 import { useWindowSize } from '../../../features/hooks/useWindowSize';
@@ -75,16 +75,12 @@ const MobileWrapper: FC<IProps> = ({ previewProjects, t }) => {
         dynamicBullets: true,
         verticalClass: '!top-[90vh] !right-[1.5rem]',
       }}
-      modules={[ Autoplay, Pagination ]}
+      modules={[ Pagination ]}
       className="absolute top-0 left-0 w-full h-dvh z-10"
       direction="vertical"
-      autoplay={{
-        delay: 5000,
-        disableOnInteraction: false,
-      }}
     >
-      {renderPreviewProjects()}
       {renderMainScreen()}
+      {renderPreviewProjects()}
     </Swiper>
   );
 };

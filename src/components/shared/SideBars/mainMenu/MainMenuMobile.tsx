@@ -115,6 +115,7 @@ const MainMenuMobile: FC<IProps> = (
         translateWay="utd"
         dropdownMobile={dropdown}
         isHomeMobileLocation={isHomeLocation}
+        isMobileScreen={true}
       />
     </div>
   );
