@@ -54,4 +54,4 @@ EXPOSE 8443
 
 # ENV PORT 8443
 
-CMD npm start & npx local-ssl-proxy --key /app/certs/www_znakproject_com_2024_01_18.key --cert /app/certs/bundle.crt --source 8443 --target 3000
+CMD npm start & npx local-ssl-proxy --key /app/certs/www_znakproject_com_2025_03_30.key --cert /app/certs/www_znakproject_com_bundle.crt --source 8443 --target 3000
